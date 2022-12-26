@@ -19,6 +19,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [ ] Cubical type theory
 - [ ] Polishing & more history parts
 - [ ] Typesetting, clean up bibliography
+- [ ] Use separate font for metavariables.
 
 ## Conventions
 
