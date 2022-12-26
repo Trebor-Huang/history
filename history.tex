@@ -1468,7 +1468,9 @@ type theory).} 在另一个极端, 我们也可以设定一条规则, 让命题�
 的参数都是 \(a\). 同时我们为了方便也会将
 \(\cons{refl}_a\) 省略为 \(\cons{refl}\).
 类似地, 消去子和构造子的组合有一个等式, 这里不再给出.
-读者可以参考\cite{ufp:2013:hottbook}.
+读者可以参考\cite{ufp:2013:hottbook}. 用字母J是因为
+Martin-L\"of在论文\cite{martinlof:1984:J}中的相等
+类型使用了 I, 而下一个字母就是 J.
 
 (...)
 
@@ -1596,7 +1598,6 @@ Seely 在 \cite{seely:1984:lccc} 中的重要观察是,
 更加一般. 因此, 我们从几何的角度入手, 介绍意象的概念.
 这部分内容参考了\cite{joyal:2019：topologie}.
 
-%topological space \& locale 对偶
 \subsection{拓扑空间与位象}
 首先, 我们回顾拓扑空间的定义.
 \begin{definition}
@@ -1691,7 +1692,7 @@ Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
 对于位象的研究, 还有一个呼之欲出的问题： 位象与拓扑空间
 之间的关系如何? 换句话说, 在这两者之间转换会不会损失某些
 信息? 用范畴论的语言可以更精确地描述. 给定拓扑空间与
-连续映射构成的范畴 \(\mathsf{Set}\), 和位象与连续映射
+连续映射构成的范畴 \(\mathsf{Top}\), 和位象与连续映射
 构成的范畴 \(\mathsf{Loc}\), 我们希望研究这两者之间
 的关系.
 
@@ -1973,7 +1974,7 @@ Kripke--Joyal, 推广之前的 Kripke
 \[\prod_{a,b : A} \prod_{p: a = b} (a,b,p) =_{\sum_{a,b : A}a = b} (a,a,\cons{refl}).\]
 上面的三个命题都是等价的. 我们将它们统称为
 \textbf{K 原理}\footnote{这个名字是因为
-Martin-L\"of 本人的文章中顺次编号, J之后就是K.}.
+其提出者Thomas Streicher顺承J原理的名字, 使用了下一个字母K.\cite{streicher:1993:K}}.
 令人惊讶的是, 很长一段时间中并没有人能从 J 原理推
 出 K 原理. 在第\ref{martinlof}章介绍的集合模型中,
 K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
