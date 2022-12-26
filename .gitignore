@@ -12,3 +12,4 @@
 *.toc
 *.xdv
 quiver.sty
+.DS_Store

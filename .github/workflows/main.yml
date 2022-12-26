@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build document
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: history.tex
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: history.pdf
+          path: history.pdf
