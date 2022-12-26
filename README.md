@@ -4,7 +4,7 @@
 
 Coursework, abstract due Jan 8, paper due Feb 18. (...) I plan to expand this even more after I submit a version for coursework. Suggestions are welcome! PR's are welcome but they should be after I submit the work, probably.
 
-I'll write up a Github integration later.
+You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).
 
 ## TODO
 
@@ -24,10 +24,6 @@ As a self-note here are some conventions:
 - ASCII punctuation, except for quotes, colons and anything ASCII doesn't have.
 - Keep category magic to minimum, so there is a gradient of prerequisites. I can't make this completely self-contained, so there will be stuff that goes unexplained.
 - **Never ever** use English jargon, unless discussing the matter of translation. However, use names faithfully and do not transliterate.
-
-## Compile
-
-You need a copy of [`quiver.sty`](https://q.uiver.app). Then it should compile alright with XeLaTeX.
 
 ## License
 
