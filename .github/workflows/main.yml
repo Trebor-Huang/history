@@ -21,6 +21,7 @@ jobs:
         uses: dante-ev/latex-action@latest
         with:
           root_file: history.tex
+          args: -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
