@@ -2,9 +2,11 @@
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-Coursework, abstract due Jan 8, paper due Feb 18. (...) I plan to expand this even more after I submit a version for coursework. Suggestions are welcome! PR's are welcome but they should be after I submit the work, probably.
+An overview of the history of type theory, mainly for mathematicians.
 
-You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).
+**You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).**
+
+This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand this even more after I submit a version for coursework. Suggestions are welcome! PR's are welcome but they should be after I submit the work, probably.
 
 ## TODO
 
