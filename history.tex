@@ -1340,6 +1340,26 @@ Double negation translation的对应
 
 \(\lambda\mu\)-演算, Zeilberger
 
+\subsection{一些关于构造主义的补充说明}
+在上面的介绍中, 其实有很多容易出错的技术细节. 这里总结
+一下.
+\begin{itemize}
+\item 在构造主义中, 总是可以证明
+\(\neg\neg (p \vee \neg p)\). 在支持高阶逻辑的
+系统中, 即可以证明 \(\forall p. \neg\neg (p \vee\neg p)\). 因此如果形式系统
+是自洽的, 就一定无法证明某个命题满足 \(\neg (p \vee \neg p)\).
+\item 尽管如此, \(\neg\neg(\forall p. p \vee \neg p)\)
+也不能证明. 因此我们可以选择加入一条公理
+\(\neg (\forall p. p \vee \neg p)\), 这并不会导致矛盾.
+我们也可以加入一些能推出这个命题的公理. 譬如 Brouwer 的
+连续性公理: 一切函数 \(f : \mathbb N^{\mathbb N} \to \mathbb N\)
+都是连续的 (其中 \(\mathbb N^{\mathbb N}\) 上有
+乘积拓扑). 这条公理可以推出所有实数到实数的函数都是连续的.
+我们称能推出 \(\neg (\forall p. p \vee \neg p)\) 的
+系统或者公理为\textbf{反经典}的.
+\item 
+\end{itemize}
+
 \chapter{Martin-L\"of类型论}\label{martinlof}
 
 Martin-L\"of 在 70 年代前后提出了多个类似的类型论.
@@ -1427,12 +1447,12 @@ _{\text{利用 \(m\) 与 \(f(m)\) 表达 \(f(m+1)\)}}] \to
 相等类型可以描述如 \(m + n =_{\mathbb N} n + m\) 或者 \(\zeta(2) =_{\mathbb R} \frac{\pi^2}{6}\)
 这样的需要证明的定理. 这些显然没有机械的判定方法, 否则
 数学家都要失业了!
-我们称前者为\textbf{判定相等} (judgemental equality),
+我们称前者为\textbf{判值相等} (judgemental equality),
 而后者(即相等类型)为\textbf{命题相等} (propositional equality).
 
 命题相等还有一个特点, 就是我们可以用它们来构造更复杂的命题,
 如 \(\neg (a^3 + b^3 =_{\mathbb N} c^3)\) 等等.
-判定相等是表达式上的等价关系, 并不是一个类型, 因此不能
+判值相等是表达式上的等价关系, 并不是一个类型, 因此不能
 参与构造更复杂的命题.
 
 为什么我们需要这样辨析相等的概念呢? 其实前一章中已经暗示
@@ -1441,15 +1461,15 @@ _{\text{利用 \(m\) 与 \(f(m)\) 表达 \(f(m+1)\)}}] \to
 这就需要类型论中有一个可以机械地判断的相等概念, 否则就无法
 机械地判断某个表达式类型是否正确, 进而在Curry--Howard对应下
 就意味着无法判断某个证明是否真的证明了命题. 一个类型论
-不一定需要有命题相等, 但是一定有判定相等的概念. 当然这个概念
-可以是平凡的, 比如只有字面相等的表达式才判定相等; 这就
+不一定需要有命题相等, 但是一定有判值相等的概念. 当然这个概念
+可以是平凡的, 比如只有字面相等的表达式才判值相等; 这就
 产生了\textbf{弱类型论}(weak type theory).\footnote{Martin-L\"of
 类型论又称作\textbf{内涵类型论}(intensional
 type theory).} 在另一个极端, 我们也可以设定一条规则, 让命题相等
-的概念和判定相等的概念重合:
+的概念和判值相等的概念重合:
 \[\frac{M =_A N}{M = N}.\]
 这就产生了\textbf{外延类型论}(extensional type theory).
-这样的代价就是判定相等不再可以机械地判定, 因此在其中
+这样的代价就是判值相等不再可以机械地判定, 因此在其中
 写下一个命题的证明, 也没有明确的办法判断这是否是正确的
 证明. 这三种类型论的联系可以参考\cite{winterhalter:2018:ettwtt}.
 
@@ -1769,7 +1789,6 @@ points, 或者称为 spatial.}当且仅当对于任何两个元素
 \end{theorem}
 
 \subsection{层与意象}
-%Sheaf over topological space
 有了这样把拓扑空间中的点放在次要地位, 而将开集作为更根本的
 数学对象的思想, 我们可以进一步引出意象的概念了.
 Grothendieck提出层的概念, 是为了更好地整理代数几何中
