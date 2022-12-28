@@ -2,7 +2,9 @@
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-An overview of the history of type theory, mainly for mathematicians.
+An overview of the history of type theory, mainly for mathematicians. I seek to achive these goals:
+- Provide a coherent and up-to-date source of information in Chinese.
+- Link to important books and papers I recommend to read.
 
 **You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).**
 
