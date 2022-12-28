@@ -18,12 +18,14 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
       - name: Compile LaTeX document
-        uses: dante-ev/latex-action@latest
+        uses: xu-cheng/latex-action@v2
         with:
-          root_file: history.tex
-          args: -xelatex -file-line-error -halt-on-error -interaction=nonstopmode
+          root_file: "*.tex"
+          glob_root_file: true
+          latexmk_use_xelatex: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
-          name: history.pdf
-          path: history.pdf
+          name: history
+          path: |
+            *.pdf

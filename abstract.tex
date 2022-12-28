@@ -1,0 +1,61 @@
+\documentclass[UTF8]{ctexart}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{fancyhdr}
+\usepackage{biblatex}
+\usepackage{mathrsfs}
+\usepackage{quiver}
+\usepackage{hyperref}
+
+\newcommand\myshade{85}
+\colorlet{mylinkcolor}{violet}
+\colorlet{mycitecolor}{orange}
+\colorlet{myurlcolor}{Aquamarine}
+
+\hypersetup{
+  linkcolor  = mylinkcolor!\myshade!black,
+  citecolor  = mycitecolor!\myshade!black,
+  urlcolor   = myurlcolor!\myshade!black,
+  colorlinks = true,
+}
+
+\newcommand{\cons}[1]{\textsf{#1}}
+\newcommand{\slogan}[1]{\begin{center}%
+  \fcolorbox{red!80!green}{red!10}{%
+    \large\textbf{#1}%
+  }%
+\end{center}}  % TODO change later
+
+\theoremstyle{plain}
+\newtheorem{lemma}{引理}
+\newtheorem{theorem}{定理}
+\newtheorem{corollary}{推论}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{注}
+
+\addbibresource{history.bib}
+
+\pagestyle{fancy}
+\fancyhead[L]{\nouppercase{\kaishu\rightmark}}
+\fancyhead[R]{\nouppercase{\kaishu\leftmark}}
+\setlength{\headheight}{14pt}
+\title{类型论简史 (摘要)}
+\date{}
+\author{Author}
+\begin{document}
+\maketitle
+
+文章的目的
+
+前置知识
+
+section 1.5
+
+\end{document}
