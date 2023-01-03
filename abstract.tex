@@ -28,12 +28,12 @@
 \end{center}}  % TODO change later
 
 \theoremstyle{plain}
-\newtheorem{lemma}{引理}
-\newtheorem{theorem}{定理}
-\newtheorem{corollary}{推论}
+\newtheorem*{lemma}{引理}
+\newtheorem*{theorem}{定理}
+\newtheorem*{corollary}{推论}
 
 \theoremstyle{definition}
-\newtheorem{definition}{定义}
+\newtheorem*{definition}{定义}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{注}
@@ -93,7 +93,34 @@ Scholze希望这条定理的证明可以被完全严格形式化, 并且通过
 相对独立, 因此如果某一部分使用的范畴论知识较多, 读者可以直接
 跳过, 不影响后续阅读.
 
-Russell 悖论, 简单类型论
+%Russell 悖论, 简单类型论
+类型论的起源是Russell为了解决以他命名的悖论而提出的.
+如果有集合 \(R = \{x \mid x \notin x\}\), 那么考察
+\(R \in R\) 的真假就会发现矛盾. 为了解决这个矛盾,
+Russell提出了类型的概念.
+
+我们可以发现, 数学中我们根本不会需要讨论 \(x \in x\) 这样的
+命题. 实数 \(x\) 属于实数集 \(\mathbb R\), 而一些实数的
+集合 (如开集) 构成集合族 \(\Omega\). 这些数学对象之间都有明确的层级,
+层级混乱的命题一般没有数学意义.
+更严格来说, 对象之间是有分类的. 譬如虽然二维的点 \((\pi, 3)\)
+和三维空间的点 \((0,1,-1)\) 都是同一个层级的, 但是我们也基本不会
+把它们放在同一个集合中.
+
+从这个观察出发, 我们可以把这种分类的概念严格化. 我们设当前研究
+的最基本的个体的分类称作 \(\iota\). 如我们研究数论的时候
+\(\iota\) 代表全体自然数, 研究分析学的时候就是全体实数, 等等.
+其次我们需要有一类数学对象表示命题, 因此我们把所有命题构成的分类
+称作 \(o\).
+其次, 我们需要从基本的分类出发组成更复杂的分类. 譬如说可以用
+\(\iota \to \iota\) 表示自然数到自然数的函数.
+最后, 我们引入各种逻辑连词, 如 \(\wedge : o \to o \to o\),
+\(\forall : (\iota \to o) \to o\)  等等, 并且
+添加相关的推理规则. 这样就得到了简单类型论的逻辑系统.
+
+人们依据这种形式系统, 写出了计算机程序 Isabelle,
+用计算机的准确性验证数学证明. 已经有不少数学理论被 Isabelle 形式化.
+譬如质数定理. 这说明类型论与集合论一样, 有形式化数学的基本能力.
 
 Curry--Howard 对应
 
