@@ -961,7 +961,7 @@ F 系统, 而不少编程语言正是以 F 系统为蓝本构建的.
 经过上面的一些研究, 或许有些读者会产生一种模糊的感觉.
 假如我们有 \(f : \alpha \to \beta\), 以及 \(a : \alpha\),
 那么我们就能求值得到 \(f(a) : \beta\). 这其实和逻辑里
-最古老的推理有些相像: 假如我们证明了 \(p\Rightarrow q\),
+最古老的推理有些相像： 假如我们证明了 \(p\Rightarrow q\),
 并且我们证明了 \(p\), 那么我们就可以证明 \(q\).
 
 这是否能推广一下呢? 完全可以! \(p \wedge q\) 就对应了
@@ -1357,7 +1357,13 @@ Double negation translation的对应
 乘积拓扑). 这条公理可以推出所有实数到实数的函数都是连续的.
 我们称能推出 \(\neg (\forall p. p \vee \neg p)\) 的
 系统或者公理为\textbf{反经典}的.
-\item 
+\item 对于命题逻辑中的任何命题 \(p\), 如果 \(p\) 在经典
+逻辑中可证, 那么 \(\neg\neg p\) 不使用排中律也可以证明.
+这是 Glivenko 定理. 这对于一阶逻辑不再成立. 但是存在
+一个简单的翻译 \(p^{\cons N}\), 如将所有
+\(\forall x.\) 翻译为 \(\neg \neg \forall x.\) 等等.
+因此, 不能说不使用排中律是一种限制. 相反, 直觉主义逻辑
+包含了经典逻辑中能出现的一切数学.
 \end{itemize}
 
 \chapter{Martin-L\"of类型论}\label{martinlof}
@@ -2225,9 +2231,6 @@ Martin-L\"of 类型论中.
 
 
 \url{https://ncatlab.org/nlab/show/cubical type theory}
-
-% Also talk about my answer
-% \url{https://proofassistants.stackexchange.com/questions/1073/what-are-fibration-cofibration-in-type-theory-and-what-are-their-intuitions/1083#1083}
 
 BCH 模型 2013, 2017, 不适合加 HIT
 
