@@ -7,6 +7,7 @@
 \usepackage{fancyhdr}
 \usepackage{biblatex}
 \usepackage{hyperref}
+\usepackage{quiver}
 
 \newcommand\myshade{85}
 \colorlet{mylinkcolor}{violet}
@@ -152,7 +153,7 @@ F系统在 1972 年由逻辑学家 Jean-Yves Girard
 
 基于拓扑空间的同伦论中, 拓扑空间不满足许多理应满足的性质.
 譬如连续函数构成的空间并不一定能使得求值态射
-\(\cons{ev} : [(X \to Y) \times X] \to Y\) 连续;
+\(\cons{ev} : [(X \Rightarrow Y) \times X] \to Y\) 连续;
 不是所有空间都有万有覆叠, 等等. 因此使用拓扑空间时
 必须花费精力将性质不好的部分剔除.
 
@@ -167,7 +168,7 @@ F系统在 1972 年由逻辑学家 Jean-Yves Girard
 2012--2013年, 由Princeton高等研究院发起了
 “泛等数学基础特别年”, 邀请了拓扑学、计算机科学、范畴论、逻辑学
 等等领域的数学家参加. 其中由 Peter Aczel 提议, 尝试使用
-同伦类型论书写\emph{非形式化}的数学. 这次尝试很快获得了
+同伦类型论书写非形式化的数学. 这次尝试很快获得了
 初步成功, 最终写出了《同伦类型论：泛等数学基础》这本书.
 它从零出发, 整理了泛等数学基础中的结论, 从同伦类型论
 的角度重新叙述了集合论与范畴论, 并且给出了
@@ -175,6 +176,25 @@ F系统在 1972 年由逻辑学家 Jean-Yves Girard
 
 \section*{类型论的语义}
 
-语法与语义, 是类型论理论研究的中心.
+语法与语义, 是类型论理论研究的中心. 起初, 类型论的语义
+常常使用的是一阶逻辑和集合论现成的语义学工具. 1984年,
+Seely在一篇文章中指出, 局部Descartes闭范畴可以和
+类型论中的许多东西找到对应. 随后, 范畴论与类型论之间的
+关联逐步被发展起来. 各种不同的类型论可以视作是各类不同
+的范畴的语言. 它们之间的关系可以画成图表:
 
+\[\begin{tikzcd}
+{\text{范畴论}} && {\text{类型论}}
+\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{内语言}}"', shift right=1, curve={height=6pt}, from=1-1, to=1-3]
+\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{语法范畴}}"', shift right=1, curve={height=6pt}, from=1-3, to=1-1]
+\arrow["\bot"{description}, draw=none, from=1, to=0]
+\end{tikzcd}\]
+
+类型论的语法规定了语义的结构, 而另一方面
+语义研究的发展又促使新的语法规则的形成. 二者构成对立统一,
+矛盾运动的关系.
+
+\vspace*{\fill}
+
+\emph{参考文献见完整版.}
 \end{document}
