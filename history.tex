@@ -1498,19 +1498,41 @@ type theory).} 在另一个极端, 我们也可以设定一条规则, 让命题�
 Martin-L\"of在论文\cite{martinlof:1984:J}中的相等
 类型使用了 I, 而下一个字母就是 J.
 
-(...)
+神奇的是, 用 J 原理就足够证明等式的各种性质, 比如对称性
+\[\prod_{a,b:A} a = b \to b = a\]
+与传递性
+\[\prod_{a,b,c:A} a=b \to b=c \to a=c.\]
+给定任何一个表达式 \(P(x)\), 如果有 \(a=b\),
+那么 \(P(a) = P(b)\). 如果类型 \(A = B\), 那么
+其间有一个双射. 这些性质的证明, 读者可以参考 \cite[\S1.12]{ufp:2013:hottbook}.
 
-\section{(...)}
+不过仍然有一些问题无法只靠J原理解决. 其中最简单的例子是
+函数的\textbf{外延性}, 即如果两个函数逐点相等, 那么它们
+相等.
+\[\cons{funext} : \prod_{f,g : A \to B}
+\left[\prod_{x : A} f(x) = g(x)\right] \to f = g.\]
+这在Martin-L\"of类型论中是无法证明或者证伪的.
+在\cite{boulier:2017:syntacticmodel}中有非常简单易懂的证明.
+这可以看作是Martin-L\"of类型论的一个缺点, 也可以理解为一种优点.
+比如将函数看作算法, 那么尽管两个函数逐点相等, 它们的算法不同,
+计算需要的时间也不同. 因此函数外延性在研究算法复杂度时就的确是不成立的.
+我们可以将这些命题作为额外的公理加入到理论中. 而之后
+还会提到一个非常重要的无法靠J原理解决的问题.
 
-集合模型------相容性(...) 与上面提到的典范性
+\section{自洽性}
+
+%集合模型------相容性(...)
+
+
+%与上面提到的典范性比较
+
+\section{变体}
 
 logical framework, Nuprl, stuff
 
 对比 CIC 和 MLTT, predicativity
 
-funext, propext
-
-\section{Lean} (实际上是CoC + Inductive等)
+Lean (实际上是CoC + Inductive等)
 液态张量.\cite{scholze:2020:liquid}
 
 \chapter{范畴语义}
