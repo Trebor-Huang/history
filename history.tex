@@ -1966,12 +1966,12 @@ Grothendieck提出层的概念, 是为了更好地整理代数几何中
 它们满足一些性质：
 \begin{itemize}
 \item \(\mathrm{res}_{U,U}\) 是恒等映射.
-\item \(\mathrm{res}_{U, V}\circ \mathrm{res}_{V,W} = \mathrm{res}_{U, W}\).
+\item \(\mathrm{res}_{V, W}\circ \mathrm{res}_{U,V} = \mathrm{res}_{U, W}\).
 \item 给定开覆盖 \(U = \bigcup_{i\in I} U_i\),
-对于任何一组 \(f_i \in \mathcal F(U_i)\), 满足
+对于任何一组 \(f_i \in \mathscr F(U_i)\), 满足
 \[\mathrm{res}_{U_i, U_i \cap U_j}(f_i)
 = \mathrm{res}_{U_j, U_i \cap U_j}(f_j),\]
-则存在唯一的 \(f \in \mathcal F(U)\), 使得
+则存在唯一的 \(f \in \mathscr F(U)\), 使得
 其限制在各个 \(U_i\) 上等于 \(f_i\). 这条公理称作
 粘合公理. 去掉这条公理, 则这是\textbf{预层}的定义.
 \end{itemize}
@@ -2001,7 +2001,8 @@ Grothendieck提出层的概念, 是为了更好地整理代数几何中
 
 这些定义到1950年代已经成为主流数学的重要工具. 然而, 在
 代数几何中, \(X\) 上只有拓扑信息是完全不够的. 例如在
-一维情况下, Zariski 连续的函数 \(\mathbb A^1 \to \mathbb A^1\)
+一维情况下, Zariski 拓扑就是余有限拓扑, 因此 Zariski
+连续的函数 \(\mathbb A^1 \to \mathbb A^1\)
 只需要保证每个点的原像有限 (或者是常函数), 但是我们只关心有理函数!
 Grothendieck 为此推广了层范畴的定义, 以便包含这些
 信息.
@@ -2037,7 +2038,7 @@ Grothendieck 为此推广了层范畴的定义, 以便包含这些
 好的性质. 因此Grothendieck提出了一组要求, 满足这些
 要求的则被称作\textbf{Grothendieck拓扑}.\footnote{现在
 使用的Grothendieck拓扑的定义比这个定义略微更一般一些,
-因为有时候需要处理的范畴没有所需要的拉回. 读者可以参
+因为有时候范畴中没有所需要的拉回. 读者可以参
 阅\cite{johnstone:2008:elephant}中的讨论.}
 \begin{itemize}
 \item 每个同构本身构成覆盖.
