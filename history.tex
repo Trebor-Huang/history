@@ -512,7 +512,8 @@ Descartes函子 \(H : \mathcal S_1 \to \mathcal S_2\),
 一般表现为两个定理, 分别称作\textbf{完备性}与\textbf{可靠性}.
 我们在\ref{beginning:henkin}节会再次提到.
 
-realizability \& forcing
+%realizability \& forcing
+%TODO I think we don't need to mention these?
 
 \section{类型论的历史}\label{intro:unity}
 在类型论研究的历史中, 语法和语义的研究是对立统一的关系.
@@ -754,13 +755,15 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 它满足
 \[(\lambda x. A)(B) = A[x/B].\]
 其中 \(A[x/B]\) 表示将 \(A\) 中包含的 \(x\) 变量全部
-代换成 \(B\). 正如我们在前言中所述, 这个描述看似简单, 但是变量的处理
+代换成 \(B\). 这个等式称作 \textbf{\(\boldsymbol\beta\)-相等}.
+正如我们在前言中所述, 这个描述看似简单, 但是变量的处理
 会引起一些麻烦, 在这里我们不做处理. 这个等式描述了构造一个函数,
 而后马上对它求值, 会得到什么. 有时候我们也可以反过来考虑,
 对一个函数求值, 然后以此构造一个函数, 会得到什么呢?
 \[\lambda x. f(x) = f.\]
 因为这实际上只是把原先 \(f\) 代表的函数包装了一下, 并没有
 改变它的实际性质, 因此我们认为这仍然是等于 \(f\) 的.
+这个等式称作 \textbf{\(\boldsymbol\eta\)-相等}.
 当然, 这里也有变量处理的麻烦： \(f\) 的表达式中不能含有 \(x\) 本身.
 
 仅仅有这些东西, 我们就能构造出一套非常丰富的结构了. 譬如说,
@@ -885,7 +888,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 \begin{proof}
 取
 \[M = (\lambda m. f(mm))(\lambda m. f(mm))\]
-根据前面的等式 \((\lambda x. A)B = A[x/B]\),
+根据\(\beta\)-相等的等式 \((\lambda x. A)B = A[x/B]\),
 代入就得到
 \[M = f(mm)[m/\lambda m.f(mm)]
 = f((\lambda m. f(mm))(\lambda m.f(mm)))
@@ -1012,6 +1015,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 一个类型 \(\mathbb B\) 作为基础类型, 有两个元素
 \(\cons{y}, \cons{n} : \mathbb B\). 注意这个
 类型中还有有其他元素, 如 \(\cons{K}\cons{y}\cons{n}\) 等.
+但是在我们之前规定的运算的等价关系下, \(\cons{K}\cons{y}\cons{n}\) 等价于 \(\cons{y}\).
 最后我们有规则
 \[\frac{A : \alpha \to \beta \quad B : \alpha}{AB : \beta}\]
 回忆分数线上方是前提, 下方是结论. 因为组合子演算中没有变量,
@@ -1058,7 +1062,100 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 对一切组合子表达式都成立.
 
 \subsection{简单类型\texorpdfstring{\(\lambda\)}{Lambda}-演算的闭典范化}
-STLC canonicity
+我们同样规定有一个基本类型 \(\mathbb B\), 含有两个
+元素 \(\cons{y}, \cons{n}\).
+
+
+(...) 乘积类型. \(\Gamma \vdash x : M\) 记号.
+
+
+\textbf{闭典范化}
+说的是任何一个不含自由变量的表达式
+\(M : \mathbb B\) 都
+等价于 \(\cons{y}, \cons{n}\) 其中之一
+(并且这两种可能是互斥的).
+而更强一些的\textbf{典范化}说的是任何一个表达式
+\(M : \alpha\) 都等价于某个典范表达式.
+我们互相递归地定义典范表达式和中性表达式:
+\begin{definition}
+\textbf{典范表达式}要么是类型为 \(\mathbb B\) 的中性表达式,
+要么是 \(\cons{y},\cons{n}\) 之一,
+要么形如 \(\lambda x. M\), 其中 \(M\) 是典范表达式.
+\textbf{中性表达式}要么是变量, 要么形如 \(M(N)\), 其中 \(M\)
+是中性表达式, \(N\) 是典范表达式.
+\end{definition}
+
+无论是证明闭典范化还是典范化的性质都需要不少功夫, 因为
+与组合子的情况类似, 简单地直接归纳是行不通的.
+我们需要先通过归纳法证明一个更强的
+命题. 我们的大致思路仍然是在每个类型 \(\sigma\) 上定义一个谓词
+\(R_\sigma\), 并归纳证明其性质. (因为集合\(X\)上
+的谓词\(P\)等价于它的子集 \(\{x\in X\mid P(x)\}\), 所以
+这两者可以交换使用.) 如
+\[R_{\sigma \to \tau} = \left\{(\Gamma, f) \,\middle|\,
+\begin{aligned}
+\Gamma \vdash&\, f:\sigma\to\tau, \\ \forall (\Delta, s) \in R_\sigma, \Gamma \subseteq \Delta &\implies (\Delta, f(s)) \in R_\tau
+\end{aligned}
+\right\}.\]
+这比较不直观, 而且很难想到.
+利用范畴语言, 可以给出更加系统的表述, 其中这些略微复杂的
+构造其实都是自然而唯一的.
+
+[=========
+
+为此, 我们首先需要将简单类型\(\lambda\)算术的语法做成
+范畴语言. 我们令所有的上下文 \(\Gamma\) 为范畴
+\(\mathcal T\) 中的对象, 而 \(\Gamma\) 到 \(\Delta\)
+的态射就是在 \(\Gamma\) 上下文中的一列表达式, 其中第
+\(n\) 个表达式的类型恰好是 \(\Delta\) 中的第 \(n\) 个
+类型. 换言之, 这一列表达式给出了从 \(\Delta\) 到 \(\Gamma\)
+的\textbf{替换} (substitution). 并且我们认为
+\(\beta\eta\)-相等的项给出相同的替换.
+
+实际上由于简单类型\(\lambda\)-算术自身的性质, 我们可以等价地
+让对象为所有的类型, 而态射为这些类型间的函数. 因为
+\[\sigma_1,\dots,\sigma_n \vdash \tau_1,\dots,\tau_m\]
+可以表述为
+\[\vdash \sigma_1\times\dots\times\sigma_n \to \tau_1 \times\dots\times\tau_n.\]
+但是用上下文的方法更具普适性. 此后为了行文简洁, 我们会
+混淆这两个方法.
+
+=========]
+
+我们实际上有非常好的方式刻画这个范畴.
+\begin{theorem}
+\(\mathcal T\) 是由图表 \(1 \rightrightarrows \mathbb B\)
+生成的自由Descartes闭范畴.
+\end{theorem}
+``自由生成''在这里的含义或许需要阐明. 我们定义这样一种数学
+结构, 其中包含一个Descartes闭范畴以及选定一个对象 \(A\)
+和两个态射 \(1\rightrightarrows A\). 这些数学结构之间
+可以定义一些同态, 即保持选定的对象和态射的Descartes闭函子.
+那么这就构成了一个范畴(其实是2-范畴), 姑且称作
+\(\mathsf{CartClosedCat}_{1\rightrightarrows\mathbb B}\).
+那么其中的始对象就是我们所说的被自由生成的范畴.
+
+\begin{proof}
+把这个定理展开, 就可以发现它整齐地打包了很多预备的引理.
+在这里我们只提到重要的引理, 其余部分都是直接展开定义即可.
+\begin{itemize}
+\item 首先我们需要证明 \(\mathcal T\) 构成范畴, 需要验证
+结合律. 这就是\textbf{替换引理}. (很不幸的是
+这个词可以指代两个不同的引理.) 这可以通过对表达式的结构做
+归纳得到.
+\item 其次我们需要证明 \(\mathcal T\) Descartes闭. 这实际上就是
+简单类型\(\lambda\)-算术的语法决定的, 而其中那些自然同构
+的等式则是由 \(\beta,\eta\) 规则保证.
+\item 我们接下来需要证明, 对于任意一个这样的范畴 \(\mathcal C\),
+都能找到保持选定的对象和态射的 Descartes 闭函子
+\(F : \mathcal T \to \mathcal C\). 这之中需要证明
+的是替换与\(\beta\eta\)-等价是可交换的. 而这函子
+的唯一性来源于其所有类型都是用
+\(\mathbb B, \times, \to\) 三者生成的.\qedhere
+\end{itemize}
+\end{proof}
+
+(...)
 
 \subsection{简单类型\texorpdfstring{\(\lambda\)}{Lambda}-演算的典范化}
 Kripke 语义, normalization
@@ -2346,7 +2443,7 @@ K\(_0\) 原理就是 K 原理, 而 K\(_1\) 原理就是上面说的
 譬如考虑偶数集 \(\{x \in \mathbb Z \mid x \equiv 0 \pmod 2\}\).
 我们不会认为\(x\)是偶数的两种不同思路的证明会给出两个
 不同的偶数. 因此这两个证明作为数学对象比较的时候永远是
-相等的. 换句话说, 同一个命题的任何两个命题 (如果存在的话)
+相等的. 换句话说, 同一个命题的任何两个证明 (如果存在的话)
 一定是相等的. 因此我们可以做一个定义：
 \begin{definition}
 称一个类型\(A\)为\textbf{命题}, 当且仅当可以证明
