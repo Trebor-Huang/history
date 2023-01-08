@@ -1645,22 +1645,57 @@ Hilbert之后的数学也可以发展无需排中律的版本.
 \(p\) 在使用排中律时可证. 因此无排中律时的数学严格包含了
 有排中律时的数学. 换个说法, 排中律使得大量原先不等价的
 命题变得等价, 因此不加入排中律会让数学更加丰富, 同时不会
-有任何损失.
+有任何损失. Hilbert 说过：“将数学家的排中律夺走, 就好比
+禁止拳击手使用拳头.” 在这个意义下, 这句话自然是不正确的.
 
 \subsection{构造主义}
 
+前一节中已经提示了, 在没有排中律时, 任何数学对象都必须
+构造出来才可以认为存在. \(p \vee q\) 的证明必须明确
+给出哪一边成立, 而 \(\exists x. p(x)\) 必须具体给出
+一个 \(x\). 因此, 我们将这种逻辑以及相关的各类数学哲学
+思想称为\textbf{构造主义}. 下面的介绍主要
+参考了\cite{carl:1998:brouwer}与\cite{sep:2022:constructive}.
+
+在19世纪, 数学家逐渐开始将许多过去定义模糊的概念
+严格化. 我们发现可以将实数定义为有理数的Cauchy列.
+Cantor的工作为无穷数列、无穷集合等等概念夯实了基础,
+并且区分了仅仅是稠密的集合(如有理数)与真正的实数连续统.
+Frege将自然数也使用集合做了定义 ------ 自然数\(n\)
+就是所有恰好有\(n\)个元素的集合构成的集合; 自然数集
+\(\mathbb N\) 就是所有有限集在双射下构成的等价类的集合.
+Kronecker与Poincar\'e等数学家在19世纪末期对此
+提出了质疑. 他们认为这些使用无穷集合, 并且在许多情况下
+都是非构造性质的概念是无法作为数学的根基的.
+
+在世纪之交, Russell悖论的发现动摇了这套基础.
+(我们最终因为这个原因抛弃了Frege对自然数的定义,
+但是Cauchy列, Cantor的连续统等等概念仍然保留了下来.)
+Hilbert为了应对这次危机, 提出了一套纲领. Hilbert
+认为我们可以信任有限的算数与组合, 希望能给出
+一套描述无限集合的公理系统, 并且用纯有限的方法证明这套
+公理系统的自洽性. 这样就可以将无限的概念从数学危机
+中拯救出来. Hilbert认为, 我们可以将关于无限的数学
+化归为对命题机械地按照形式系统的规则操作的过程.
+
+我们现在知道, 以G\"odel的不完备性定理为代表的对
+形式系统更进一步的研究粉碎了Hilbert原本的愿望. 不过
+在当时这还并未明晰. Brouwer
+
 Brouwer--Hilbert controversy
 
-不同风格: Intuitionistic (Brouwer),
-Recurstive (Russian), Bishop, MLTT (later)
+不同风格: Intuitionistic (Brouwer, ~1900),
+Recursive (Russian, ~1940), Bishop (1967), MLTT (later, ~1970)
 
-Double negation translation的对应
+几何解释/计算解释
+
+提内语言, Zariski topos, \ref{category:inner}.
 
 \subsection{经典逻辑的Curry--Howard对应}
 
 \(\lambda\mu\)-演算, Zeilberger
 
-\subsection{一些关于构造主义的补充说明}
+\subsection{一些关于构造主义的补充说明} (TODO scrap this)
 在上面的介绍中, 其实有很多容易出错的技术细节. 这里总结
 一下.
 \begin{itemize}
