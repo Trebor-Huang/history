@@ -1571,8 +1571,17 @@ F系统中强大的编码能力, 如可以直接使用\(\forall\)类型定义
 缺失实际上有一些几何的内涵. 我们之后会进一步探究几何上的
 联系.
 
-在讨论怎么看待这个差异之前, 我们首先不妨来看看缺少这条
-逻辑规则会引发什么变化. 我们将含有排中律的逻辑
+我们还有另一种方法. 在简单类型 \(\lambda\)-演算中, 可以证明
+不含自由变量的类型为 \(\alpha + \beta\) 的元素,
+必然等价于形如 \(\iota_i(M)\) 的表达式. 这也就是说,
+在简单类型 \(\lambda\)-演算中, 没有其他条件的情况下
+证明命题 \(p\vee q\), 就必须要确定地构造出具体哪一边是成立的.
+而排中律 \(p \vee \neg p\) 自然不能直接确定哪一边成立,
+因此是无法证明的. 上面这两种方法, 前者是通过观察语义,
+而后者是通过直接分析语法.
+
+在讨论怎么看待这个差异之前, 我们首先不妨来看看缺少排中律
+会引发什么变化. 我们将含有排中律的逻辑
 称作\textbf{经典逻辑}.\footnote{经典逻辑的不少定义中,
 排中律是作为其它规则的推论存在的,
 正如Zorn引理一般是作为选择公理的推论存在的. 因此在这些定义
@@ -1584,7 +1593,8 @@ F系统中强大的编码能力, 如可以直接使用\(\forall\)类型定义
 \item 排中律： \(p \vee \neg p\).
 \item 双重否定消去： \(\neg\neg p \to p\).
 \item 逆否命题： \(\neg p \to \neg q\) 等价于 \(q \to p\).
-\item Peirce定律： \(((p \to q) \to p) \to p\). 如果取 \(q\)为假命题就得到另一个等价形式 \((\neg p\to p) \to p\).
+\item Peirce定律： \(((p \to q) \to p) \to p\).
+\item Peirce定律的特殊情况： \((\neg p\to p) \to p\).
 \end{itemize}
 \end{theorem}
 \begin{theorem}[Diaconescu]
@@ -1605,7 +1615,7 @@ F系统中强大的编码能力, 如可以直接使用\(\forall\)类型定义
 考虑 \({\sqrt2}^{\sqrt2}\). 它要么是有理数要么是无理数.
 如果是前者, 则命题成立. 如果是后者, 设 \(a = {\sqrt2}^{\sqrt2},
 b = \sqrt 2\), 则
-\[a^b = ({\sqrt2}^{\sqrt2})^{\sqrt2} = {\sqrt2}^{\sqrt2\times\sqrt2} = 2.\]
+\[a^b = \left({\sqrt2}^{\sqrt2}\right)^{\sqrt2} = {\sqrt2}^{\sqrt2\times\sqrt2} = 2.\]
 因此无论 \({\sqrt2}^{\sqrt2}\) 是有理数还是无理数,
 都存在 \(a^b\) 满足条件.
 \end{proof}
@@ -1628,10 +1638,16 @@ Hilbert之后的数学也可以发展无需排中律的版本.
 现在, 已经有不少不使用排中律发展数学的努力,
 包括代数、几何、分析等等.
 
-为什么这里以Hilbert作为分界线呢? 这是源于一条非常重要的定理.
-\begin{theorem}[Hilbert, 1888]
-对于任何Noether环 \(R\), 多项式环 \(R[X]\) 也是Noether环.
-\end{theorem}
+另一方面, 事实上去掉排中律完全没有使得能够发展的数学受到限制,
+恰好相反, 去掉排中律使得数学变得更丰富了. 这是因为
+对于任何一个命题 \(p\), 都存在一个命题 \(p^{\cons{N}}\),
+使得这个命题在无排中律下 \(p^{\cons{N}}\) 可证当且仅当
+\(p\) 在使用排中律时可证. 因此无排中律时的数学严格包含了
+有排中律时的数学. 换个说法, 排中律使得大量原先不等价的
+命题变得等价, 因此不加入排中律会让数学更加丰富, 同时不会
+有任何损失.
+
+\subsection{构造主义}
 
 Brouwer--Hilbert controversy
 
@@ -1639,6 +1655,8 @@ Brouwer--Hilbert controversy
 Recurstive (Russian), Bishop, MLTT (later)
 
 Double negation translation的对应
+
+\subsection{经典逻辑的Curry--Howard对应}
 
 \(\lambda\mu\)-演算, Zeilberger
 
