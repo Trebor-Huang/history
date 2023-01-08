@@ -119,9 +119,9 @@ Scholze希望这条定理的证明可以被完全严格形式化, 并且通过
 \slogan{类型论是语法与语义研究的对立统一.}
 这就将问题拆分为三个部分：
 \begin{itemize}
-\item (\ref{intro:syntax}节) 什么是语法?
-\item (\ref{intro:semantics}节) 什么是语义?
-\item (\ref{intro:unity}节) 二者的研究是如何对立统一的?
+\item (\ref{intro:syntax}~节) 什么是语法?
+\item (\ref{intro:semantics}~节) 什么是语义?
+\item (\ref{intro:unity}~节) 二者的研究是如何对立统一的?
 \end{itemize}
 这一章剩下的部分将会简要地从当代视角解释这些问题,
 读者也可以直接跳过阅读下一章.
@@ -434,7 +434,7 @@ X \\
 为什么要花费这么大功夫, 把原来的等式表达得这么复杂呢?
 这是因为我们重新表述了这个等式后, 它就可以立刻解放而
 用到其他范畴中去.\footnote{事实上我们在
-第\ref{category:inner}节中会介绍怎么既能得到好处,
+第~\ref{category:inner}~节中会介绍怎么既能得到好处,
 又不使等式的表述过于复杂.} 譬如我们现在可以考虑
 光滑流形与可微映射构成的范畴, 那么就立刻得到Lie群的定义.
 如果在代数簇的范畴中, 就得到代数群的定义.
@@ -485,13 +485,13 @@ X \\
 而一般的 \(\hom(\star^m, \star^n)\) 可以定义为
 \(n\) 个这样的表达式构成的有序对.
 
-读者可能已经注意到了, 这样定义出来的正是\ref{intro:syntax}节中
+读者可能已经注意到了, 这样定义出来的正是 \ref{intro:syntax}~节中
 介绍过的群的语法! 这样看来, 群的语义可以看作是从群的语法
 构成的范畴出发的Descartes函子. 这就是\textbf{Lawvere函子语义}.
 对于更复杂的理论, 我们也需要更加复杂的范畴结构, 因此考虑的
 函子也相应地需要保持这些结构.
 
-在\ref{intro:syntax}节中, 我们还提到了另一种构造语法范畴的方式.
+在 \ref{intro:syntax}~节中, 我们还提到了另一种构造语法范畴的方式.
 考虑 \(n\) 个生成元的自由群, 它们与其间的群同态构成一个范畴.
 我们将所有的箭头\emph{反向}, 就构成了语法范畴. 读者可以
 验证这样得到的是完全相同的范畴, 不过这种表述更加简练.
@@ -739,7 +739,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 \begin{theorem}[Henkin完备性]
 某个命题在所有Henkin模型中都为真, 那么这个命题可证.
 \end{theorem}
-我们在\ref{intro:semantics}节已经提到过这两个性质.
+我们在 \ref{intro:semantics}~节已经提到过这两个性质.
 
 \section{\texorpdfstring{\(\lambda\)}{Lambda}-演算与组合子逻辑}
 \subsection{\texorpdfstring{\(\lambda\)}{Lambda}-演算}
@@ -1436,7 +1436,7 @@ F系统里面可以直接构造出大量的递归类型\cite{wadler:1990:free}.
 小, 更不用说自己的幂集的幂集了!
 Reynolds在1984年证明了, 简单类型 \(\lambda\)-演算
 的集合论模型是不能扩展到 F 系统的\cite{reynolds:1984:polymorphism}.
-因此, \ref{beginning:domain}节中讨论的技巧在这里
+因此, \ref{beginning:domain}~节中讨论的技巧在这里
 构造语义就非常重要.
 
 1988年, Coquand与Huet提出了构造演算 (Calculus of
@@ -1555,9 +1555,7 @@ F系统中强大的编码能力, 如可以直接使用\(\forall\)类型定义
 当然, 我们仍然可以证明 \(\neg \neg (p \vee \neg p)\),
 但是我们不能消去双重否定.\footnote{注意这和
 \(\neg\neg (\forall p. p \vee \neg p)\) 不同,
-我们无法证明这个. 并且我们现在先谈论命题逻辑和一阶逻辑,
-其中的 \(\forall x\) 不是关于命题, 而是关于正在谈论的
-数学对象的.}
+我们无法证明这个命题.}
 
 为什么简单类型 \(\lambda\)-演算无法推出排中律呢? 我们
 可以看一个模型. 给定一个拓扑空间 \(X\), 其上的开集代表
@@ -1633,8 +1631,8 @@ Hilbert之后的数学也可以发展无需排中律的版本.
 \emph{离散域}与\emph{连续域}的变体, 有理数
 \(\mathbb Q\) 是离散域, 而
 实数 \(\mathbb R\) 则是连续域. 注意这里完全没有
-涉及任何拓扑信息! 在有排中律时, 离散域
-等价于连续域, 因此这个非常有意思的区分就被抹平了.
+涉及任何拓扑信息! 在有排中律时, 离散域与连续域都等价于
+通常的域的定义, 因此这个非常有意思的区分就被抹平了.
 现在, 已经有不少不使用排中律发展数学的努力,
 包括代数、几何、分析等等.
 
@@ -1642,7 +1640,10 @@ Hilbert之后的数学也可以发展无需排中律的版本.
 恰好相反, 去掉排中律使得数学变得更丰富了. 这是因为
 对于任何一个命题 \(p\), 都存在一个命题 \(p^{\cons{N}}\),
 使得这个命题在无排中律下 \(p^{\cons{N}}\) 可证当且仅当
-\(p\) 在使用排中律时可证. 因此无排中律时的数学严格包含了
+\(p\) 在使用排中律时可证, 并且在有排中律时 \(p^{\cons{N}}\)
+与 \(p\) 等价. 例如 \(\forall x. p(x) \vee q(x)\)
+会被翻译为 \(\neg \neg \forall x. \neg (\neg p(x) \wedge \neg q(x))\).
+因此无排中律时的数学严格包含了
 有排中律时的数学. 换个说法, 排中律使得大量原先不等价的
 命题变得等价, 因此不加入排中律会让数学更加丰富, 同时不会
 有任何损失. Hilbert 说过：“将数学家的排中律夺走, 就好比
@@ -1680,15 +1681,40 @@ Hilbert为了应对这次危机, 提出了一套纲领. Hilbert
 
 我们现在知道, 以G\"odel的不完备性定理为代表的对
 形式系统更进一步的研究粉碎了Hilbert原本的愿望. 不过
-在当时这还并未明晰. Brouwer
+在当时这还并未明晰. Brouwer 继承了 Kronecker 的思想,
+对Hilbert纲领发起了抨击. 关于Brouwer与Hilbert的论争
+的历史, 读者可以参阅\cite{carl:1998:brouwer}.
+Brouwer认为, 数学是人类的精神活动.
+数学思想先于语言而存在, 仅仅对命题进行机械操作
+是不可能完全囊括数学的全部内涵的. 这些数学哲学观点
+就是\textbf{直觉主义}. 遵循这些思想, Brouwer构建了
+一套直觉主义数学基础.
 
-Brouwer--Hilbert controversy
+直觉主义作为构造主义的一个分支, 拒绝排中律无限制的使用.
+Brouwer认为, 只有关于有限个事物的命题, 才能使用排中律
+------ 因为对于有限个事物我们可以逐一检查命题是否成立.
+我们不能随意地推广到无限的集合. 譬如考虑命题 \(p\)：
+“对于所有偶数 \(n \ge 4\), \(n\) 可以表示为两个质数的和”.
+并没有理由认为 \(p \vee \neg p\) 成立, 因为
+不可能在有限的时间内穷尽所有的偶数. 我们将来可能会给出
+一个无法被表示为两个质数之和的偶数; 也有可能得到一个算法,
+保证任意给定一个偶数都能找出对应的两个质数. 但是在那一刻
+到来之前, 我们不能从对有限集合的经验出发, 直接认为这两者
+之一一定成立.
 
-不同风格: Intuitionistic (Brouwer, ~1900),
-Recursive (Russian, ~1940), Bishop (1967), MLTT (later, ~1970)
+不过, 直觉主义数学并不严格要求一切数学对象都需要被完全
+确定地构造出来. (...) free choice sequence
 
-几何解释/计算解释
+principle of continuous choice.
+Bar induction, uniform continuity theorem
 
+Recursive (Russian, ~1940) 略
+
+Bishop (1967, Foundations of Constructive Analysis) 详细
+
+MLTT (later, ~1970) 略
+
+几何解释/计算解释;
 提内语言, Zariski topos, \ref{category:inner}.
 
 \subsection{经典逻辑的Curry--Howard对应}
@@ -1896,7 +1922,7 @@ Lean (实际上是CoC + Inductive等)
 
 1984年, Seely在一篇文章\cite{seely:1984:lccc}中
 指出, 局部Descartes闭范畴可以和依值类型论中的许多
-东西找到对应. \ref{beginning:ccc} 节中已经
+东西找到对应. \ref{beginning:ccc}~节中已经
 介绍了Descartes闭范畴的概念, 而\emph{局部Descartes闭范畴}
 只需要进一步的定义.
 \begin{definition}
