@@ -750,7 +750,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 我们在 \ref{intro:semantics}~节已经提到过这两个性质.
 
 \section{\texorpdfstring{\(\lambda\)}{Lambda}-演算与组合子逻辑}
-\subsection{\texorpdfstring{\(\lambda\)}{Lambda}-演算}
+\subsection{\texorpdfstring{\(\lambda\)}{Lambda}-演算}\label{beginning:lambda}
 上面我们介绍了简单类型论. 而简单类型论中最核心的内容
 其实是关于如何形成和使用函数. 我们不妨把这部分内容抽象出来
 进一步研究其性质. 这一部分工作是由 Church 从他提出的类似的
@@ -1778,11 +1778,49 @@ Brouwer构造出了直觉主义的实数集.
 来指代去掉排中律的逻辑. 我们前文中已经提到, 这类
 逻辑更准确的名字是中性逻辑.
 
-\subsubsection{俄罗斯构造主义流派}
+\subsubsection{俄罗斯构造主义}
 
 在1940年代末, 俄罗斯数学家 Andrey A. Markov
 ({\tempfont Андре́й Андре́евич Ма́рков}, 与他的父亲同名; 他的父亲
-是提出Markov链的人) 构建了构造主义逻辑的另一个分支,
+是提出Markov链的人) 构建了构造主义逻辑的另一个
+分支 ------ 俄罗斯构造主义, 也称作递归构造主义.
+在这个流派中, 一切数学对象都使用适当的递归函数构造.
+
+递归函数的概念在1933年由G\"odel与Jacques Herbrand在
+研究形式系统的性质时提出, 是一类特殊的自然数上的
+多元函数 \(\mathbb N^n \to \mathbb N\);
+在1936年Church的(无类型) \(\lambda\)-演算中, 使用 \ref{beginning:lambda}~节
+中提到的编码自然数的方式, 也可以考虑能够在 \(\lambda\)-演算
+中写出来的自然数上的多元函数; 同年, Alan Turing 试图
+刻画“存在有效的方法计算”的概念时, 提出了 Turing 机. 令人惊讶的是,
+这三者给出的是等价的定义. 我们现在将这些定义统称
+为\textbf{可计算函数}或者\textbf{一般递归函数}.
+如输入自然数 \(n \ge 2\), 输出这个自然数最小的质因数,
+就是一个可计算函数.\footnote{不可计算的函数反而在一般数学
+中比较少见, 其中一个例子是将所有的命题用自然数做(合理的)编号,
+对于编号 \(n\) 的命题, 如果它在ZFC公理系统下可以证明,
+那么定义函数 \(f(n) = 1\); 否则定义 \(f(n) = 0\).
+这种命题的编号称作 \textbf{G\"odel 编码}.}
+
+一般递归函数对某些输入可能会无限地计算下去, 如定义
+\[f(n) = \begin{cases}
+f\left(\left\lceil \frac n2 \right\rceil\right) & (n \ge 1)\\
+0 & (n = 0).
+\end{cases}\]
+那么计算 \(f(1)\) 时就会无限递归下去. 此时我们认为
+\(f(1)\) 是未定义的. 如果某个函数对一些输入是未定义的,
+我们则称其为\textbf{部分函数}. 除法就是我们最熟悉的部分函数,
+它对除以零的情况没有定义. 对所有输入都有定义的函数
+称为\textbf{全函数}. 在讨论可计算函数时, 除非额外强调,
+“函数”一词通常指代部分函数. 同时, 因为我们不会介绍其他
+递归函数的概念, 因此“递归函数”一词就指一般递归函数.
+
+递归函数就是那些能通过明确的方法计算的函数, 因此符合构造主义的
+大致方向. 需要注意的是, 算法都是有限长的, 因此
+能够写出的算法只有可数个, 所以 \(\mathbb N \to \mathbb N\)
+的可计算函数也只有可数个.
+
+
 
 \subsubsection{Bishop构造主义}
 
@@ -1790,6 +1828,9 @@ Bishop (1967, Foundations of Constructive Analysis) 详细
 
 \subsubsection{Martin-L\"of构造主义}
 MLTT (later, ~1970) 略
+
+(Talk about finitism/ultrafinitism?
+predicativism should be mentioned along MLTT)
 
 \subsubsection{构造主义的几何意义}
 
