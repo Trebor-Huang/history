@@ -29,7 +29,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 As a self-note here are some conventions:
 - ASCII punctuation, except for quotes, colons and anything ASCII doesn't have.
 - Keep category magic to minimum, so there is a gradient of prerequisites. I can't make this completely self-contained, so there will be stuff that goes unexplained.
-- **Never ever** use English jargon, unless discussing the matter of translation. However, use names faithfully and do not transliterate.
+- **Never ever** use English jargon, unless discussing the matter of translation. However, use latin names faithfully. On the other hand, it would be asking too much to use Cyrillic or the Arabic script. So I will just note the spelling in the original language, and proceed to use latin transliterations.
 
 ## License
 
