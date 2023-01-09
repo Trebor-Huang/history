@@ -11,7 +11,12 @@
 \usepackage{hyperref}
 \usepackage{fontspec}
 
-\newfontfamily\tempfont[Ligatures=TeX]{CMU Serif}
+\newfontfamily\tempfont[
+  BoldFont={cmunbx.otf},
+  ItalicFont={cmunti.otf},
+  BoldItalicFont={cmunbi.otf},
+  Ligatures=TeX
+]{cmunrm.otf}
 
 \newcommand\myshade{85}
 \colorlet{mylinkcolor}{violet}
