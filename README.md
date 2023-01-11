@@ -15,7 +15,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [X] Introduction
   - Do we need to mention realizability and forcing?
 - [ ] Normalization for STLC
-- [ ] Classical logic
+- [X] Classical logic
 - [ ] MLTT
 - [ ] Elementary topos
 - [ ] Internal language
