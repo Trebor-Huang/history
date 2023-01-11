@@ -1878,9 +1878,25 @@ Bishop用行动展示了数学的许多重要的部分都能在构造主义中�
 
 \subsubsection{构造主义的几何意义}
 
-几何解释; (计算解释在前面提)
-
-提内语言, Zariski topos, \ref{category:inner}.
+在当代的几何研究中, 构造主义又被赋予了新的内涵.
+一些复杂的几何对象与简单的代数结构在操作上
+有相似之处, 例如有限型的模层(sheaf of modules of finite type)是
+非常复杂的对象, 而它对应的就是有限生成模.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{external-internal-small.png}
+\end{figure}
+我们可以使用这种相似的对应关系大大简化一些证明.
+但是仔细考察这个对应关系, 会发现排中律没有对应.
+因此, 几何学家可以选择在经典逻辑中写下繁琐且难以阅读的证明,
+或者选择在一种构造主义的语言中写出简洁的证明. 这种
+语言是\textbf{内语言}, 我们会在 \ref{category:inner}~节
+介绍. 注意这并不是说放弃了排中律. 即使我们认为排中律成立,
+这也仅仅是在外部成立, 而在外部进行证明时, 我们就要处理
+譬如“有限型的模层”等概念. 在内语言中, 我们只需要处理
+有限生成模, 而代价是不能使用排中律. 在内语言中写下的证明,
+都可以翻译成外部语言中对复杂几何对象的操作. 有代数几何
+基础的读者可以参阅~\cite{blechschmidt:2021:internal}.
 
 \subsection{经典逻辑的Curry--Howard对应}\label{ch:classical}
 
