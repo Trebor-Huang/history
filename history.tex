@@ -11,6 +11,9 @@
 \usepackage{hyperref}
 \usepackage{fontspec}
 
+% Load computer modern font for e.g. cyrillic.
+% Referring by file name is needed
+% to get compatibility on my laptop and GitHub CI.
 \newfontfamily\tempfont[
   BoldFont={cmunbx.otf},
   ItalicFont={cmunti.otf},
@@ -18,6 +21,16 @@
   Ligatures=TeX
 ]{cmunrm.otf}
 
+% mathrsfs only supports a set of fixed sizes.
+% Fixed by declaring myself.
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
+\DeclareFontShape{U}{rsfs}{m}{n}{%
+   <-6.5> rsfs5
+   <6.5-8.5> rsfs7
+   <8.5-> rsfs10
+}{}
+
+% Defining some colors for hyperref
 \newcommand\myshade{85}
 \colorlet{mylinkcolor}{violet}
 \colorlet{mycitecolor}{orange}
@@ -30,13 +43,15 @@
   colorlinks = true,
 }
 
+% Small set of macros
 \newcommand{\cons}[1]{\textsf{#1}}
 \newcommand{\slogan}[1]{\begin{center}%
   \fcolorbox{red!80!green}{red!10}{%
     \large\textbf{#1}%
   }%
-\end{center}}  % TODO change later
+\end{center}}
 
+% Theorems and definitions
 \theoremstyle{plain}
 \newtheorem{lemma}{引理}[chapter]
 \newtheorem{theorem}{定理}[chapter]
@@ -48,17 +63,19 @@
 \theoremstyle{remark}
 \newtheorem*{remark}{注}
 
+% Bib resource
 \addbibresource{history.bib}
 
+% Page style
 \pagestyle{fancy}
 \fancyhead[L]{\nouppercase{\kaishu\rightmark}}
 \fancyhead[R]{\nouppercase{\kaishu\leftmark}}
 \setlength{\headheight}{14pt}
+
 \begin{document}
 \setcounter{tocdepth}{1}
 \tableofcontents
-% 记得加标题
-% 摘要
+% TODO add the title page
 \include{chapters/introduction.tex}
 \include{chapters/beginnings.tex}
 \include{chapters/curry-howard.tex}
