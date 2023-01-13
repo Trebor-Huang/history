@@ -17,12 +17,18 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [ ] Normalization for STLC
 - [X] Classical logic
 - [ ] MLTT
-- [ ] Elementary topos
-- [ ] Internal language
+  - [ ] Consistency
+  - [ ] Applications
+- [ ] Topos
+  - [ ] Elementary topos
+  - [ ] Internal language
 - [ ] Cubical type theory
-- [ ] Polishing & more history parts
-- [ ] Typesetting, clean up bibliography
-- [ ] Use separate font for metavariables.
+  - [ ] History Part
+  - [ ] A small basic intro
+- [ ] Misc
+  - [ ] Polishing & more history parts
+  - [ ] Typesetting, clean up bibliography
+  - [ ] Use separate font for metavariables?
 
 ## Conventions
 
