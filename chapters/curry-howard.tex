@@ -229,7 +229,7 @@ Constructions, 缩写为 CoC). 这与上面提到的一些类型系统
 起见应该在 \(\vdash\) 的左侧都加上这些变量. 这里 \(\Gamma\)
 是形如 \(x_1{:}A_1, x_2{:}A_2, \dots, x_n{:}A_n\) 的列表.
 同时, \(B(x)\) 这样的记号是不严谨的, 目的在于强调它可能含有 \(x\).
-严格来说应该直接写成 \(B\) 即可.}
+严格来说应该直接写成 \(B\) 即可.} {\color{red}TODO mention this at simple types}
 对于每组\((s_1,s_2,s_3)\in \mathcal R\),
 类型系统中都添加两条规则：
 \[\frac{\Gamma \vdash A : s_1 \quad \Gamma, x{:}A \vdash B(x) : s_2}{\Gamma \vdash \prod_{x:A} B(x) : s_3}\]
@@ -438,7 +438,7 @@ Hilbert为了应对这次危机, 提出了一套纲领. Hilbert
 化归为对命题机械地按照形式系统的规则操作的过程.
 
 我们现在知道, 以G\"odel的不完备性定理为代表的对
-形式系统更进一步的研究粉碎了Hilbert原本的愿望. 不过
+形式系统更进一步的研究粉碎了Hilbert原本的愿望, 不过
 在当时这还并未明晰. Brouwer 继承了 Kronecker 的思想,
 对Hilbert纲领发起了抨击. 关于Brouwer与Hilbert的论争
 的历史, 读者可以参阅~\cite{carl:1998:brouwer}.
@@ -595,6 +595,7 @@ Bishop认为, 要构造一个集合, 只需要说明如何构造它的元素,
 我们要说明如何判断它们相等, 也即定义等价关系
 \(f \sim_{A\Rightarrow B} g\). 为此, 我们规定
 \[(f \sim_{A\Rightarrow B} g) \iff \forall x, f(x) \sim_B g(x).\]
+读者可以验证这确实是等价关系.
 
 Bishop用行动展示了数学的许多重要的部分都能在构造主义中发展,
 并且只需要对经典数学的理论做较小的修改. 正如前面的引文所说,
