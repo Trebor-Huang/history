@@ -1,0 +1,475 @@
+\chapter{范畴语义}
+
+\section{局部Descartes闭范畴}
+
+1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
+指出, 局部Descartes闭范畴可以和依值类型论中的许多
+东西找到对应. \ref{beginning:ccc}~节中已经
+介绍了Descartes闭范畴的概念, 而\emph{局部Descartes闭范畴}
+只需要进一步的定义.
+\begin{definition}
+给定范畴 \(\mathcal C\) 中的对象 \(A\),
+定义\textbf{俯范畴}(overcategory或slice category)
+\(\mathcal C_{/A}\) 的对象为所有形如
+\(B \xrightarrow{f} A\) 的态射. 两个对象
+\(B \xrightarrow f A\) 与 \(C \xrightarrow g A\)
+之间的态射为使得 \(g \circ h = f\) 成立的 \(h\) 的集合.
+\end{definition}
+这里的 “局部” 指的就是在俯范畴中的构造. 可以在
+集合范畴的俯范畴中获取一些直觉： 每个箭头
+\(f : B \to A\) 实际上把 \(B\) 拆分成了许多子集
+\(B_x = f^{-1}\{x\}\). 而俯范畴 \(\textsf{Set}_{/A}\)
+中的所有构造实际上都是这些子集上逐点的构造. 比如
+\(B \to A\) 与 \(C \to A\) 在俯范畴中的乘积
+\(D \to A\), 满足 \(D_x = B_x \times C_x\).
+因此这也称为\textbf{纤维积}, 因为这恰好是每个 \(x\)
+的原像 (即 \(x\) 上的\emph{纤维}) 乘起来. 在原范畴
+中, 这就是拉回.
+\begin{definition}
+如果某个范畴的所有俯范畴都Descartes闭, 则称这个
+范畴\textbf{局部Descartes闭}.
+\end{definition}
+特别地, 这个范畴需要有所有的拉回. 如果这个范畴含有终对象
+\(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
+从而其本身是 Descartes 闭的.
+
+如果 \(f\) 是局部 Descartes 闭范畴 \(\mathcal C\)
+中的对象, 那么我们立即有一个函子
+\[f_! : \mathcal C_{/B} \to \mathcal C_{/A}\]
+描述了箭头的复合. 而由于存在所有的拉回, 有另外一个函子
+\[f^* : \mathcal C_{/A} \to \mathcal C_{/B}\]
+把每个箭头 (即 \(\mathcal C_{/A}\) 中的对象) 与
+\(f\) 取拉回. 进一步由于存在局部的函数对象, 可以构造
+第三个函子
+\[f_* : \mathcal C_{/B} \to \mathcal C_{/A}.\]
+事实上, 这三个函子构成伴随链\(f_!\dashv f^*\dashv f_*\).
+读者可以阅读本人的一篇文章~\cite{me:2022:lccc}, 是对局部
+Descartes闭范畴, 以及其对应的伴随函子 \(f_!\dashv
+f^*\dashv f_*\) 的一份比较友好的介绍. 事实上, 这三个
+函子可以给出局部Descartes闭范畴的等价定义.
+\begin{theorem}
+任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
+\(f_!\) 函子. 这个范畴是Descartes完备的, 等价于
+每个 \(f_!\) 函子都存在连续的两个伴随函子
+\[f_!\dashv f^*\dashv f_*.\]
+\end{theorem}
+
+Seely 在 \cite{seely:1984:lccc} 中的重要观察是,
+这三个函子对应了依值类型论中重要的三个操作：
+\(\Sigma\)-类型, 代入, \(\Pi\)-类型.
+
+我们将每个箭头 \(p : E \to B\) 看作是一族依值类型：
+\[x:B \vdash E(x)\,\mathrm{type}\]
+这里, 每个 \(E(x)\) 的大致含义就是
+原像 \(p^{-1}\{x\}\). 当然, 这只是集合范畴给出的直觉,
+一般范畴里不一定有“原像”的概念. 此时如果有一个元素
+\(e : 1 \to B\), 那么我们构造拉回
+\[\begin{tikzcd}
+  {E'} & 1 \\
+  E & B
+  \arrow[dashed, from=1-1, to=1-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow["p", from=2-1, to=2-2]
+  \arrow["e", from=1-2, to=2-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+则此时 \(E'\) 如果在集合的范畴中考虑, 就是
+\(p^{-1}\{e\}\). 换句话说, \(e^{*}\) 函子把
+\(p : E \to B\) 射到 \(E' \to 1\), 对应类型论中的
+\[\vdash E(e) \, \text{type}\]
+而对于一般的情况, \(e\) 本身也可能有变量, 即
+\(e : A \to B\). 那么这时候得到的就是
+\[a : A \vdash E(e(a)) \, \text{type}\]
+由此可以看出, 拉回 \(e^*\) 对应的类型论操作
+是\emph{代入}. 进一步, 如果有这个箭头 \(p : E \to B\)
+表示一族类型 \(x:B \vdash E(x)\),
+那么它与 \(\iota : B \to 1\) 进行复合, 得到的
+就是全空间 \(E\), 换句话说就是 \(\Sigma\)-类型：
+\[\vdash \sum_{x:B}E(x) \, \text{type}\]
+因此可见 \(\iota_!\) 函子对应的是取 \(\Sigma\)-类型
+的操作. 同样, 如果将 \(1\) 改成一般的对象\(A\), 即有
+\(a : A \vdash B(a)\) 类型, 此时有
+\[a : A \vdash \sum_{x : B(a)} E(x)\, \text{type}\]
+最后, \(\iota_*\) 对应 \(\Pi\)-类型, 与 \(\Sigma\)-类型
+是对偶的, 留给读者作为练习.
+
+当然, 这只覆盖了三个构造. 细心的读者可能也有其他的疑惑：
+为什么一些箭头被看成依值类型, 而另一些箭头 (比如 \(e\))
+被看成元素? 类型论里其他的构造, 比如自然数类型, 宇宙类型
+等, 需要如何翻译? 这些问题促使数学家发展了更加细化的
+理论. 如今我们有一系列的定义, 各自有细微的差别, 并且
+各有优劣. 它们就是依值类型论的\textbf{模型}.
+
+\section{意象}
+意象有几何学与逻辑学两方面的起源~\cite{mclarty:1990:toposhistory}.
+一方面是1960年代, 几何学家Grothendieck在代数几何的研究中
+由\emph{层}(sheaf)的概念提出了Grothendieck意象的定义.
+另一方面, 逻辑学家Lawvere在试图用范畴重新刻画集合时
+提出了“集合范畴的初等理论”, 缩写为ETCS; 他接下来
+受到提出论域论的Dana Scott与Grothendieck的启发, 在70年代初
+与Tierney一起给出了意象的公理化定义. 意象 --- 或者为了强调
+区别, 称为\emph{初等意象} --- 比 Grothendieck 意象
+更加一般. 因此, 我们从几何的角度入手, 介绍意象的概念.
+这部分内容参考了~\cite{joyal:2019：topologie}.
+
+\subsection{拓扑空间与位象}
+首先, 我们回顾拓扑空间的定义.
+\begin{definition}
+一个集合 \(X\) 上的\textbf{拓扑}是一族子集 \(\Omega \subseteq \mathcal P(X)\),
+使得 \(\varnothing, X \in \Omega\), 并且
+\(\Omega\) 在有限交和无限并下封闭. 配备了拓扑的集合称为%
+\textbf{拓扑空间}. \(\Omega\) 中的集合称为\textbf{开集}.
+\end{definition}
+然而, 这个定义并非浑然天成： 我们极少会考虑不满足 T\(_0\)
+分离公理的空间.
+\begin{definition}
+如果某个拓扑空间 \(X\) 中任意两个不同的点都有一个开集
+包含其中恰好一个点, 则称这个拓扑空间为 T\(_0\) 的,
+或称之为 \textbf{Kolmogorov 空间}.
+\end{definition}
+对于任何一个拓扑空间, “所有开集要么同时包含, 要么同时不包含两个点\(x,y\)”
+构成一个等价关系. 我们可以商去这个关系得到一个 T\(_0\) 拓扑空间.
+这说明拓扑空间的定义虽然简洁, 但是点和开集的关系并不是
+严丝合缝, 而是有一些松动; 我们使用这个定义仅仅是因为
+这些瑕疵不影响大局. 或许我们可以先不考虑点集, 仅仅看开集
+上的关系. 这引出了\textbf{无点拓扑学}的研究.
+
+首先, 在序理论中有格(lattice)的概念, 即某个偏序, 满足
+任意两个元素有下确界和上确界, 称为交(meet)和并(join).
+如果可以取任意的并, 则称其为\textbf{并-半完备格},
+因为任意一族元素都有上确界, 但下确界则不然.
+最后, 如果交和并之间有分配律：
+\[x \wedge \bigvee_{\alpha \in I} y_\alpha
+= \bigvee_{\alpha \in I} (x \wedge y_\alpha),\]
+则称其为\textbf{并-半完备分配格} (frame).
+
+对于任何一个拓扑 \(\Omega\), 以集合的包含
+关系作为偏序, 则交与并就是集合的交与并. 那么拓扑的定义
+保证了 \(\Omega\) 形成一个并-半完备分配格. 因此我们
+可以看到, 并-半完备分配格绕过了点集, 直接刻画了开集
+的概念. 我们把拓扑空间 \(X\) 的开集构成的格记作 \(\Omega(X)\).
+
+这里需要注意的是, 并-半完备分配格中实际上也一定有任意
+的下确界. 这是因为对于任何一族元素 \(A\), 考虑集合
+\(\{x \mid \forall y \in A, x \le y\}\). 则这个
+集合的上确界就是 \(A\) 的下确界. 因此所有的并-半完备格
+也是交-半完备格, 从而也是完备格. 例如在开集构成的并-半
+完备格中, 下确界是\emph{交集的内部}, 而不是交集 (因为
+交集不一定是开集). 那么为什么需要区分这三个概念呢? 因为
+我们要考虑这些代数结构之间的同态.
+
+\begin{definition}
+给定两个并-半完备分配格 \(X, Y\), 从 \(X\) 到 \(Y\)
+的\textbf{同态}是一个单调函数 \(f : X \to Y\), 满足
+\[f(x\wedge y) = f(x) \wedge f(y),\]
+\[f\left(\bigvee_{\alpha \in I} x_\alpha\right)
+= \bigvee_{\alpha \in I} f(x_\alpha).\]
+\end{definition}
+
+而给定了交-半完备分配格, 同态则需要保持无限交. 因此这三个
+概念的同态定义不同. 正如Marx所说：“人是一切社会关系的总和.” 社
+会关系改变, 就会极大地改变人的属性. 在这里, 尽管这三种
+数学对象孤立来看是完全相同的, 但是它们的同态定义不同却
+导致了完全不同的性质.
+
+回到拓扑空间上来, 拓扑空间的连续映射是否对应了并-半完备
+分配格之间的同态呢? 答案或许有些出乎意料.
+\begin{theorem}
+给定拓扑空间 \(X, Y\), 则\(X \to Y\)的连续映射
+对应一个反向的同态 \(\Omega(Y) \to \Omega(X)\).
+\end{theorem}
+当然, 从定义看这是显然的, 连续性的定义要求开集
+的\emph{原像}是开集, 因此这里箭头的反向并不奇怪.
+
+并-半完备分配格是一种代数结构. 它的态射对应着拓扑空间
+的\emph{反向}连续映射. 因此, 如果我们希望将并-半完备分配
+格看成几何结构时, 我们称之为\textbf{位象} (locale).
+换句话说,一个位象就是一个并-半完备分配格, 但是位象之间
+的\textbf{连续映射}是反向的同态. 同态
+方向的改变虽然仅仅是语言上的轻微改变, 但是这对
+思考方式会有重要的影响.\footnote{Marshall Stone 是
+最早发现这样的对偶的人： 每个Boole代数都可以实现为一族包含空集和全集,
+在有限交、有限并、补集操作下封闭的集合 (在实分析中称
+为\textbf{集合域}). 这也可以等价表述为一个紧致完全
+不连通Hausdorff拓扑空间, 现在我们称作\textbf{Stone}空间.
+Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
+
+位象的余积(即空间的不交并)对应着并-半完备分配格的积.
+这在拓扑空间上来看很明显： 两个拓扑空间的不交并上的开集,
+与两个空间各自选择一个开集构成的有序对一一对应.
+而位象的积(即空间的Descartes积)对应这个并-半完备分配格
+的余积. 而一般代数结构的余积都比较复杂, 例如群的余积就
+是\emph{自由积} \(G * H\). 这里也是类似的, 我们不详细
+描述其构造. 从这些简单的例子就可以看出代数与几何之对偶的
+优美.
+
+对于位象的研究, 还有一个呼之欲出的问题： 位象与拓扑空间
+之间的关系如何? 换句话说, 在这两者之间转换会不会损失某些
+信息? 用范畴论的语言可以更精确地描述. 给定拓扑空间与
+连续映射构成的范畴 \(\mathsf{Top}\), 和位象与连续映射
+构成的范畴 \(\mathsf{Loc}\), 我们希望研究这两者之间
+的关系.
+
+由刚才的介绍, 我们知道 \(\mathsf{Loc}\) 将所有箭头
+反转, 得到的就是并-半完备分配格构成的范畴 \(\mathsf{Frm}\).
+我们也已经知道对于每个拓扑空间都可以取其开集构成的位象; 而
+拓扑空间的连续映射对应位象之间的连续映射. 用范畴论的语言
+来说, 我们有一个函子
+\[\mathsf{Top} \xrightarrow{\Omega} \mathsf{Loc}
+= \mathsf{Frm}^{\mathrm{op}}.\]
+如果某个拓扑空间不满足 T\(_0\) 公理, 那么从拓扑的角度
+存在两个点是完全无法分辨的. 因此我们会损失关于这两个点
+的区别的信息, 换言之, \(\Omega\) 函子不是范畴等价.
+不过, 这里仍然可以看看最多可以得到什么.
+我们希望构造一个反向的函子 \(\mathrm{Pt} :
+\mathsf{Loc} \to \mathsf{Top}\), 使得它尽可能地
+是 \(\Omega\) 的逆. 为此, 我们需要尽可能地还原出拓扑
+空间里的点 (这也是这个函子名字的来源).
+
+我们可以使用范畴论风格的语言来重新表述“点”的概念： 拓扑空间
+\(X\) 中的点无非就是单点拓扑空间 \(1 \to X\) 的连续
+映射组成的集合. 这里 \(1\) 在范畴论中扮演的角色就是
+终对象. 因此同样地, 我们在 \(\mathsf{Loc}\) 范畴中考虑
+\(1 \to X\) 的态射, 也就是在 \(\mathsf{Frm}\) 范畴中
+\(X \to 0\) 的态射.
+
+\(\mathsf{Frm}\) 中的始对象 \(0\) 有两个元素, 一个
+大于另一个, 不妨写作 \(\top \ge \bot\). 这对应拓扑
+空间 \(1\) 的开集, 恰好有全集与空集两个.
+\(X \to 0\) 的态射则需要给每个元素赋予 \(\top, \bot\)
+之一, 并且需要单调, 并且保持有限交与无限并. 直观上,
+赋予 \(\top\) 表示开集包含这个点, 而 \(\bot\) 表示
+开集不包含这个点. 一个态射 \(X \to 0\) 通过给每个开集
+赋予 \(\top,\bot\) 来试图描述拓扑空间中的某个点. 读者
+可以试图验证在 Hausdorff 拓扑空间上, 这的确恰好可以
+复原其点集. 这说明我们走在正确的方向上了.
+
+不过, Hausdorff 性仅仅是充分条件. 我们可以给出一个
+充分必要条件：
+\begin{definition}
+一个拓扑空间是\textbf{朴实}(sober)的, 当且仅当对于
+任何无法被非平凡地表示为两个闭集的并的非空闭集 \(K\),
+都存在唯一一个点, 使得 \(K\) 是这个点的闭包.
+\end{definition}
+读者可以进一步在无点拓扑学的课本中了解这个条件与其他分离
+条件之间的关系. 特别地, 它强于 T\(_0\) (Kolmogorov),
+但弱于 T\(_2\) (Hausdorff).
+
+有了点集之后, 这个点集上的拓扑就可以继续如上文所说的方式
+恢复出来. 这样我们就得到了一个函子 \(\mathrm{Pt} :
+\mathsf{Loc} \to \mathsf{Top}\). 我们刚才看到了
+拓扑空间能被恢复的条件. 那么反过来, 给定一个位象生成的
+对应的拓扑空间, 是否还能恢复原来的位象呢? 这同样给出一个
+条件
+\begin{definition}
+一个位象\textbf{有足够的点}\footnote{英文为 have enough
+points, 或者称为 spatial.}当且仅当对于任何两个元素
+\(u, v\), 存在某个点 (即对应的并-半完备分配格的态射
+\(X \to 0\)) 对于这两个元素的赋值不同.
+\end{definition}
+范畴论的一个重要观察就是, 如果两个范畴“几乎”等价,
+那么你往往可以期待它们之间有一对伴随函子. 这里也不例外.
+拓扑空间与位象之间的关系可以被总结为下面的定理：
+\begin{theorem}
+有一对伴随函子
+\[\begin{tikzcd}
+{\mathsf{Top}} && {\mathsf{Loc}}
+\arrow[""{name=0, anchor=center, inner sep=0}, "\Omega", shift left=1, curve={height=-6pt}, from=1-1, to=1-3]
+\arrow[""{name=1, anchor=center, inner sep=0}, "{\mathrm{Pt}}", shift left=1, curve={height=-6pt}, from=1-3, to=1-1]
+\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+\end{tikzcd}\]
+两侧的像分别是朴实拓扑空间与有足够的点的位象. 同时,
+两个函子限制在这两个完全子范畴上是范畴的等价.
+\end{theorem}
+
+\subsection{层与意象}
+有了这样把拓扑空间中的点放在次要地位, 而将开集作为更根本的
+数学对象的思想, 我们可以进一步引出意象的概念了.
+Grothendieck提出层的概念, 是为了更好地整理代数几何中
+复杂的数学对象. 层可以看作是一类数学对象的刻画：
+\begin{itemize}
+\item 某个拓扑空间中, 定义在开集上的连续函数;
+\item 微分流形中, 定义在开集上的可微函数;
+\item 代数几何中, 某个环的素谱(spectrum)上的正则函数.~\cite[第二章, 例1.0.1]{hartshorne:1977:ag}
+\end{itemize}
+它们的一些重要特征：
+\begin{itemize}
+\item 大开集上的连续函数可以限制到小开集上, 仍然是连续函数;
+\item 几个小开集上的连续函数, 如果在交集上相等, 那么就可以粘合成并集上的连续函数.
+\end{itemize}
+因此我们可以提炼出一个定义.
+\begin{definition}
+给定拓扑空间 \(X\), 一个\textbf{层} \(\mathscr F\) 是一组数据:
+\begin{itemize}
+\item 对每个开集 \(U \subseteq X\) 取定一个集合,
+记作 \(\mathscr F(U)\) 或 \(\Gamma(U, F)\).
+称作 \(\mathscr F\) 在 \(U\) 上的\textbf{截面}.
+\item 对于开集的子集 \(U \subseteq V\), 有函数
+\(\mathrm{res}_{V,U} : \mathscr F(V) \to \mathscr F(U)\),
+称为截面的限制.
+\end{itemize}
+它们满足一些性质：
+\begin{itemize}
+\item \(\mathrm{res}_{U,U}\) 是恒等映射.
+\item \(\mathrm{res}_{V, W}\circ \mathrm{res}_{U,V} = \mathrm{res}_{U, W}\).
+\item 给定开覆盖 \(U = \bigcup_{i\in I} U_i\),
+对于任何一组 \(f_i \in \mathscr F(U_i)\), 满足
+\[\mathrm{res}_{U_i, U_i \cap U_j}(f_i)
+= \mathrm{res}_{U_j, U_i \cap U_j}(f_j),\]
+则存在唯一的 \(f \in \mathscr F(U)\), 使得
+其限制在各个 \(U_i\) 上等于 \(f_i\). 这条公理称作
+粘合公理. 去掉这条公理, 则这是\textbf{预层}的定义.
+\end{itemize}
+\end{definition}
+称 \(\mathscr F(U)\) 为截面, 继承自纤维丛的截面
+的概念. 因为每个纤维丛上的截面的确构成层. 对于两个层,
+我们自然可以写出它们之间的态射：
+\begin{definition}
+给定两个层 \(\mathscr F, \mathscr G\), 它们
+之间的态射是一组映射 \(\varphi_U : \mathscr F(U) \to \mathscr G(U)\),
+使得下图交换：
+\[\begin{tikzcd}
+{\mathscr F(U)} & {\mathscr F(V)} \\
+{\mathscr G(U)} & {\mathscr G(V)}
+\arrow["{\mathrm{res}_{U,V}}", from=1-1, to=1-2]
+\arrow["{\mathrm{res}_{U,V}}"', from=2-1, to=2-2]
+\arrow["{\varphi_U}"{description}, from=1-1, to=2-1]
+\arrow["{\varphi_V}"{description}, from=1-2, to=2-2]
+\end{tikzcd}\]
+\end{definition}
+由此, 对于任何拓扑空间 \(X\), 我们都定义了其上
+的\textbf{层范畴} \(\mathsf{Sh}(X)\).
+读者可以轻松地把这些定义全部类比到位象上去.
+可以证明 \(\mathscr F(\varnothing)\) 必须为单点集.
+因此, 在单点拓扑空间上的层, 完全由全集上的截面决定.
+因此单点拓扑空间上的层范畴等价于集合范畴 \(\mathsf{Set}\).
+
+这些定义到1950年代已经成为主流数学的重要工具. 然而, 在
+代数几何中, \(X\) 上只有拓扑信息是完全不够的. 例如在
+一维情况下, Zariski 拓扑就是余有限拓扑, 因此 Zariski
+连续的函数 \(\mathbb A^1 \to \mathbb A^1\)
+只需要保证每个点的原像有限 (或者是常函数), 但是我们只关心有理函数!
+Grothendieck 为此推广了层范畴的定义, 以便包含这些
+信息.
+
+注意到, 我们并不需要用到 \(X\) 这个拓扑空间的全部信息.
+因此正如位象的定义一样, 我们绕过拓扑空间本身, 直接找到需要的信息进行定义.
+对于预层的定义, 我们只需要知道开集上的包含关系, 也就是
+任何一个偏序. Grothendieck 将这里的偏序推广成了
+范畴. 可以看出, 给定某个范畴 \(\mathcal C\), 一
+个\textbf{预层}就是函子 \(\mathcal C^{\mathrm{op}}
+\to \mathsf{Set}\). 而对于粘合公理, 我们只需要
+知道开集的交集与“开覆盖”的概念.
+
+注意到两个子集 \(X_1, X_2 \subseteq X\) 的交
+集\footnote{交集只有对某个共同集合的子集谈论才有意义,
+任意两个集合的交集只有研究物料集合
+论(material set theory)时才会
+遇到, 在一般数学中没有任何应用.}可以
+用范畴论的语言表示为拉回
+\[\begin{tikzcd}
+{X_1 \cap X_2} && {X_2} \\
+\\
+{X_1} && X
+\arrow[hook, from=3-1, to=3-3]
+\arrow[hook, from=1-3, to=3-3]
+\arrow[from=1-1, to=3-1]
+\arrow[from=1-1, to=1-3]
+\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+\end{tikzcd}\]
+因此我们只需要再定义什么是开覆盖就可以了. 换句话说,
+对于每一组箭头 \(\{f_i : U_i \to U\}\), 我们需要
+决定它是否覆盖了 \(U\). 当然, 并不是所有的选择都能得到
+好的性质. 因此Grothendieck提出了一组要求, 满足这些
+要求的则被称作\textbf{Grothendieck拓扑}.\footnote{现在
+使用的Grothendieck拓扑的定义比这个定义略微更一般一些,
+因为有时候范畴中没有所需要的拉回. 读者可以参
+阅\cite{johnstone:2008:elephant}中的讨论.}
+\begin{itemize}
+\item 每个同构本身构成覆盖.
+\item 如果 \(\{f_i : U_i \to U\}\) 覆盖了 \(U\),
+并且 \(\{g_{i,j} : V_{i,j} \to U_i\}\) 覆盖了 \(U_i\), 那么
+\(\{f_i \circ g_{i,j} : V_{i,j} \to U\}\) 也覆盖了 \(U\).
+\item 如果 \(\{f_i : U_i \to U\}\) 覆盖了 \(U\),
+并且有态射 \(V \to U\) (类比拓扑空间中的子集 \(V \subseteq U\)),
+那么拉回 \(U_i \times_U V\) (我们上面提到这类比拓扑空间中的交集)
+均存在, 并且拉回得到的一组态射
+\(U_i \times_U V \to V\) 也构成覆盖.
+\end{itemize}
+配备了Grothendieck拓扑 \(J\) 的范畴 \(\mathcal C\)
+被称为\textbf{景}(site). 注意每个拓扑空间上的开集
+都自动构成景. 可以在景上叙述粘合公理的推广.
+\begin{definition}
+考虑 \(\mathcal C\) 上的预层 \(\mathscr F\).
+对于任何一组覆盖 \(\{f_i : U_i \to U\}\), 都有
+一个交换方 (不一定是拉回)：
+\[\begin{tikzcd}
+{\mathscr F(U_i \times_U U_j)} && {\mathscr F(U_j)} \\
+\\
+{\mathscr F(U_i)} && {\mathscr F(U)}
+\arrow["{\mathscr F(f_i)}", from=3-3, to=3-1]
+\arrow["{\mathscr F(f_j)}"', from=3-3, to=1-3]
+\arrow[from=3-1, to=1-1]
+\arrow[from=1-3, to=1-1]
+\end{tikzcd}\]
+注意箭头的方向. 如果对于一组元素 \(x_i \in \mathscr F(U_i)\),
+每对 \(x_i, x_j\) 映射到 \(\mathscr F(U_i \times_U U_j)\)
+上相等, 那么存在唯一的 \(x \in \mathscr F(U)\) 使得
+\(x_i\) 是 \(x\) 在 \(\mathscr F(f_j)\) 下的像.
+满足上述条件的预层称为\textbf{层}.
+\end{definition}
+可以用更加精炼的范畴语言重新叙述. 上面的交换方的左侧
+和上方的态射分别可以合并得到态射
+\[\coprod_{i \in I} \mathscr F(U_i)
+\rightrightarrows \coprod_{i,j \in I} \mathscr F(U_i \times_U U_j).\]
+粘合公理则是说这两个态射有等值子
+\[\mathscr F(U) \to \coprod_{i \in I} \mathscr F(U_i)
+\rightrightarrows \coprod_{i,j \in I} \mathscr F(U_i \times_U U_j).\]
+
+有了这个定义, 我们就可以定义例如 Zariski 景、
+平展景、Nisnevich景等等概念, 将复几何中的技术应用到
+代数几何上来.
+对于更多有关的几何讨论, 读者可以参阅~\cite{maclane:2012:sheaves}.
+而意象论最重要的书籍则是~\cite{johnstone:2008:elephant},
+因其书名被戏称为“大象书”.
+
+我们现在可以给出意象的一种定义：
+\begin{definition}
+一个\textbf{Grothendieck意象}是某个景上所有的层构成的范畴.
+\end{definition}
+当然, 意象的内涵比这要丰富很多. Giraud给出了某个范畴
+是Grothendieck意象的一组充分必要条件, 因此在不涉及几何
+的材料中也经常把这组条件直接作为Grothendieck意象的定义.
+另外, 也有许多书中首先定义我们后面会介绍的初等意象, 然后
+将Grothendieck意象定义为满足某些条件的初等意象. 从某种
+意义上来说, 意象这个概念正如一头大象. 每种定义都如盲人
+摸象一般, 表面上看似乎分别给出了截然不同的数学概念, 但
+实际上都表现了意象的一个方面.
+
+意象的定义是一类范畴, 因此它们之间态射最明显的定义
+是满足某些条件的函子. 但是意象作为一类几何对象, 它们之间
+也应当有与位象类似的“反向”的态射关系. 如果它们作为代数结
+构, 态射是(满足某些条件的)函子时,
+Joyal~\cite{joyal:2019：topologie}称它们为logos
+(试译为\textbf{道理}); 而它们构成的范畴 \(\mathsf{Logos}\)
+将箭头反向就得到几何对象构成的范畴 \(\mathsf{Topos}\).
+读者也可以参阅\cite{sterling:2021:thesis}的第二章.
+这样, 位象就可以整合到我们的定义中：
+\[\begin{tikzcd}
+&& {\mathsf{Topos}} && {\mathsf{Logos}} \\
+{\mathsf{Top}} && {\mathsf{Loc}} && {\mathsf{Frm}}
+\arrow["\Omega", curve={height=-6pt}, from=2-1, to=2-3]
+\arrow["{\mathrm{Pt}}", curve={height=-6pt}, from=2-3, to=2-1]
+\arrow["{\mathsf{Sh}}", hook', from=2-3, to=1-3]
+\arrow[hook', from=2-5, to=1-5]
+\arrow["{(\mathrm{op})}"{description}, Rightarrow, no head, from=2-3, to=2-5]
+\arrow["{(\mathrm{op})}"{description}, Rightarrow, no head, from=1-3, to=1-5]
+\end{tikzcd}\]
+
+\subsection{初等意象}
+
+\section{内语言}\label{category:inner}
+
+排中律
+
+Kripke--Joyal, 推广之前的 Kripke
