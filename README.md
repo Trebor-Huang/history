@@ -18,7 +18,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [X] Classical logic
 - [ ] MLTT
   - [ ] Cite Tom de Jong's stuff?
-  - [ ] Consistency
+  - [X] Consistency
   - [ ] Applications
 - [ ] Topos
   - [ ] Elementary topos
