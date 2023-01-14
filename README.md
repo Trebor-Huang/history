@@ -17,6 +17,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [ ] Normalization for STLC
 - [X] Classical logic
 - [ ] MLTT
+  - [ ] Cite Tom de Jong's stuff?
   - [ ] Consistency
   - [ ] Applications
 - [ ] Topos
@@ -25,6 +26,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [X] Cubical type theory
   - [X] History Part
   - [X] A small basic intro
+  - [ ] Cite 1lab properly
 - [ ] Misc
   - [ ] Polishing & more history parts
   - [ ] Typesetting, clean up bibliography
