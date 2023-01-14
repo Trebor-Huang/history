@@ -22,9 +22,9 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [ ] Topos
   - [ ] Elementary topos
   - [ ] Internal language
-- [ ] Cubical type theory
-  - [ ] History Part
-  - [ ] A small basic intro
+- [X] Cubical type theory
+  - [X] History Part
+  - [X] A small basic intro
 - [ ] Misc
   - [ ] Polishing & more history parts
   - [ ] Typesetting, clean up bibliography
