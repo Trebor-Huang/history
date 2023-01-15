@@ -16,10 +16,11 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
   - Do we need to mention realizability and forcing?
 - [ ] Normalization for STLC
 - [X] Classical logic
-- [ ] MLTT
+- [X] MLTT
   - [ ] Cite Tom de Jong's stuff?
   - [X] Consistency
-  - [ ] Applications
+  - [X] Applications
+  - [ ] Use `fancyvrb` to improve code display?
 - [ ] Topos
   - [ ] Elementary topos
   - [ ] Internal language
