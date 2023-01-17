@@ -5,6 +5,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amssymb,amsmath,amsthm}
 \usepackage{fancyhdr}
+\usepackage{marginnote}
 \usepackage{biblatex}
 \usepackage{mathrsfs}
 \usepackage{quiver}
@@ -86,13 +87,9 @@
     \node at (0,0) {\includegraphics[width=1cm]{images/difficulty#1.png}};
   \end{tikzpicture}
 }
-\newcommand{\berry}[1]{\marginpar[%
+\newcommand{\berry}[1]{\marginnote[%
   \hfill%
-  {\berryglow{#1}}%
-  % Latex misparses nested optional arguments.
-  % Hence we need extra braces to ensure they are grouped correctly.
-  % I was so heroic when I realized that within 1 minute
-  % without consulting any online sources.
+  \berryglow{#1}%
 ]{%
   \berryglow{#1}%
   \hfill%
