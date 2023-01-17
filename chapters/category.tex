@@ -590,6 +590,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 在这个子集中, 否则表示不在. 可以发现这两种描述是等价的,
 也就是说子集 \(A \hookrightarrow B\) 与映射
 \(B \to \{\cons{y},\cons{n}\}\) 有一一对应关系.
+在集合论中, 这个映射被称为\textbf{特征映射}.
 
 对于其他的子对象呢? 考虑一个(允许重边和环的)有向图 \(G\) 的
 子图 \(H\). 这样 \(G\) 有两种顶点, 一种在 \(H\) 中,
@@ -625,6 +626,47 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 概念. 如果一个对象 \(\Omega\) 满足任何 \(G\) 的子对象都可以
 表示为 \(G \to \Omega\) 的态射, 就称这个对象为子对象分类器,
 因为它分类了子对象中所有可能出现的情况.
+
+我们来把这个定义严谨化. 什么是子对象呢? 首先需要注意的是,
+\emph{子对象不是对象}. 子群不是群, 因为如果子群是群的话,
+同构的群应该完全相同. 然而 \(\mathbb Z\)
+的两个子群 \(2\mathbb Z\) 与 \(3\mathbb Z\)
+尽管同构, 但是显然不应该看作同一个子群. 子群 \(H \subseteq G\)
+应当还包含它在群 \(G\) 中的哪个位置的信息. 因此, 我们
+定义子群为一个群 \(H\) 配备一个单射 \(H \rightarrowtail G\).
+在范畴中, 单射的定义是一个箭头 \(f : A \to B\), 满足
+对于任何 \(u,v : C \to A\) 都有
+\[f\circ u = f \circ v \implies u = v.\]
+读者可以验证在集合范畴中这的确给出单射.
+
+对于任何对象 \(A\), 从终对象出发的映射集合 \(\hom(1,A)\)
+称为 \(A\) 的\textbf{点集}. 如在集合范畴中这就是 \(A\)
+的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
+\(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集.
+
+\begin{definition}
+在一个有终对象的范畴中, 一个对象 \(\Omega\) 配备
+一个点 \(t : 1 \to \Omega\) 称为\textbf{子对象分类器},
+当且仅当对于任何单射 \(A \rightarrowtail X\), 都有唯一的映射
+\([i] : X \to \Omega\) 使得以下图表是拉回.
+\[\begin{tikzcd}
+A && 1 \\
+\\
+X && \Omega
+\arrow["{[i]}", from=3-1, to=3-3]
+\arrow["t"', from=1-3, to=3-3]
+\arrow["i", tail, from=1-1, to=3-1]
+\arrow[dashed, from=1-1, to=1-3]
+\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+\end{tikzcd}\]
+这里上方的箭头是到终对象的唯一箭头. \([i]\) 被称为子对象
+的\textbf{特征映射}.
+\end{definition}
+
+尽管定义看起来很简短, 初等意象实际上包含了非常丰富的结构.
+它实际上有所有的有限余极限, 并且是局部Descartes闭的.
+实际上, 如果初等意象有所有的余极限(还需要加上一些
+防止罗素悖论的条件), 那么它就是Grothendieck意象.
 
 \section{内语言}\label{category:inner}
 
