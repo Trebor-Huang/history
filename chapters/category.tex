@@ -468,6 +468,164 @@ Joyal~\cite{joyal:2019：topologie}称它们为logos
 
 \subsection{初等意象}
 
+在范畴的定义中, 用到了集合的概念. 因此集合范畴在范畴论中
+起到了中心作用： 对于任何范畴都有一个函子 \(\hom :
+\mathcal C^{\cons{op}} \times \mathcal C \to \cons{Set}\),
+预层范畴的定义是 \(\mathcal C^{\cons{op}} \to \cons{Set}\)
+的函子, 等等. 在有了范畴论之后, 能不能反推我们使用了集合范畴
+的哪些性质呢? 换句话说, 我们需要集合范畴 \(\cons{Set}\) 满足
+哪些性质, 才能支持范畴论研究中的那些重要定理呢?
+
+Lawvere在思考这个问题时, 提出了\textbf{集合范畴的初等理论}(elementary
+theory of the category of sets, 缩写为ETCS). 具体来说,
+它是对某个范畴的一组条件. 满足这些条件的范畴均可以作为合理的集合
+范畴的替代品. 随后这些概念逐渐完善, 今天我们
+有初等意象的概念. 定义上它可以非常简短：
+\begin{definition}
+一个范畴 \(\mathcal C\) 是\textbf{初等意象}, 当且仅当它
+有所有有限极限, Descartes闭, 并且有子对象分类器.
+\end{definition}
+我们来把这个定义解包, 看看背后蕴含的直觉.
+
+首先是极限的概念.
+我们已经见过一些极限了： 乘积与终对象都是极限的特殊情况.
+这个名字来源于代数学中的\textbf{投射极限}. 考虑
+\(\mathbb Z/p^n\mathbb Z\) 排成一排,
+\[0 \longleftarrow \mathbb Z/p\mathbb Z
+\longleftarrow \mathbb Z/p^2\mathbb Z
+\longleftarrow \mathbb Z/p^3\mathbb Z
+\longleftarrow \cdots\]
+这里每个箭头指的是“取余数”. 如
+\(13 \in \mathbb Z/25\mathbb Z\)
+取余数得到 \(3 \in \mathbb Z/5 \mathbb Z\).
+解整数方程时, 有时候在模 \(p^n\) 意义下很容易得到答案,
+那么我们能不能根据模 \(p^n\) 下的余数反推原来的数呢?
+当然可以. 但是我们必须保证每个 \(p^n\) 下余数要和前面
+的余数相容. 如果模 \(9\) 得 \(4\), 那模 \(3\) 就必须
+得 \(1\). 我们可以把这个要求写出来, 考虑一个余数的数列
+\(r_n \in \mathbb Z/p^n\mathbb Z\).
+我们要求 \(\varphi_n(r_n) = r_{n-1}\), 其中
+\(\varphi_n\) 是上图中的第 \(n\) 个箭头. 设这样的数列构成
+的集合是 \(\mathbb Z/p^{\infty}\mathbb Z\). 我们
+已经可以在这个集合上定义加法和乘法运算了： 只需要将数列的每个
+分量分别加起来或者乘起来即可. 读者可以验证这得到的是一个环.
+注意这个环里除了正常的整数之外, 还有一些神秘的“无穷大”元素.
+如考虑 \(p = 5\), 在 \(\mathbb Z/5\mathbb Z\) 中
+\(-1\) 有平方根 \(\pm2\). 在 \(\mathbb Z/5^2\mathbb Z\)
+中这两个平方根则升级为 \(\pm7\). 在 \(\mathbb Z/5^3\mathbb Z\)
+中则成为 \(\pm57\). 读者可以使用初等数论的方法证明
+这个过程会无限进行下去. 这样我们就得到一个数
+\[\alpha = (2,7,57,182,\dots) \in \mathbb Z/p^{\infty}\mathbb Z.\]
+这个数满足 \(\alpha^2 = -1\), 因此决不可能对应某个整数.
+这个环被称作 \(p\)-进整数环.
+
+这个构造可以用范畴论的语言定义.
+\begin{definition}\label{category:oldlimit}
+给定一列对象 \(A_n\) 与态射 \(\varphi_n : A_{n+1} \to A_{n}\),
+其\textbf{极限}定义为某个对象 \(A_\infty\), 配备态射
+\(\psi_n : A_\infty \to A_n\) 满足 \(\varphi_n \circ \psi_{n+1} = \psi_n\),
+使得对于任何其他对象 \(B\) 与态射 \(\phi_n : B \to A_n\),
+都存在唯一的态射 \(\iota : B \to A_\infty\), 使得 \(\phi_n=\psi_n \circ \iota\).
+\[\begin{tikzcd}
+&&&& {A_\infty} \\
+\\
+{A_0} & {A_1} & {A_2} & \cdots \\
+&&&& B
+\arrow["{\varphi_0}"', from=3-2, to=3-1]
+\arrow["{\varphi_1}"', from=3-3, to=3-2]
+\arrow["{\varphi_2}"', from=3-4, to=3-3]
+\arrow["{\psi_0}"'{pos=0.6}, curve={height=18pt}, from=1-5, to=3-1]
+\arrow["{\psi_1}"'{pos=0.7}, curve={height=12pt}, from=1-5, to=3-2]
+\arrow["{\psi_2}"'{pos=0.8}, curve={height=6pt}, from=1-5, to=3-3]
+\arrow["{\phi_1}", curve={height=-18pt}, from=4-5, to=3-1]
+\arrow["{\phi_2}"{pos=0.6}, curve={height=-6pt}, from=4-5, to=3-2]
+\arrow["{\phi_3}"{pos=0.8}, from=4-5, to=3-3]
+\arrow["\iota"{description}, dashed, from=4-5, to=1-5]
+\end{tikzcd}\]
+\end{definition}
+读者可以验证, 这里设 \(B = \mathbb Z\), 那么 \(B \to A_n\) 的确有
+一个显然的态射, 即取余数. 因此 \(\mathbb Z
+\to \mathbb Z/p^\infty\mathbb Z\) 也有一个唯一的态射, 它
+将整数嵌入到\(p\)-进整数中.
+
+如果读者回忆乘积的范畴定义, 就会发现它与这里的极限定义
+唯一的区别在于中间的图表形状. 我们可以提取出一个共同的
+推广.
+\begin{definition}\label{category:newlimit}
+给定一些对象 \(A_\alpha\) 与其间的态射 \(\varphi_i\)
+构成的图表, 这个图表的\textbf{极限}为一个对象
+\(A\) 配备一组箭头 \(\psi_\alpha : A \to A_\alpha\),
+满足对于任何箭头 \(\varphi_i : A_{\alpha_1} \to A_{\alpha_2}\)
+都有对应的三角形交换 (\(\varphi_i \circ
+\psi_{\alpha_1} = \psi_{\alpha_2}\)). 要求对于
+任何一个对象 \(B\) 与箭头 \(\phi_\alpha : B \to A_\alpha\),
+如果这些箭头满足同样的三角形交换条件, 则有唯一的箭头
+\(\iota : B \to A\) 使得 \(\phi_\alpha = \psi_\alpha \circ \iota\).
+\end{definition}
+请读者确认定义~\ref{category:oldlimit} 中的极限,
+就是图表 \(A_0 \leftarrow A_1 \leftarrow \cdots\)
+在定义~\ref{category:newlimit} 中的极限. 同时,
+乘积\(A \times B\)就是图表\(A\quad B\) (没有任何箭头)
+的极限. 终对象则是空图表的极限.
+集合范畴中有所有的极限.\footnote{这里其实需要
+加一个技术条件防止罗素悖论.} 而有限集合范畴中则
+只有\textbf{有限极限}, 即图表只有有限个对象和态射
+的极限. 在代数中往往只有有限极限才有更好的性质.
+
+极限的对偶是\textbf{余极限}, 在代数中这来源于\textbf{归纳极限}.
+考虑所有分母为 \(n\) 的有理数构成的集合 \(\frac1n\mathbb Z\).
+如果 \(n\mid m\), 那么 \(\frac1n\mathbb Z \to \frac1m
+\mathbb Z\) 就有一个态射. 这个系统的余极限是有理数 \(\mathbb Q\).
+余极限的定义就是将极限定义中的所有箭头反向. 集合范畴中也有任何
+余极限.
+
+我们还需要定义子对象分类器的概念. 考虑一个子集
+\(A \hookrightarrow B\).\footnote{\(A \subseteq B\) 自然
+会产生一个含入映射 \(A \to B\). 我们将这样的映射记作
+\(A \hookrightarrow B\). 在范畴论中, 我们不关心对象“内部”
+是怎么样的, 只关心它们之间的态射, 因此我们只需要这个含入映射即可.}
+我们还有另一种方式确定 \(A\), 即考虑一个
+\(B \to \{\cons{y}, \cons{n}\}\)
+的函数, 如果 \(x \in B\) 射到 \(\cons{y}\), 则表示它
+在这个子集中, 否则表示不在. 可以发现这两种描述是等价的,
+也就是说子集 \(A \hookrightarrow B\) 与映射
+\(B \to \{\cons{y},\cons{n}\}\) 有一一对应关系.
+
+对于其他的子对象呢? 考虑一个(允许重边和环的)有向图 \(G\) 的
+子图 \(H\). 这样 \(G\) 有两种顶点, 一种在 \(H\) 中,
+一种不在 \(H\) 中. 同时它有五种边：
+\begin{itemize}
+\item 两个端点都在 \(H\) 中, 并且边本身也在 \(H\) 中;
+\item 两个端点都在 \(H\) 中, 但是边不在 \(H\) 中;
+\item 起点在 \(H\) 中;
+\item 终点在 \(H\) 中;
+\item 没有端点在 \(H\) 中.
+\end{itemize}
+注意如果 \(H\) 中不包含这条边的顶点, 那也必然不能
+包含这条边 (否则这条边就没有顶点了, 与图的定义矛盾).
+我们可以画一个图总结这五种情况.
+\begin{center}
+\begin{tikzpicture}
+\node[circle, fill=blue, ultra thick] (In) at (0,0) {};
+\node[circle, fill=gray, ultra thick] (Out) at (3,0) {};
+\draw[->, very thick, gray] (In) to[bend left] (Out);
+\draw[->, very thick, gray] (Out) to[bend left] (In);
+\draw[->, very thick, gray] (In) to[loop left, in=120, out=170, looseness=30] (In);
+\draw[->, very thick, blue] (In) to[loop left, in=-120, out=-170, looseness=30] (In);
+\draw[->, very thick, gray] (Out) to[loop right, in=25, out=-25, looseness=30] (Out);
+\end{tikzpicture}
+\end{center}
+我们可以定义从 \(G\) 到上面的有向图 \(\Omega\) 的映射,
+将在 \(H\) 中的点射到蓝色的顶点, 不在的则射到灰色的顶点.
+五种边也可以自然地映射到 \(\Omega\) 中的五条边. 那么可以发现
+子图 \(H \hookrightarrow G\) 与映射 \(G \to \Omega\)
+是一一对应的.
+
+总结上面两个例子的共性, 我们可以定义\textbf{子对象分类器}的
+概念. 如果一个对象 \(\Omega\) 满足任何 \(G\) 的子对象都可以
+表示为 \(G \to \Omega\) 的态射, 就称这个对象为子对象分类器,
+因为它分类了子对象中所有可能出现的情况.
+
 \section{内语言}\label{category:inner}
 
 排中律

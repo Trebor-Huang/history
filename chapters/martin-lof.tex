@@ -49,7 +49,7 @@ _{\text{利用 \(m\) 与 \(f(m)\) 表达 \(f(m+1)\)}}] \to
 这就是递归定义. 作为例子, 如果我们令
 \(f(0) = 0\), \(f(m+1) = f(m)+2\), 那么
 \(f\) 就是将输入乘以\(2\)的函数. 具体写出来就是
-\[\cons{elim}\, P\,0\,\lambda m u. \cons{succ}(\cons{succ}(u))\]
+\[\cons{elim}\, P\,\cons{zero}\,\lambda m u. \cons{succ}(\cons{succ}(u))\]
 这里用了类似之前的记号, \(fmn\) 表示函数 \(f\) 接受两个参数 \(m\) 与 \(n\).
 读者可以自行和类型比对. 在\cite{friedman:2018:typer}中
 作者用谈话的形式, 趣味十足地讲解了类似的各种构造,
