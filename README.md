@@ -17,11 +17,13 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 - [ ] Normalization for STLC
 - [X] Classical logic
 - [X] MLTT
-  - [ ] Cite Tom de Jong's stuff?
+  - Cite Tom de Jong's stuff?
   - [X] Consistency
   - [X] Applications
   - [ ] Use `fancyvrb` to improve code display?
-- [ ] Topos
+- [ ] Category theory
+  - [ ] Rewrite LCCC part?
+  - [ ] Write about comprehension categories?
   - [X] Elementary topos
   - [ ] Internal language
 - [X] Cubical type theory
@@ -32,7 +34,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
   - [ ] Polishing & more history parts
   - [ ] Typesetting, clean up bibliography
   - [ ] Use separate font for metavariables?
-  - [X] Add a symbol to indicate category theory density.
+  - [X] Add a symbol to indicate category theory density. (Berries!)
 
 ## Conventions
 
