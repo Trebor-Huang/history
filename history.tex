@@ -72,6 +72,21 @@
 \fancyhead[R]{\nouppercase{\kaishu\leftmark}}
 \setlength{\headheight}{14pt}
 
+% Hack to force marginpar always on the left.
+% TODO do we need that?
+% Berries!
+\newcommand{\berry}[1]{\marginpar[%
+  \hfill%
+  {\includegraphics[width=1cm]{images/difficulty#1.png}}%
+  % Latex misparses nested optional arguments.
+  % Hence we need extra braces to ensure they are grouped correctly.
+  % I was so heroic when I realized that within 1 minute
+  % without consulting any online sources.
+]{%
+  \includegraphics[width=1cm]{images/difficulty#1.png}%
+  \hfill%
+}}
+
 \begin{document}
 \setcounter{tocdepth}{1}
 \tableofcontents
