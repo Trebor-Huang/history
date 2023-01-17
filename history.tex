@@ -75,15 +75,26 @@
 % Hack to force marginpar always on the left.
 % TODO do we need that?
 % Berries!
+\definecolor{berry1}{RGB}{230,255,170}
+\definecolor{berry2}{RGB}{255,160,126}
+\definecolor{berry3}{RGB}{235,220,90}
+\definecolor{berry4}{RGB}{79,53,130}
+\newcommand{\berryglow}[1]{
+  \begin{tikzpicture}
+    \useasboundingbox (-0.5cm, -0.5cm) rectangle (0.5cm, 0.5cm);
+    \draw[inner color=berry#1, draw opacity=0] (-0.6,-0.6) rectangle (0.6,0.6);
+    \node at (0,0) {\includegraphics[width=1cm]{images/difficulty#1.png}};
+  \end{tikzpicture}
+}
 \newcommand{\berry}[1]{\marginpar[%
   \hfill%
-  {\includegraphics[width=1cm]{images/difficulty#1.png}}%
+  {\berryglow{#1}}%
   % Latex misparses nested optional arguments.
   % Hence we need extra braces to ensure they are grouped correctly.
   % I was so heroic when I realized that within 1 minute
   % without consulting any online sources.
 ]{%
-  \includegraphics[width=1cm]{images/difficulty#1.png}%
+  \berryglow{#1}%
   \hfill%
 }}
 

@@ -22,7 +22,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
   - [X] Applications
   - [ ] Use `fancyvrb` to improve code display?
 - [ ] Topos
-  - [ ] Elementary topos
+  - [X] Elementary topos
   - [ ] Internal language
 - [X] Cubical type theory
   - [X] History Part
