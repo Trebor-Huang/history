@@ -646,7 +646,11 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 对于任何对象 \(A\), 从终对象出发的映射集合 \(\hom(1,A)\)
 称为 \(A\) 的\textbf{点集}. 如在集合范畴中这就是 \(A\)
 的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
-\(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集.
+\(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集; 图的范畴
+中, \(1\) 是有一个点与一个自环的图, 因此 \(\hom(1,A)\)
+就是 \(A\) 上所有自环的集合. 我们
+用 \(t : 1 \to \Omega\) 指定子对象分类器
+中的一个点, 对应上图中蓝色的子图.
 
 \begin{definition}
 在一个有终对象的范畴中, 一个对象 \(\Omega\) 配备
@@ -674,7 +678,30 @@ X && \Omega
 
 \section{内语言}\label{category:inner}\berry{2}
 
-在前言中, 
+在前言中, 我们提到用范畴表述的一些构造比较繁琐.
+不过, 我们可以使用类似集合论或类型论的语言表述这些构造.
+举个例子, 由子对象分类器的直观, \(X \to \Omega\)
+与 \(X\) 的子对象一一对应. 我们可以认为
+函数对象 \(X\Rightarrow \Omega\) 表达了
+类似 \(X\) 的幂集的概念, 可以写成 \(\mathcal P(X)\).
+可以使用乘积对象表达有序对相关的构造,
+用等化子(equalizer)或者拉回(pullback)表达满足某个等式的子集.
+如果某个范畴中有对象\(X,Y\), 并且有态射 \(g : X \to Z,
+f : \mathcal P(Y) \to Z\), 那么
+\[\{(x, U) \mid x \in X, U \subseteq Y, g(x) = f(U)\}\]
+可以用于表达范畴论中的拉回
+\[\begin{tikzcd}
+V & {\mathcal P(Y)} \\
+X & Z
+\arrow["g", from=1-2, to=2-2]
+\arrow["f"', from=2-1, to=2-2]
+\arrow["{\pi_1}"', from=1-1, to=2-1]
+\arrow["{\pi_2}", from=1-1, to=1-2]
+\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+将这些操作与对应的翻译规则总结出来, 就是\textbf{内语言}.
+
+广义元素
 
 排中律
 
