@@ -678,33 +678,10 @@ X && \Omega
 
 \section{内语言}\label{category:inner}\berry{2}
 
-在前言中, 我们提到用范畴表述的一些构造比较繁琐.
-不过, 我们可以使用类似集合论或类型论的语言表述这些构造.
-举个例子, 由子对象分类器的直观, \(X \to \Omega\)
-与 \(X\) 的子对象一一对应. 我们可以认为
-函数对象 \(X\Rightarrow \Omega\) 表达了
-类似 \(X\) 的幂集的概念, 可以写成 \(\mathcal P(X)\).
-可以使用乘积对象表达有序对相关的构造,
-用等化子(equalizer)或者拉回(pullback)表达满足某个等式的子集.
-如果某个范畴中有对象\(X,Y\), 并且有态射 \(g : X \to Z,
-f : \mathcal P(Y) \to Z\), 那么
-\[\{(x, U) \mid x \in X, U \subseteq Y, g(x) = f(U)\}\]
-可以用于表达范畴论中的拉回
-\[\begin{tikzcd}
-V & {\mathcal P(Y)} \\
-X & Z
-\arrow["g", from=1-2, to=2-2]
-\arrow["f"', from=2-1, to=2-2]
-\arrow["{\pi_1}"', from=1-1, to=2-1]
-\arrow["{\pi_2}", from=1-1, to=1-2]
-\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-\end{tikzcd}\]
-将这些操作与对应的翻译规则总结出来, 就是\textbf{内语言}.
-
 广义元素
-
-排中律
 
 Kripke--Joyal, 推广之前的 Kripke
 
 Zariski topos
+
+排中律
