@@ -347,7 +347,8 @@ Grothendieck提出层的概念, 是为了更好地整理代数几何中
 读者可以轻松地把这些定义全部类比到位象上去.
 可以证明 \(\mathscr F(\varnothing)\) 必须为单点集.
 因此, 在单点拓扑空间上的层, 完全由全集上的截面决定.
-因此单点拓扑空间上的层范畴等价于集合范畴 \(\mathsf{Set}\).
+进而单点拓扑空间上的层范畴等价于集合范畴 \(\mathsf{Set}\).
+在 \ref{category:inner}~节还会讲述定义层的另一个动机.
 
 这些定义到1950年代已经成为主流数学的重要工具. 然而, 在
 代数几何中, \(X\) 上只有拓扑信息是完全不够的. 例如在
@@ -633,7 +634,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 因为它分类了子对象中所有可能出现的情况.
 我们来把这个定义严谨化. 什么是子对象呢? 首先需要注意的是,
 \emph{子对象不是对象}. 子群不是群, 因为如果子群是群的话,
-同构的群应该完全相同. 然而 \(\mathbb Z\)
+同构的群应该被视作完全相同. 然而 \(\mathbb Z\)
 的两个子群 \(2\mathbb Z\) 与 \(3\mathbb Z\)
 尽管同构, 但是显然不应该看作同一个子群. 子群 \(H \subseteq G\)
 应当还包含它在群 \(G\) 中的哪个位置的信息. 因此, 我们
@@ -644,9 +645,13 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 读者可以验证在集合范畴中这的确给出单射.
 
 \begin{definition}
-在一个有终对象的范畴中, 一个对象 \(\Omega\) 配备
-一个点 \(t : \star \to \Omega\) 称为\textbf{子对象分类器},
-当且仅当对于任何单射 \(A \rightarrowtail X\), 都有唯一的映射
+一个对象 \(\Omega\) 配备一个态射
+\(t : \star \to \Omega\)
+称为\textbf{子对象分类器}\footnote{我们不需要
+对这个态射做任何要求, 但是可以可以证明如果子对象分类器存在,
+那么 \(t\) 必然是单射, 换句话说 \(\star\) 是 \(\Omega\)
+的子对象. 同时, \(\star\) 一定是终对象.}, 当且仅当对于任何单射
+\(i : A \rightarrowtail X\), 都有唯一的映射
 \([i] : X \to \Omega\) 与 \(\eta : A \to \star\)
 使得以下图表是拉回.
 \[\begin{tikzcd}
@@ -659,14 +664,33 @@ X && \Omega
 \arrow["\eta", from=1-1, to=1-3]
 \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
 \end{tikzcd}\]
-这里上方的箭头是到终对象的唯一箭头. \([i]\) 被称为子对象
-的\textbf{特征映射}.
+\([i]\) 被称为子对象的\textbf{特征映射}.
 \end{definition}
 
 在上面举例的图范畴中, \(\star\) 是一个点与一个自环
 构成的图, \(\star \to \Omega\) 射到上图的蓝色子图.
-
-classifier
+请读者检查这确实符合定义. 如果读者有一些几何背景,
+或许会觉得这个图非常熟悉.
+\begin{definition}
+给定一个拓扑群 \(G\), 定义其\textbf{分类空间}为
+\(G\)-主丛 \(\pi : \mathrm{E}G \to \mathrm{B}G\),
+使得对于任何 \(G\)-主丛 \(\gamma : A \to X\), 都有
+唯一的映射 \(\tilde\gamma\) 与 \(\eta\), 使得以下
+图表是拉回. \(\tilde\gamma\) 称为\textbf{分类映射}.
+\[\begin{tikzcd}
+A && \mathrm{E}G \\
+\\
+X && \mathrm{B}G
+\arrow["{\tilde\gamma}", from=3-1, to=3-3]
+\arrow["\pi"', from=1-3, to=3-3]
+\arrow["\gamma", from=1-1, to=3-1]
+\arrow["\eta", from=1-1, to=1-3]
+\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+\end{tikzcd}\]
+\end{definition}
+分类空间是 \(G\)-主丛的分类器,
+而子对象分类器是子对象的分类器.
+这些定义的思想与模空间等也有联系.
 
 尽管定义看起来很简短, 初等意象实际上包含了非常丰富的结构.
 它实际上有所有的有限余极限, 并且是局部积闭的.
@@ -680,10 +704,7 @@ classifier
 的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
 \(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集; 图的范畴
 中, \(1\) 是有一个点与一个自环的图, 因此 \(\hom(1,A)\)
-就是 \(A\) 上所有自环的集合.\footnote{注意图范畴中
-\(1\) 与前面举例中子对象分类器的 \(\star\) 相等.
-事实上可以证明, 子对象分类器定义中的 \(\star\) 必然
-是终对象.}
+就是 \(A\) 上所有自环的集合.
 
 可以看到, 从点集中可以探测到对象的一定信息, 但并不是全部
 的信息. 在极端情况下, 点集完全不提供信息. 如在群范畴中,
@@ -693,7 +714,7 @@ classifier
 既是始对象也是终对象, 那么我们称它为\textbf{零对象}.
 交换代数中研究的许多范畴都有零对象.}
 
-广义元素, Yoneda
+广义元素, Yoneda, 广义对象, motivate sheaf
 
 Kripke--Joyal, 推广之前的 Kripke
 
