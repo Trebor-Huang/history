@@ -1,12 +1,12 @@
 \chapter{范畴语义}
-\subsection{局部Descartes闭范畴}\berry{3}
+\subsection{局部积闭范畴}\berry{3}
 % TODO maybe rewrite this part
 % TODO add comprehension categories?
 
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
-指出, 局部Descartes闭范畴可以和依值类型论中的许多
+指出, 局部积闭范畴可以和依值类型论中的许多
 东西找到对应. \ref{beginning:ccc}~节中已经
-介绍了Descartes闭范畴的概念, 而\emph{局部Descartes闭范畴}
+介绍了积闭范畴的概念, 而\emph{局部积闭范畴}
 只需要进一步的定义.
 \begin{definition}
 给定范畴 \(\mathcal C\) 中的对象 \(A\),
@@ -27,14 +27,14 @@
 的原像 (即 \(x\) 上的\emph{纤维}) 乘起来. 在原范畴
 中, 这就是拉回.
 \begin{definition}
-如果某个范畴的所有俯范畴都Descartes闭, 则称这个
-范畴\textbf{局部Descartes闭}.
+如果某个范畴的所有俯范畴都积闭, 则称这个
+范畴\textbf{局部积闭}.
 \end{definition}
 特别地, 这个范畴需要有所有的拉回. 如果这个范畴含有终对象
 \(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
-从而其本身是 Descartes 闭的.
+从而其本身是积闭的.
 
-如果 \(f\) 是局部 Descartes 闭范畴 \(\mathcal C\)
+如果 \(f\) 是局部积闭范畴 \(\mathcal C\)
 中的对象, 那么我们立即有一个函子
 \[f_! : \mathcal C_{/B} \to \mathcal C_{/A}\]
 描述了箭头的复合. 而由于存在所有的拉回, 有另外一个函子
@@ -45,12 +45,12 @@
 \[f_* : \mathcal C_{/B} \to \mathcal C_{/A}.\]
 事实上, 这三个函子构成伴随链\(f_!\dashv f^*\dashv f_*\).
 读者可以阅读本人的一篇文章~\cite{me:2022:lccc}, 是对局部
-Descartes闭范畴, 以及其对应的伴随函子 \(f_!\dashv
+积闭范畴, 以及其对应的伴随函子 \(f_!\dashv
 f^*\dashv f_*\) 的一份比较友好的介绍. 事实上, 这三个
-函子可以给出局部Descartes闭范畴的等价定义.
+函子可以给出局部积闭范畴的等价定义.
 \begin{theorem}
 任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
-\(f_!\) 函子. 这个范畴是Descartes完备的, 等价于
+\(f_!\) 函子. 这个范畴是积闭的, 等价于
 每个 \(f_!\) 函子都存在连续的两个伴随函子
 \[f_!\dashv f^*\dashv f_*.\]
 \end{theorem}
@@ -488,7 +488,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 有初等意象的概念. 定义上它可以非常简短：
 \begin{definition}
 一个范畴 \(\mathcal C\) 是\textbf{初等意象}, 当且仅当它
-有所有有限极限, Descartes闭, 并且有子对象分类器.
+有所有有限极限, 积闭, 并且有子对象分类器.
 \end{definition}
 我们来把这个定义解包, 看看背后蕴含的直觉.
 
@@ -611,7 +611,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 包含这条边 (否则这条边就没有顶点了, 与图的定义矛盾).
 我们可以画一个图总结这五种情况.
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.8]
 \node[circle, fill=blue, ultra thick] (In) at (0,0) {};
 \node[circle, fill=gray, ultra thick] (Out) at (3,0) {};
 \draw[->, very thick, gray] (In) to[bend left] (Out);
@@ -643,42 +643,57 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 \[f\circ u = f \circ v \implies u = v.\]
 读者可以验证在集合范畴中这的确给出单射.
 
-对于任何对象 \(A\), 从终对象出发的映射集合 \(\hom(1,A)\)
-称为 \(A\) 的\textbf{点集}. 如在集合范畴中这就是 \(A\)
-的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
-\(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集; 图的范畴
-中, \(1\) 是有一个点与一个自环的图, 因此 \(\hom(1,A)\)
-就是 \(A\) 上所有自环的集合. 我们
-用 \(t : 1 \to \Omega\) 指定子对象分类器
-中的一个点, 对应上图中蓝色的子图.
-
 \begin{definition}
 在一个有终对象的范畴中, 一个对象 \(\Omega\) 配备
-一个点 \(t : 1 \to \Omega\) 称为\textbf{子对象分类器},
+一个点 \(t : \star \to \Omega\) 称为\textbf{子对象分类器},
 当且仅当对于任何单射 \(A \rightarrowtail X\), 都有唯一的映射
-\([i] : X \to \Omega\) 使得以下图表是拉回.
+\([i] : X \to \Omega\) 与 \(\eta : A \to \star\)
+使得以下图表是拉回.
 \[\begin{tikzcd}
-A && 1 \\
+A && \star \\
 \\
 X && \Omega
 \arrow["{[i]}", from=3-1, to=3-3]
 \arrow["t"', from=1-3, to=3-3]
 \arrow["i", tail, from=1-1, to=3-1]
-\arrow[dashed, from=1-1, to=1-3]
+\arrow["\eta", from=1-1, to=1-3]
 \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
 \end{tikzcd}\]
 这里上方的箭头是到终对象的唯一箭头. \([i]\) 被称为子对象
 的\textbf{特征映射}.
 \end{definition}
 
+在上面举例的图范畴中, \(\star\) 是一个点与一个自环
+构成的图, \(\star \to \Omega\) 射到上图的蓝色子图.
+
+classifier
+
 尽管定义看起来很简短, 初等意象实际上包含了非常丰富的结构.
-它实际上有所有的有限余极限, 并且是局部Descartes闭的.
+它实际上有所有的有限余极限, 并且是局部积闭的.
 实际上, 如果初等意象有所有的余极限(还需要加上一些
 防止罗素悖论的条件), 那么它就是Grothendieck意象.
 
 \section{内语言}\label{category:inner}\berry{2}
 
-广义元素
+对于任何对象 \(A\), 从终对象出发的映射集合 \(\hom(1,A)\)
+称为 \(A\) 的\textbf{点集}. 如在集合范畴中这就是 \(A\)
+的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
+\(\hom(1,A)\) 恰好就是拓扑上 \(A\) 的点集; 图的范畴
+中, \(1\) 是有一个点与一个自环的图, 因此 \(\hom(1,A)\)
+就是 \(A\) 上所有自环的集合.\footnote{注意图范畴中
+\(1\) 与前面举例中子对象分类器的 \(\star\) 相等.
+事实上可以证明, 子对象分类器定义中的 \(\star\) 必然
+是终对象.}
+
+可以看到, 从点集中可以探测到对象的一定信息, 但并不是全部
+的信息. 在极端情况下, 点集完全不提供信息. 如在群范畴中,
+终对象 \(1\) 是单元素群, 而 \(1 \to G\) 必然将其射到
+单位元, 因此完全无法提供关于 \(G\) 的任何信息.\footnote{注意到
+这样 \(1\) 也符合始对象的定义. 如果一个范畴中某个对象
+既是始对象也是终对象, 那么我们称它为\textbf{零对象}.
+交换代数中研究的许多范畴都有零对象.}
+
+广义元素, Yoneda
 
 Kripke--Joyal, 推广之前的 Kripke
 
