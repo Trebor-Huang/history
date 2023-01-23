@@ -485,8 +485,8 @@ Joyal~\cite{joyal:2019：topologie}称它们为logos
 Lawvere在思考这个问题时, 提出了\textbf{集合范畴的初等理论}(elementary
 theory of the category of sets, 缩写为ETCS). 具体来说,
 它是对某个范畴的一组条件. 满足这些条件的范畴均可以作为合理的集合
-范畴的替代品. 随后这些概念逐渐完善, 今天我们
-有初等意象的概念. 定义上它可以非常简短：
+范畴的替代品. 后来, 从这组条件中整理出了更弱的一套条件,
+成为了初等意象的定义. ETCS可以视作特殊的初等意象.
 \begin{definition}
 一个范畴 \(\mathcal C\) 是\textbf{初等意象}, 当且仅当它
 有所有有限极限, 积闭, 并且有子对象分类器.
@@ -698,7 +698,7 @@ X && \mathrm{B}G
 防止罗素悖论的条件), 那么它就是Grothendieck意象.
 
 \section{内语言}\label{category:inner}\berry{2}
-
+\subsection{点集}
 对于任何对象 \(A\), 从终对象出发的箭头集合 \(\hom(1,A)\)
 称为 \(A\) 的\textbf{点集}. 如在集合范畴中这就是 \(A\)
 的所有元素; 在拓扑空间范畴中, \(1\) 是单点拓扑空间,
@@ -772,14 +772,7 @@ X && \mathrm{B}G
 这样, 原本的函数就是广义函数的子集, 并且我们得到了类似
 \(\delta\)函数等新的对象.
 
-在范畴论中, 函子 \(F : \mathcal C^{\cons{op}} \to \cons{Set}\)
-称作\textbf{预层}. 米田引理的一个推论是
-\[\hom(\yo(A), F) \cong F(A).\]
-这里的 \(\hom\) 是在函子范畴里的态射, 即自然变换的集合.
-正如之前的介绍所说, 如果在 \(\mathcal C\) 上有了Grothendieck拓扑,
-就能在预层上叙述粘合公理, 满足这条公理的预层称作\textbf{层}.
-
-Kripke--Joyal, 推广之前的 Kripke
+\subsection{Kripke--Joyal翻译}
 
 Zariski topos
 

@@ -14,7 +14,7 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 
 - [X] Introduction
   - Do we need to mention realizability and forcing?
-- [ ] Normalization for STLC
+- [ ] Normalization for STLC (After submission)
 - [X] Classical logic
 - [X] MLTT
   - Cite Tom de Jong's stuff?
@@ -22,8 +22,8 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
   - [X] Applications
   - [ ] Use `fancyvrb` to improve code display?
 - [ ] Category theory
-  - [ ] Rewrite LCCC part?
-  - [ ] Write about comprehension categories?
+  - [ ] Rewrite LCCC part? (After submission)
+  - [ ] Write about comprehension categories? (After submission)
   - [X] Elementary topos
   - [ ] Internal language
 - [X] Cubical type theory
