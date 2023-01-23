@@ -731,13 +731,53 @@ X && \mathrm{B}G
 
 给定态射 \(f : U \to V\), 我们就能得到一个点集之间的函数
 \(\hom(V, A) \to \hom(U, A)\), 即态射复合操作.
-我们通过点集与点集之间的变换, 可以探测到一个对象非常多
-的信息. 那么这个办法能不能得到全部的信息呢? 令人惊讶的是,
+因此 \(\hom(-,A)\) 得到了一个函子
+\(\mathcal C^{\cons{op}} \to \cons{Set}\).
+这个函子组织了 \(A\) 的所有广义点集的信息.
+那么这个办法能不能得到全部的信息呢? 令人惊讶的是,
 答案是肯定的.
 
-Yoneda,
+\begin{theorem}[米田]
+\(\hom(-,A)\) 与 \(\hom(-,B)\) 之间的自然变换
+与 \(A\) 到 \(B\) 的态射一一对应. 进一步说, 函子
+\(\yo(A) = \hom(-,A)\) 是满忠实函子.
+这里 \(\yo\) 是日文名“米田”的第一个音节.
+\end{theorem}
 
-广义对象, motivate sheaf
+我们可以给一个使用米田引理的例子. 如果某个范畴中有乘积
+\(A \times (B \times C)\) 与 \((A \times B) \times C\),
+它们是否同构呢? 如果直接使用泛性质, 证明会非常繁琐.
+而使用米田引理, 这就化为简单的计算：
+\[\begin{aligned}
+\yo(A \times (B \times C))
+&= \hom(-, A \times (B \times C))\\
+(\text{泛性质})\quad &\cong \hom(-, A) \times (\hom(-, B) \times \hom(-, C))\\
+(\text{集合的性质})\quad &\cong (\hom(-, A) \times \hom(-, B)) \times \hom(-, C)\\
+(\text{泛性质})\quad &\cong \hom(-, (A \times B) \times C)\\
+&= \yo((A \times B) \times C).
+\end{aligned}\]
+其中, 中间由于是集合的乘积, 显然是满足结合律的.
+由此我们得到两个对象经过 \(\yo\) 之后是同构的.
+但是由于这个函子是满忠实函子, 因此这两个对象本身也
+必然同构.
+
+米田引理告诉我们, 想要了解一个对象 \(A : \mathcal C\),
+我们只需要了解 \(\yo(A) : \mathcal C^{\cons{op}} \to \cons{Set}\).
+反过来想, 如果我们提供了一个函子 \(F : \mathcal C^{\cons{op}} \to \cons{Set}\),
+它就可以视作\textbf{广义对象}. 这个思想与广义函数的定义
+非常相似. 想要了解连续函数 \(f : [0,1] \to \mathbb R\),
+我们只需要了解每个 \(\int_0^1 f(x)g(x)\,\mathrm dx\),
+其中 \(g\) 是测试函数. 因此如果我们定义了一个线性泛函,
+将测试函数映射到实数, 那么它就可以看作一种广义的函数.
+这样, 原本的函数就是广义函数的子集, 并且我们得到了类似
+\(\delta\)函数等新的对象.
+
+在范畴论中, 函子 \(F : \mathcal C^{\cons{op}} \to \cons{Set}\)
+称作\textbf{预层}. 米田引理的一个推论是
+\[\hom(\yo(A), F) \cong F(A).\]
+这里的 \(\hom\) 是在函子范畴里的态射, 即自然变换的集合.
+正如之前的介绍所说, 如果在 \(\mathcal C\) 上有了Grothendieck拓扑,
+就能在预层上叙述粘合公理, 满足这条公理的预层称作\textbf{层}.
 
 Kripke--Joyal, 推广之前的 Kripke
 

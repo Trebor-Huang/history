@@ -51,6 +51,10 @@
     \large\textbf{#1}%
   }%
 \end{center}}
+% Add a single hiragana "Yo".
+\DeclareFontFamily{U}{min}{}
+\DeclareFontShape{U}{min}{m}{n}{<-> udmj30}{}
+\newcommand{\yo}{\text{\usefont{U}{min}{m}{n}\symbol{'210}}}
 
 % Theorems and definitions
 \theoremstyle{plain}
