@@ -62,8 +62,11 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 
 这就是 Curry--Howard 对应. 它体现了逻辑学和类型论
 (进而与计算机科学) 有着深刻的内在联系.
-我们下面看看能从这之中挖掘
-出哪些有价值的数学.
+需要注意的是, 之前介绍的简单类型论可以表达高阶逻辑, 但是
+这个表达能力是额外加入的： 我们添加了命题的类型 \(o\),
+并且加入了逻辑连词与公理. 但是在这里简单类型\(\lambda\)-演算
+并没有加入任何关于逻辑的内容, 直接通过 Curry--Howard 对应
+即可表达命题逻辑. 我们下面看看能从这之中挖掘出哪些有价值的数学.
 
 \section{依值类型}
 
@@ -79,13 +82,12 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 的函数. 这里随着输入不同, 输出的向量所处的向量
 空间也不同. 对于普通的集合也有这样的构造： 给定定义域 \(B\)
 与一族集合 \(F_x, x \in B\), Descartes 乘积
-\[\prod_{x\in B} F_x\]
-就是一种依值函数.
-
+\(\prod_{x\in B} F_x\) 就是一种依值函数.
 对于 \(\exists x. P(x)\) 也是类似的. 它对应有序对
 \((x, p)\), 使得 \(p \in P(x)\). 这对应集合的
-不交并
-\[\coprod_{x\in B} F_x.\]
+不交并 \(\coprod_{x\in B} F_x\).
+
+% TODO rewrite give more examples (...)
 
 当然, 在通常数学中对依值函数的定义一般采取另一种方法.
 考虑全空间 \(E = \coprod_{x:B} F_x\), 我们有一个
@@ -95,7 +97,7 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 这个定义在集合上和上面是等价的, 而在拓扑空间上这就是纤维丛的
 截面. 推广到一般的数学对象上时, 也采用这个定义.
 
-我们接下来会采用 \(\prod, \sum\) 来指代这两种
+我们接下来会采用 \(\Pi, \Sigma\) 来指代这两种
 类型. 它们的规则和函数、 Descartes乘积非常类似.
 如果有变量 \(x : A\) 与表达式 \(M : B\), 其中
 \(M, B\) 可以包含 \(x\) (注意在普通的函数类型定义
@@ -105,8 +107,8 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 如果有表达式 \(N : A\), \(M : \prod_{x:A} B\),
 那么 \(M(N)\) 的类型就是 \(B[x/N]\), 其中 \([x/N]\)
 表示把变量 \(x\) 代入为 \(N\). 并且有 \((\lambda x.M)(N) = M[x/N]\).
-读者可以自行写出 \(\sum\) 的规则.
-对于更详细的介绍, 读者可以参阅\cite{ufp:2013:hottbook}的
+读者可以自行写出 \(\Sigma\) 的规则. % TODO write this out
+对于更详细的介绍, 读者可以参阅\cite{ufp:2013:hottbook}~的
 第一章.
 
 1967年, 利用这些想法, Nicolaas Govert de Bruijn
@@ -120,8 +122,8 @@ F系统\footnote{这个名字是因为Girard的论文中用F
 现在普遍指代这个系统的名字.} (这严格来说不属于依值类型)
 在 1972 年由逻辑学家 Jean-Yves Girard~\cite{girard:1972:systemf}
 与 1974 年由计算机科学家 J. C. Reynolds~\cite{reynolds:1974:systemf} 独立发现.
-这已经说明 Curry--Howard 对应不仅仅是一个刻意构造的对应,
-而是深刻而直接地影响到了两个学科的发展.
+一边是逻辑学, 一边是计算机科学, 这说明 Curry--Howard
+对应不仅仅是一个巧合, 而是深刻地影响了两个学科的发展.
 
 F 系统的规则对简单类型 \(\lambda\)-演算做了一点扩展.
 它的类型除了函数类型 \(\alpha \to \beta\) 之外,
@@ -224,12 +226,6 @@ Constructions, 缩写为 CoC). 这与上面提到的一些类型系统
 其上有二元关系 \(\mathcal A\) 与
 三元关系 \(\mathcal R\). 类型系统的规则有
 \[\frac{}{\Gamma\vdash s_1 : s_2} \quad (s_1, s_2) \in \mathcal A\]
-其中 \(\Gamma\) 是一些变量.\footnote{我们上面都
-忽略了\(B(x)\)除了\(x\)之外可能有其他变量, 严谨
-起见应该在 \(\vdash\) 的左侧都加上这些变量. 这里 \(\Gamma\)
-是形如 \(x_1{:}A_1, x_2{:}A_2, \dots, x_n{:}A_n\) 的列表.
-同时, \(B(x)\) 这样的记号是不严谨的, 目的在于强调它可能含有 \(x\).
-严格来说应该直接写成 \(B\) 即可.} {\color{red}TODO mention this at simple types}
 对于每组\((s_1,s_2,s_3)\in \mathcal R\),
 类型系统中都添加两条规则：
 \[\frac{\Gamma \vdash A : s_1 \quad \Gamma, x{:}A \vdash B(x) : s_2}{\Gamma \vdash \prod_{x:A} B(x) : s_3}\]

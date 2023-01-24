@@ -14,7 +14,11 @@ This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand th
 
 - [X] Introduction
   - Do we need to mention realizability and forcing?
-- [ ] Normalization for STLC (After submission)
+- [ ] STLC (After submission)
+  - [ ] Rewrite combinator canonicity
+  - [ ] Introduce product types
+  - [ ] Perhaps use cat language earlier to make the presentation easier?
+  - [ ] Normalization for STLC
 - [X] Classical logic
 - [X] MLTT
   - Cite Tom de Jong's stuff?
