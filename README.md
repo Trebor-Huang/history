@@ -8,7 +8,7 @@ An overview of the history of type theory, mainly for mathematically oriented pe
 
 **You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).**
 
-This is my coursework, abstract due Jan 8, paper due Feb 18. I plan to expand this even more after I submit a version for coursework. Suggestions are welcome! PR's are welcome but they should be after I submit the work, probably.
+This is my coursework, the submitted version is `...`. I will expand this even more after the submission. Suggestions and PR's are welcome!
 
 ## TODO
 
