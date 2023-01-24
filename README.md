@@ -6,9 +6,9 @@ An overview of the history of type theory, mainly for mathematically oriented pe
 - Provide a coherent and up-to-date source of information in Chinese.
 - Link to important books and papers I recommend to read.
 
-**You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions).**
+**You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions)** (Login required).
 
-This is my coursework, the submitted version is `...`. I will expand this even more after the submission. Suggestions and PR's are welcome!
+This is my coursework. I will expand this even more after the submission. Suggestions and PR's are welcome!
 
 ## TODO
 
