@@ -8,7 +8,7 @@ An overview of the history of type theory, mainly for mathematically oriented pe
 
 **You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions)** (Login required).
 
-This is my coursework. I will expand this even more after the submission. Suggestions and PR's are welcome!
+This is my coursework. I have already finished the submitted version (`d0aaf51`), but this is still being actively expanded. Suggestions and PR's are welcome!
 
 ## TODO
 
@@ -25,11 +25,11 @@ This is my coursework. I will expand this even more after the submission. Sugges
   - [X] Consistency
   - [X] Applications
   - [ ] Use `fancyvrb` to improve code display?
-- [ ] Category theory
+- [X] Category theory
   - [ ] Rewrite LCCC part? (After submission)
   - [ ] Write about comprehension categories? (After submission)
   - [X] Elementary topos
-  - [ ] Internal language
+  - [X] Internal language
 - [X] Cubical type theory
   - [X] History Part
   - [X] A small basic intro
