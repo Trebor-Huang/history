@@ -485,7 +485,7 @@ Lawvere在思考这个问题时, 提出了\textbf{集合范畴的初等理论}(e
 theory of the category of sets, 缩写为ETCS). 具体来说,
 它是对某个范畴的一组条件. 满足这些条件的范畴均可以作为合理的集合
 范畴的替代品. 后来, 从这组条件中整理出了更弱的一套条件,
-成为了初等意象的定义. ETCS可以视作特殊的初等意象.
+成为了初等意象的定义. 满足ETCS的范畴可以视作特殊的初等意象.
 \begin{definition}
 一个范畴 \(\mathcal C\) 是\textbf{初等意象}, 当且仅当它
 有所有有限极限, 积闭, 并且有子对象分类器.
@@ -715,7 +715,7 @@ X && \mathrm{B}G
 
 有没有什么办法用 \(\hom\) 集合探测更多信息呢? 我们
 可以考虑不使用 \(1\), 而是使用一般的对象. 定义集合
-\(\hom(U, A)\) 为 \(A\) 的 \(U\)-状点集. 在有向图
+\(\hom(U, A)\) 为 \(A\) 的 \(U\)\textbf{-状点集}. 在有向图
 的范畴中, 如果我们取图 \(I = \boxed{\bullet \to \bullet}\),
 那么图 \(G\) 的 \(I\)-状点集就是它的边的集合.
 在代数几何中, 这样的广义点起了非常重要的作用.
@@ -771,8 +771,109 @@ X && \mathrm{B}G
 这样, 原本的函数就是广义函数的子集, 并且我们得到了类似
 \(\delta\)函数等新的对象.
 
-% \subsection{Kripke--Joyal翻译}
+\subsection{Kripke--Joyal翻译}
 
-% Zariski topos
+考虑一个态射 \(\varphi : X \to \Omega\), 这也
+确定了一个子对象 \(\{x : X \mid \varphi(x)\}\).
+\[\begin{tikzcd}
+& {\{x \mid \varphi(x)\}} & 1 \\
+1 & X & \Omega
+\arrow[from=1-2, to=1-3]
+\arrow["t", from=1-3, to=2-3]
+\arrow["\chi_{\varphi}", from=1-2, to=2-2]
+\arrow["\varphi"', from=2-2, to=2-3]
+\arrow["p"', from=2-1, to=2-2]
+\arrow["\tilde p", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+如果有一个点 \(p : 1 \to X\) 满足存在
+\(\tilde p : 1 \to \{x \mid \varphi(x)\}\)
+使得上图交换, 那么就称点\(p\) \textbf{满足} \(\varphi\).%
+\footnote{事实上, 这等价于说 \(\varphi \circ p = t\).
+其等价性是很好的范畴论习题, 但是在没有子对象分类器时就
+只能依靠原本的定义. 在广义点的情况下也有类似的等价.}
+我们进一步考虑广义点集. 如果广义点 \(p : U \to X\) 存在
+\(\tilde p : U \to \{x \mid \varphi(x)\}\) 使得
+上图交换, 那么就称广义点\(p\) \textbf{满足} \(\varphi\).
+这写作 \(p \vDash \varphi\), 如果箭头 \(p\) 没有歧义,
+也会写作 \(U \vDash \varphi\).
 
-% 排中律
+我们以Zariski意象为例, 将这些定义展开, 看看会得到什么.
+Zariski意象\(\cons{Zar}\)中, 其对象包含了所有的环.
+对于任意环 \(R\)：
+\begin{center}
+\begin{tabular}{c @{\(\color{gray}{}\iff{}\)} p{0.5\textwidth}}\hline
+\(R \vDash \top\) & \(R\) 中 \(1 = 1\).\\
+\(R \vDash \bot\) & \(R\) 中 \(0 = 1\).\\
+\(R \vDash \phi\wedge\psi\) & \(R \vDash \phi\)
+  且 \(R \vDash \psi\).\\
+\(R \vDash \phi\vee\psi\) & \(R\) 中存在有限个元素
+  \(\sum_i f_i = 1\), 使得对于每个 \(i\) 都有
+  \(R[f_i^{-1}] \vDash \phi\) 或
+  \(R[f_i^{-1}]\vDash \psi\).\\
+\(R \vDash \phi\Rightarrow\psi\) & 对于任何 \(R\)-代数
+  \(S\), 如果 \(S \vDash \phi\) 则 \(S \vDash \psi\).\\\hline
+\end{tabular}
+\end{center}
+这覆盖了许多交换代数中常见的操作.
+进一步研究这样的语言, 可以大大简化复杂对象的研究.
+从另一个视角, 意象可以说是提供了一个“数学宇宙”. 在这个宇宙
+中可以进行各种数学操作. 每个宇宙都有自己独特的性质.
+读者可以参考~\cite{oliveri:2022:structure},
+其中第四章是对这些数学宇宙的简明易懂的介绍.
+关于Zariski意象在代数几何中的应用, 读者可以阅读~\cite{blechschmidt:2021:internal}.
+
+Kripke--Joyal翻译仅仅为意象提供了内语言. 对于有其他结构
+的范畴, 就有各自对应的内语言与翻译方式.
+
+\subsection{ETCS}
+排中律在内语言中的翻译为 \(\Omega = 1 + 1\), 即
+子对象分类器是两个终对象的不交并. 在集合范畴中这是成立的,
+但是在之前举例的图范畴中, 终对象是一个点上有一个自环,
+但子对象分类器有两个点和五条边, 不是两个终对象的不交并.
+许多意象的内语言中, 排中律是不成立的.\footnote{内语言中
+排中律是否成立与外部语言是不一样的. 集合范畴中排中律成立,
+等价于外部语言的排中律成立; 图范畴中无论如何排中律都
+不成立; 相反地, 在有限集合构成的范畴中排中律无论如何都
+成立.} 如定理~\ref{ch:diaconescu} 所述, 如果选择公理
+成立, 排中律也成立.
+
+% (...) 选择公理?
+
+在范畴中, 一个态射不再由它在点集上的表现决定. 例如图范畴
+中, 只知道一个态射在点集上的表现, 仍然无法决定边如何映射.
+我们可以做一个定义.
+\begin{definition}
+我们称满足这个条件的范畴是\textbf{良点}的(well-pointed):
+对于任何两个态射 \(f, g : X \to Y\),
+如果它们诱导点集上的映射 \(\hom(1, X) \to \hom(1,Y)\)
+相等, 则 \(f = g\).
+\end{definition}
+集合范畴与拓扑空间范畴都是良点的.
+
+在本节开头提到的ETCS可以简洁地定义为(初等)意象上的三条公理：
+良点性, 选择公理与无限公理. 无限公理在ZFC集合论中也有出现,
+大致含义就是“自然数集合存在”. 我们至少需要这样一条公理, 否则
+无法构造出任何无限大的对象. 在范畴论中, 自然数对象
+(natural numbers object, 缩写为NNO)的定义与类型论
+中自然数类型的定义很相似.
+\begin{definition}
+\textbf{自然数对象}是一个对象 \(\mathbb N\), 配备
+了两个态射 \(1 \xrightarrow{\cons{z}} \mathbb N \xrightarrow{\cons{s}} \mathbb N\),
+分别表示零与后继. 对于任何其他对象 \(A\) 配备两个态射
+\(1 \xrightarrow z A \xrightarrow s A\), 都有
+唯一的态射 \(r : \mathbb N \to A\) 使得以下图表交换.
+\[\begin{tikzcd}
+& {\mathbb N} && {\mathbb N} \\
+1 \\
+& A && A
+\arrow["z"', from=2-1, to=3-2]
+\arrow["s"', from=3-2, to=3-4]
+\arrow["{\cons{z}}", from=2-1, to=1-2]
+\arrow["{\cons{s}}", from=1-2, to=1-4]
+\arrow["u"{description}, from=1-2, to=3-2]
+\arrow["u"{description}, from=1-4, to=3-4]
+\end{tikzcd}\]
+\end{definition}
+满足ETCS公理的范畴, 表现得非常像集合范畴, 基本满足数学中
+要求集合范畴满足的所有性质. 因此ETCS可以作为类似ZFC的集合论
+使用.
