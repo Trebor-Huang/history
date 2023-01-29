@@ -610,10 +610,27 @@ empty is terminal
 我们实际上有非常好的方式刻画这个范畴. 我们已经介绍过了
 范畴中的Descartes乘积. 而函数也有范畴定义.
 \begin{definition}
-Exponential object
+假设范畴中存在相关的乘积对象. 两个对象 \(A, B\)
+的\textbf{函数对象} \(C\), 或称为指数对象、幂对象,
+配备了\textbf{求值态射} \(\cons{ev}:A \times C \to B\),
+使得对任何对象 \(C'\) 配备态射 \(e : A \times C' \to B\),
+都有唯一的态射 \(u : C' \to C\) 使得以下图表交换.
+\[\begin{tikzcd}
+{C'} & C \\
+{C' \times A} & {C\times A} \\
+B
+\arrow["u", from=1-1, to=1-2]
+\arrow["{u\times \cons{id}}", from=2-1, to=2-2]
+\arrow["e", from=2-1, to=3-1]
+\arrow["\cons{ev}", from=2-2, to=3-1]
+\end{tikzcd}\]
+函数对象一般记作 \(B^A, A \to B, [A, B]\) 等.
 \end{definition}
+等价来说, 函数对象是满足 \(\hom(-, B^A)\) 自然同构于
+\(\hom(- \times A, B)\) 的对象.
 \begin{definition}
-CCC, CCFunctor, what is a good translation?
+如果一个范畴包含所有的二元乘积、终对象与函数对象, 那么
+称这个范畴为\textbf{积闭范畴}. CCF
 \end{definition}
 \begin{theorem}\label{beginning:lambda:initial}
 \(\mathcal T\) 是由图表 \(1 \rightrightarrows \mathbb B\)
@@ -685,7 +702,7 @@ CCC, CCFunctor, what is a good translation?
 集合范畴里成立, 其他范畴中只能起启发作用.)\footnote{有些
 读者可能会认为， 我们需要让 \(f\) 为单射,
 即 \(f^{-1}(x)\) 要么是空集要么是单点集. 在这里这个要求
-可有可无. 没有这个要求时行文更简洁.} 因此, 我们考虑这样
+可有可无. 没有这个要求时行文更简洁. (???)} 因此, 我们考虑这样
 一个范畴 \(\mathcal G\), 它的对象是
 形如 \(f:\Sigma' \to \boldsymbol\Gamma(\Sigma)\) 的态射,
 (准确地说, 是一个三元组 \((\Sigma', f, \Sigma)\).)
@@ -700,7 +717,7 @@ CCC, CCFunctor, what is a good translation?
 其中 \(\sigma\) 是 \(\Sigma \vdash \Delta\) 的
 一个替代, \(\sigma'\) 是某个函数.
 
-如果读者熟悉范畴论, 就应该知道这是[[逗号范畴]]的特例:
+如果读者熟悉范畴论, 就应该知道这是逗号范畴的特例:
 \[\mathcal G = \mathrm{Id}_{\cons{Set}}\downarrow \boldsymbol\Gamma.\]
 它也可以看成是下面这个拉回:
 \[
@@ -836,7 +853,7 @@ Scott-连续函数的集合 \([A \to B]\) 逐点使用 \(B\) 上的
 \end{lemma}
 \begin{proof}
 对于每个Scott-连续函数,
-考虑数列 \(\bot, f(\bot), f(f(\bot)),\dots\).
+考虑 \(\bot, f(\bot), f(f(\bot)),\dots\) 构成的序列.
 由最小元的定义有 \(\bot \preceq f(\bot)\). 再反复使用
 \(f\) 的单调性得到 \(f^{(n)}(\bot) \preceq f^{(n+1)}(\bot)\).
 因此这是一条升链, 从而是定向子集. 它有上确界
