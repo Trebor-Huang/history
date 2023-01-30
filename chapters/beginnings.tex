@@ -630,7 +630,13 @@ B
 \(\hom(- \times A, B)\) 的对象.
 \begin{definition}
 如果一个范畴包含所有的二元乘积、终对象与函数对象, 那么
-称这个范畴为\textbf{积闭范畴}. CCF
+称这个范畴为\textbf{积闭范畴}. 如果一个函子 \(F\)
+保持有限乘积结构, 同时以下复合态射
+\[F(A) \times F(B^A) \xrightarrow{\cong}
+F(A \times B^A) \xrightarrow{F\cons{ev}}
+F(B)\] 由函数对象的性质
+诱导的态射 \(F(B^A) \to F(B)^{F(A)}\) 是同构,
+则称这个函子保持积闭结构, 即其为\textbf{保积闭函子}.
 \end{definition}
 \begin{theorem}\label{beginning:lambda:initial}
 \(\mathcal T\) 是由图表 \(1 \rightrightarrows \mathbb B\)
@@ -640,7 +646,9 @@ B
 结构, 其中包含一个积闭范畴以及选定一个对象 \(A\)
 和两个态射 \(1\rightrightarrows A\). 这些数学结构之间
 可以定义一些同态, 即保持选定的对象和态射的保积闭函子.
-那么这就构成了一个范畴\footnote{explain 2-cat}, 姑且称作
+那么这就构成了一个范畴,\footnote{实际上这是一个2-范畴,
+因为函子之间有自然变换, 也就是态射之间的态射. 我们考虑
+函子的时候一般不考虑相等, 而是自然同构.} 姑且称作
 \(\cons{CartClosedCat}_{1\rightrightarrows\mathbb B}\).
 那么其中的始对象就是我们所说的被自由生成的范畴.
 
@@ -665,7 +673,7 @@ B
 \end{proof}
 
 一个\textbf{范畴模型}就是从语法范畴出发的保持语法结构的函子.
-在我们这里, 简单类型\(\lambda\)理论的模型就是从
+在我们这里, 简单类型\(\lambda\)-演算的模型就是从
 语法范畴 \(\mathcal T\) 出发的保持
 \(\mathbb B,\cons{y},\cons{n}\)
 的保积闭函子. 回顾上文, 就会发现我们刚刚已经证明的
@@ -694,53 +702,47 @@ B
 因此我们考虑 \(\boldsymbol\Gamma(X) = \hom_{\mathcal T}(1, X)\).
 这是一个 \(\mathcal T \to \cons{Set}\) 的函子.
 
-\begin{comment}
 如上文所述, 我们一般的思路是为每一个类型赋予一个谓词.
-在范畴论中, 我们经常使用一个 \(f : Y \to X\) 的态射作
+在范畴论中, 我们可以使用一个 \(f : Y \to X\) 的态射作
 为\(X\)上的“谓词”. 大致来说, 我们认为如果 \(f^{-1}(x)\) 非空,
-那么这个谓词就取值为真, 否则为假. (当然这个大致说法只在
-集合范畴里成立, 其他范畴中只能起启发作用.)\footnote{有些
-读者可能会认为， 我们需要让 \(f\) 为单射,
-即 \(f^{-1}(x)\) 要么是空集要么是单点集. 在这里这个要求
-可有可无. 没有这个要求时行文更简洁. (???)} 因此, 我们考虑这样
-一个范畴 \(\mathcal G\), 它的对象是
-形如 \(f:\Sigma' \to \boldsymbol\Gamma(\Sigma)\) 的态射,
-(准确地说, 是一个三元组 \((\Sigma', f, \Sigma)\).)
+那么这个谓词就取值为真, 否则为假. 当然这个大致说法只在
+集合范畴里成立, 其他范畴中只能起启发作用. 通常我们还需要
+对这些态射做一些要求, 但是这里不做任何要求更简洁. 因此,
+我们考虑这样一个范畴 \(\mathcal G\), 它的对象是
+形如 \(f:\Sigma' \to \boldsymbol\Gamma(\Sigma)\) 的态射,%
+\footnote{准确地说, 是一个三元组 \((\Sigma', f, \Sigma)\).}
 其中 \(\Sigma\) 是 \(\mathcal T\) 中的对象, \(\Sigma'\)
-是集合. 这个范畴里的态射是这样的交换图:
+是集合. 这个范畴里的态射是这样的交换图：
 \[
-    \begin{cd}
-        \Sigma' \ar[r, "\sigma'"] \ar[d] & \Delta' \ar[d] \\
-        \boldsymbol\Gamma(\Sigma) \ar[r, "\boldsymbol\Gamma(\sigma)"] & \boldsymbol\Gamma(\Delta)
-    \end{cd}
+\begin{tikzcd}
+\Sigma' \ar[r, "\sigma'"] \ar[d] & \Delta' \ar[d] \\
+\boldsymbol\Gamma(\Sigma) \ar[r, "\boldsymbol\Gamma(\sigma)"] & \boldsymbol\Gamma(\Delta)
+\end{tikzcd}
 \]
 其中 \(\sigma\) 是 \(\Sigma \vdash \Delta\) 的
 一个替代, \(\sigma'\) 是某个函数.
-
 如果读者熟悉范畴论, 就应该知道这是逗号范畴的特例:
 \[\mathcal G = \mathrm{Id}_{\cons{Set}}\downarrow \boldsymbol\Gamma.\]
-它也可以看成是下面这个拉回:
+它也可以看成是下面这个拉回：
 \[
-    \begin{cd}
-        \mathcal G \ar[r, dashed] \ar[d, dashed, "\mathrm{gl}"'] \ar[dr, phantom, "\lrcorner", very near start] & \cons{Set}^{\to} \ar[d, "\mathrm{cod}"] \\
-        \mathcal T \ar[r, "\boldsymbol\Gamma"'] & \cons{Set}
-    \end{cd}
+\begin{tikzcd}
+\mathcal G \ar[r, dashed] \ar[d, dashed, "\mathrm{gl}"'] \ar[dr, phantom, "\lrcorner", very near start] & \cons{Set}^{\to} \ar[d, "\mathrm{cod}"] \\
+\mathcal T \ar[r, "\boldsymbol\Gamma"'] & \cons{Set}
+\end{tikzcd}
 \]
-
 注意这时候我们自动有了一个函子 \(\mathrm{gl}\), 它把
 \(\mathcal G\) 中的对象 \(\Sigma' \xrightarrow f \boldsymbol\Gamma(\Sigma)\)
-映射到 \(\Sigma\).
-
-我们希望能够取 \(\mathcal G\) 为一个模型. 回顾模型的定义,
-我们的第一步当然是要证明:
+映射到 \(\Sigma\). 我们希望能够取 \(\mathcal G\)
+为一个模型. 回顾模型的定义, 我们的第一步当然是要证明：
 \begin{lemma}
-\(\mathcal G\) 是 Descartes 闭范畴, 并且 \(\mathrm{gl}\)
-是 Descartes 闭函子.
+\(\mathcal G\) 是积闭范畴, 并且 \(\mathrm{gl}\)
+是保积闭函子.\qedhere
 \end{lemma}
 这个证明实际上对应的就是通常的证明中在类型上递归定义谓词.
 但是注意这个命题本身已经完全限制了构造的可能性, 因此无需
-任何创意, 仅仅是机械地展开定义即可. 留给读者作为练习.
+任何不自然的想法, 仅仅是展开定义即可. 留给读者作为练习.
 
+\begin{comment}
 接下来, 我们只需要在 \(\mathcal G\) 中选择一个对象
 \(A\) 和两个态射 \(1 \rightrightarrows A\). 选择了
 之后, 根据定理\ref{initial}我们立刻得知有唯一的保持
