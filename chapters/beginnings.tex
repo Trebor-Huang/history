@@ -345,8 +345,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 这里就体现了 \(\lambda\)-演算的强大能力.
 
 \begin{theorem}
-对于任何函数 \(f\),
-存在表达式 \(M\) 满足 \(M=f(M)\).
+对于任何函数 \(f\), 存在表达式 \(M\) 满足 \(M=f(M)\).
 \end{theorem}
 \begin{proof}
 取
@@ -498,7 +497,7 @@ Stone 表示定理中有提到). 注意这些数学对象之间都是有明确�
 表达式.\footnote{之前定义的“相等”实际上是表达式之间的一个等价
 关系, 如 \(\cons{K}xy\) 等价于 \(x\), 我们介绍时为了
 方便写作 \(\cons{K}xy = x\). 它们作为表达式显然是不相同的.
-而这里说的是一切表达式都有一个等价的典范表达式.}
+而这里严格来说是一切表达式都有一个等价的典范表达式.}
 \end{theorem}
 \begin{proof}
 对于任何类型 \(\alpha\), 设 \(R_\alpha\) 是这个类型中
@@ -638,10 +637,10 @@ F(B)\] 由函数对象的性质
 诱导的态射 \(F(B^A) \to F(B)^{F(A)}\) 是同构,
 则称这个函子保持积闭结构, 即其为\textbf{保积闭函子}.
 \end{definition}
-\begin{theorem}\label{beginning:lambda:initial}
+\begin{lemma}\label{beginning:lambda:initial}
 \(\mathcal T\) 是由图表 \(1 \rightrightarrows \mathbb B\)
 生成的自由积闭范畴.
-\end{theorem}
+\end{lemma}
 “自由生成”在这里的含义或许需要阐明. 我们定义这样一种数学
 结构, 其中包含一个积闭范畴以及选定一个对象 \(A\)
 和两个态射 \(1\rightrightarrows A\). 这些数学结构之间
@@ -677,7 +676,7 @@ F(B)\] 由函数对象的性质
 语法范畴 \(\mathcal T\) 出发的保持
 \(\mathbb B,\cons{y},\cons{n}\)
 的保积闭函子. 回顾上文, 就会发现我们刚刚已经证明的
-定理~\ref{beginning:lambda:initial} 可以表述
+引理~\ref{beginning:lambda:initial} 可以表述
 成 “\(\mathcal T\) 是简单类型\(\lambda\)-演算
 的范畴模型构成的2-范畴中的始对象”. 特别地, 语法范畴
 本身也是模型之一.
@@ -688,7 +687,7 @@ F(B)\] 由函数对象的性质
 \(1=\{\varnothing\}\) 到
 \(2=\{\varnothing, \{\varnothing\}\}\) 的两个态射即可.
 如果 \(\cons{y}=\cons{n}\),
-那么说明定理~\ref{beginning:lambda:initial} 产生的函子
+那么说明引理~\ref{beginning:lambda:initial} 产生的函子
 \(\mathrm s:\mathcal T \to \cons{Set}\)
 满足 \(\mathrm{s}(\cons{y}) = \mathrm{s}(\cons{n})\),
 进一步得到集合 \(2\) 的两个元素相等, 矛盾. 注意这个模型

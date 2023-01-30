@@ -40,12 +40,12 @@ K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
 均为空集. 这则被称为\textbf{离散群胚}.
 
 还有一族更加有启发性的例子：
-\begin{theorem}
+\begin{example}
 任给一个拓扑空间 \(X\), 令其点集为
 \(C\), \(\hom(x,y)\) 为从点 \(x\) 到点
 \(y\) 的道路的集合, 商去同伦关系,
 乘法运算为道路拼接操作, 那么它构成一个群胚.
-\end{theorem}
+\end{example}
 容易看出这是基本群的推广. 因此我们可以将群胚看成是“允许取
 多个基点的群”. 我们回过头来看类型论,
 用 J 原理可以很容易证明, 每个类型上都自带一个群胚结构.
@@ -166,20 +166,20 @@ Martin-L\"of 类型论中.
 \[(X = Y) \simeq (X \simeq Y).\]
 直观上来看, 它说的是“等价的类型都相等”. 事实上它有非常多
 深刻的推论.
-\begin{theorem}[命题外延]
+\begin{corollary}[命题外延]
 等价的命题都相等： 如果有两个命题满足
 \(p \iff q\), 那么 \(p = q\).
-\end{theorem}
-\begin{theorem}[函数外延]
+\end{corollary}
+\begin{corollary}[函数外延]
 如果两个函数逐点相等, 那么两个函数相等：
 \[\left[\prod_{x:A} f(x) = g(x)\right] \to f = g.\]
-\end{theorem}
+\end{corollary}
 这解决了我们在Martin-L\"of类型论中留下的问题. 但是我们
 还有更加奇妙的结论:
-\begin{theorem}
+\begin{corollary}
 如果两个群同构, 那么它们相等.\footnote{更准确的说, 两个群 \(G, H\) 之间的不同同构
 与类型 \(G = H\) 中的元素一一对应; 并且类型 \(G = H\) 是集合.}
-\end{theorem}
+\end{corollary}
 注意我们的泛等公理中完全没有提到群同构, 这是自然导出的定理!
 这也非常符合我们的数学实践： 长方形的对称群、 模8奇数的乘法群,
 与 \(\mathbb Z/2\mathbb Z \oplus
