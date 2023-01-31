@@ -38,7 +38,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 - [ ] Misc
   - [ ] Polishing & more history parts
   - [ ] Typesetting, clean up bibliography
-  - [ ] Use separate font for metavariables?
+  - [ ] ~~Use separate font for metavariables?~~
   - [X] Add a symbol to indicate category theory density. (Berries!)
 
 ## Conventions
