@@ -10,36 +10,25 @@ An overview of the history of type theory, mainly for mathematically oriented pe
 
 This is my coursework. I have already finished the submitted version (`d0aaf51`), but this is still being actively expanded. Suggestions and PR's are welcome!
 
+## Recent updates
+
+- Canonicity for STLC
+
 ## TODO
 
-- [X] Introduction
-  - Do we need to mention realizability and forcing?
-- [ ] STLC (After submission)
+- STLC
   - [ ] Rewrite combinator canonicity
-  - [X] Introduce product types
-  - [X] Perhaps use cat language earlier to make the presentation easier?
-  - [X] Canonicity for STLC
   - [ ] Normalization for STLC
-- [X] Classical logic
-- [X] MLTT
-  - Cite Tom de Jong's stuff?
-  - [X] Consistency
-  - [X] Applications
-  - Use `fancyvrb` to improve code display?
-- [X] Category theory
-  - [ ] Rewrite LCCC part? (After submission)
+- Category theory
+  - [ ] Rewrite LCCC part?
   - [ ] Write about comprehension categories? (After submission)
-  - [X] Elementary topos
-  - [X] Internal language
-- [X] Cubical type theory
-  - [X] History Part
-  - [X] A small basic intro
-  - [ ] Cite 1lab properly
-- [ ] Misc
-  - [ ] Polishing & more history parts
-  - [ ] Typesetting, clean up bibliography
-  - [ ] ~~Use separate font for metavariables?~~
-  - [X] Add a symbol to indicate category theory density. (Berries!)
+- Misc
+  - Typesetting, clean up bibliography
+  - ~~Use separate font for metavariables?~~
+  - Cite Tom de Jong's stuff?
+  - Mention forcing & realizability
+  - Cite 1lab properly
+  - Use `fancyvrb` to improve code display?
 
 ## Conventions
 
