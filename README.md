@@ -20,13 +20,13 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
   - [ ] Rewrite combinator canonicity
   - [ ] Normalization for STLC
 - Category theory
-  - [ ] Rewrite LCCC part?
-  - [ ] Write about comprehension categories? (After submission)
+  - [ ] Rewrite LCCC part
+  - [ ] Write about comprehension categories
 - Misc
   - Typesetting, clean up bibliography
   - ~~Use separate font for metavariables?~~
   - Cite Tom de Jong's stuff?
-  - Mention forcing & realizability
+  - Mention forcing & realizability?
   - Cite 1lab properly
   - Use `fancyvrb` to improve code display?
 
