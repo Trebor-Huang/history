@@ -72,30 +72,32 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 
 有了命题逻辑, 下一步自然是一阶逻辑, 或者称作谓词逻辑.
 这里有形如 \(\forall x. P(x)\) 的命题. 直观上看,
-它对应 “输入 \(x\), 输出 \(P(x)\) 对应的类型的元素”.
-但是这有一点小问题： 对于不同的输入\emph{值}, 输出的%
-\emph{类型}是不同的. 换句话说, 类型可以取决于值.
+它对应 “输入 \(x\), 输出 \(P(x)\) 的元素” 的函数
+构成的类型. 但是这有一点小问题： 对于不同的输入\emph{值},
+输出的\emph{类型}是不同的. 换句话说, 类型可以取决于值.
 我们称陪域取决于输入值的函数为\textbf{依值函数}.
 
-事实上, 这种函数我们在数学中早就见过了. 一个向量丛就是
-给定流形上的点 \(x \in M\), 给出一个向量 \(\vec v \in \mathrm{T}_xM\)
+事实上, 这种函数我们在数学中早就见过了. 向量场就是
+对流形上的每个点 \(x \in M\), 给出一个向量 \(\vec v \in \mathrm{T}_xM\)
 的函数. 这里随着输入不同, 输出的向量所处的向量
 空间也不同. 对于普通的集合也有这样的构造： 给定定义域 \(B\)
-与一族集合 \(F_x, x \in B\), Descartes 乘积
-\(\prod_{x\in B} F_x\) 就是一种依值函数.
-对于 \(\exists x. P(x)\) 也是类似的. 它对应有序对
-\((x, p)\), 使得 \(p \in P(x)\). 这对应集合的
-不交并 \(\coprod_{x\in B} F_x\).
+与一族集合 \(F_x, x \in B\), 累乘
+\(\prod_{x\in B} F_x\) 就可以看作一种依值函数.
 
-% TODO rewrite give more examples (...)
+对偶地, 命题 \(\exists x. P(x)\) 对应的类型就是
+有序对 \((x,p)\), 其中第二个分量 \(p : P(x)\)
+类型取决于前一个分量. 它类似于向量丛的全空间
+\(\mathrm{T}M\). 对于普通的集合, 这对应一族集合
+\(F_x\) 的不交并 \(\coprod_{x \in B} F_x\).
 
 当然, 在通常数学中对依值函数的定义一般采取另一种方法.
-考虑全空间 \(E = \coprod_{x:B} F_x\), 我们有一个
+考虑全空间 \(E = \coprod_{x\in B} F_x\), 我们有一个
 映射 \(\pi : E \to B\) 投影到 \(B\) 上. 依值函数
 集合 \(\prod_{x:B} F_x\) 定义为
 \[\{f : B \to E \mid \pi \circ f = \cons{id}\}.\]
-这个定义在集合上和上面是等价的, 而在拓扑空间上这就是纤维丛的
-截面. 推广到一般的数学对象上时, 也采用这个定义.
+这个定义在集合上和上面是等价的, 而在拓扑空间上这就类似
+纤维丛的截面. 这样定义的优点是只使用了普通的映射, 因此
+容易推广到拓扑空间、流形等事物.
 
 我们接下来会采用 \(\Pi, \Sigma\) 来指代这两种
 类型. 它们的规则和函数、 Descartes乘积非常类似.
@@ -103,15 +105,43 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 \(M, B\) 可以包含 \(x\) (注意在普通的函数类型定义
 中, \(B\) 不得包含 \(x\)).
 那么 \(\lambda x. M\) 的类型是 \(\prod_{x:A}B\).
-反过来,
-如果有表达式 \(N : A\), \(M : \prod_{x:A} B\),
-那么 \(M(N)\) 的类型就是 \(B[x/N]\), 其中 \([x/N]\)
-表示把变量 \(x\) 代入为 \(N\). 并且有 \((\lambda x.M)(N) = M[x/N]\).
-读者可以自行写出 \(\Sigma\) 的规则. % TODO write this out
+反过来, 如果有表达式 \(N : A\), \(F : \prod_{x:A} B\),
+那么 \(F(N)\) 的类型就是 \(B[x/N]\), 其中 \([x/N]\)
+表示把变量 \(x\) 代入为 \(N\).
+用 \(\Gamma \vdash A \,\text{type}\)
+表示“在上下文 \(\Gamma\) 中, 表达式\(A\)是合法的类型”, 那么
+可以将规则写出来：
+\[\frac{\Gamma \vdash A\,\text{type}
+\quad\Gamma, x{:}A \vdash B\,\text{type}}
+{\Gamma \vdash \prod_{x : A} B\,\text{type}}\]
+注意 \(B\) 在上下文 \(\Gamma, x{:}A\) 中, 因此可以
+包含变量 \(x\), 以及一切在 \(\Gamma\) 中的变量.
+\[\frac{\Gamma, x{:}A \vdash M : B}{\Gamma \vdash \lambda x. M : \prod_{x:A}B}
+\quad\frac{\Gamma \vdash F : \prod_{x:A}B
+\quad \Gamma \vdash N : A}
+{\Gamma \vdash M(N) : B[x/N]}\]
+这里的 \(\lambda x. M\) 实际上也应当标上类型, 即
+\(\lambda x^A. M\) 或者 \(\lambda x{:}A. M\),
+但是一般类型明确时都省略.
+我们仍然有 \(\beta\)-等价 \((\lambda x.M)(N) = M[x/N]\)
+与 \(\eta\)-等价 \(\lambda x. M(x) = M\), 其中
+后者的 \(M\) 不含变量 \(x\).
+
+对于 \(\Sigma\) 类型也可以类似操作.
+\[\frac{\Gamma \vdash A\,\text{type}
+\quad\Gamma, x{:}A \vdash B\,\text{type}}
+{\Gamma \vdash \sum_{x : A} B\,\text{type}}\]
+\[\frac{\Gamma \vdash M : A
+\quad \Gamma \vdash N : B[x/M]}
+{\Gamma \vdash (M, N) : \sum_{x:A}B}
+\quad\frac{\Gamma \vdash P : \sum_{x:A}B}
+{\Gamma \vdash \pi_1(P) : A}
+\quad\frac{\Gamma \vdash P : \sum_{x:A}B}
+{\Gamma \vdash \pi_2(P) : B[x/\pi_1(P)]}.\]
 对于更详细的介绍, 读者可以参阅\cite{ufp:2013:hottbook}~的
 第一章.
 
-1967年, 利用这些想法, Nicolaas Govert de Bruijn
+1967年, 利用这些想法, 数学家 De Bruijn
 设计了一门依值类型论的计算机语言, 称为 Automath.
 1976年, Jutting 在他的学位论文~\cite{automath:1994:automath}中使用 Automath
 形式化了 Landau 的《分析学基础》. Automath 没有
@@ -123,7 +153,7 @@ F系统\footnote{这个名字是因为Girard的论文中用F
 在 1972 年由逻辑学家 Jean-Yves Girard~\cite{girard:1972:systemf}
 与 1974 年由计算机科学家 J. C. Reynolds~\cite{reynolds:1974:systemf} 独立发现.
 一边是逻辑学, 一边是计算机科学, 这说明 Curry--Howard
-对应不仅仅是一个巧合, 而是深刻地影响了两个学科的发展.
+对应不仅仅是一个巧合, 而是切实深刻地影响了两个学科的发展.
 
 F 系统的规则对简单类型 \(\lambda\)-演算做了一点扩展.
 它的类型除了函数类型 \(\alpha \to \beta\) 之外,
@@ -139,18 +169,17 @@ F 系统的规则对简单类型 \(\lambda\)-演算做了一点扩展.
 那么 \(f \alpha\) 就是 \(M[X/\alpha]\) 的元素.
 
 举个例子, \(\Lambda X. \lambda x. x\)
-就是 \(\forall X. X \to X\) 的元素. 在一些形式
+就是 \(\forall X. X \to X\) 的元素.\footnote{在一些形式
 中要求在 \(\lambda x\) 上标注出 \(x\) 的类型,
 比如 \(\Lambda X. \lambda x^X. x\). 而在一些
 形式中甚至不要求写出 \(\Lambda X\). 这些差别会对语言
-的性质起到一定的影响, 但是我们这里不过多停留.
-
+的性质起到一定的影响, 但是我们这里不过多停留.}
 F系统包含很多奇特的构造. 比如我们可以像无类型
 \(\lambda\)-演算中那样编码自然数. 定义类型
 \(\mathbb N = \forall X. (X \to X) \to (X \to X)\),
 那么之前构造的自然数 \(\lambda f. \lambda x. f(f(\dots(f(x))))\)
 就可以在 F 系统里面写成
-\(\Lambda X. \lambda f^{X\to X}. \lambda x^X. f(f(\dots(f(x))))\).
+\[\Lambda X. \lambda f^{X\to X}. \lambda x^X. f(f(\dots(f(x)))).\]
 可以同样写出上面介绍过的加法、乘法、幂等等运算.
 请读者思考为什么在简单类型 \(\lambda\)-演算中无法做到
 这一点.
@@ -184,8 +213,7 @@ Reynolds~\cite{reynolds:1984:polymorphism}在1984年证明了
 
 1988年, Coquand与Huet提出了构造演算 (Calculus of
 Constructions, 缩写为 CoC). 这与上面提到的一些类型系统
-很快被总结到同一个框架下, 统称为\textbf{纯类型系统}
-(pure type system)~\cite{barendregt:1992:lambda}.
+很快被总结到同一个框架下, 统称为\textbf{纯类型系统}~\cite{barendregt:1992:lambda}.
 正常的依值函数类型的规则是
 \[\frac{x{:}A \vdash B(x)\,\text{type}}{\prod_{x:A}B(x)\,\text{type}}\]
 换句话说, 假设含有
