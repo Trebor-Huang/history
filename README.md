@@ -12,6 +12,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 
 ## Recent updates
 
+- (Ongoing) Models for dependent types
 - Canonicity for STLC
 
 ## TODO
