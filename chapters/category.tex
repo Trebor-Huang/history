@@ -9,6 +9,7 @@
 \(p\) 的右逆. 换句话说, 我们认为截面是陪域为全空间
 的函数 \(s : B \to E\), 而约束 \(p \circ s = \cons{id}\)
 保证了 \(s\) 将底空间的每个点射到这个点对应的纤维上.
+(TODO: 是否需要科普纤维的概念)
 
 按照这个思路, 我们就能在范畴语言中表述依值类型. 如
 \(x{:}A \vdash B(x)\,\text{type}\) 就可以表达为
@@ -17,9 +18,50 @@
 的态射 \(s\). 将这个想法完善化, 得到的就是依值类型的
 范畴语义.
 
-\subsection{局部积闭范畴}\berry{3} %TODO easier?
-TODO rewrite this subsection
-\begin{comment}
+\subsection{局部积闭范畴}\berry{3}
+
+为了简化问题, 我们先只考虑一个变量的情况.
+如果我们有态射 \(p : B \to A\) 表示类型
+\(x{:}A \vdash B(x)\,\text{type}\), 那么
+它的\(\Sigma\)-类型很好表达, 就是 \(B \to 1\),
+其中 \(1\) 是终对象 (回忆终对象在类型论中对应空语境).
+如果我有一个 \(A\) 类型的元素 \(a : 1 \to A\),
+那么我希望表达将 \(B(x)\) 的变量 \(x\) 代换掉, 得到的
+\(B(a)\) 类型. 这正是一个拉回
+\[\begin{tikzcd}
+  B(a) & B \\
+  1 & A
+  \arrow["a", from=2-1, to=2-2]
+  \arrow["p", from=1-2, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+在集合范畴中, 这就是原像集合 \(p^{-1}\{a\}\). 而对于
+\(\Pi\)-类型而言, 在集合范畴中这定义为 \(p\) 的右逆
+构成的集合, 是函数集 \(A \to B\) 的子集. 因此在范畴语言中,
+我们先从函数对象 \(B^A\) 出发, 试图描述 “\(p\) 的右逆” 这个条件.
+
+首先我们可以描述复合, 即 \(p^A : B^A \to A^A\). 其次
+我们希望取出恒等态射, 即 \(\cons{id}:A \to A\) 对应的
+\(1 \to A^A\), 这是函数对象泛性质的直接应用. 接下来取
+拉回就得到所需的截面对象.
+\[\begin{tikzcd}
+  {\Pi p} & {B^A} \\
+  1 & {A^A}
+  \arrow["{p^A}", from=1-2, to=2-2]
+  \arrow[from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+为了强调这是依值函数的范畴写法, 我们将其写成 \(\Pi p\).
+类似地, 我们记 \(p : B \to A\) 的定义域为 \(\Sigma p\).
+
+以上解决了在没有其他变量时, \(\Sigma\)-类型、代换、\(\Pi\)-类型
+如何表述的问题. 那么在有其他变量时怎么办呢? 由于我们使用
+\(1\) 表示空上下文
+
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
 指出, 局部积闭范畴可以和依值类型论中的许多
 东西找到对应. \ref{beginning:ccc}~节中已经
@@ -42,7 +84,8 @@ TODO rewrite this subsection
 \(D \to A\), 满足 \(D_x = B_x \times C_x\).
 因此这也称为\textbf{纤维积}, 因为这恰好是每个 \(x\)
 的原像 (即 \(x\) 上的\emph{纤维}) 乘起来. 在原范畴
-中, 这就是拉回.
+中, 这就是拉回. 在拓扑空间的范畴中这也是类似的, 只不过
+纤维之间还自动带有了拓扑信息.
 \begin{definition}
 如果某个范畴的所有俯范畴都积闭, 则称这个
 范畴\textbf{局部积闭}.
@@ -51,6 +94,7 @@ TODO rewrite this subsection
 \(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
 从而其本身是积闭的.
 
+\begin{comment}
 如果 \(f\) 是局部积闭范畴 \(\mathcal C\)
 中的对象, 那么我们立即有一个函子
 \[f_! : \mathcal C_{/B} \to \mathcal C_{/A}\]
