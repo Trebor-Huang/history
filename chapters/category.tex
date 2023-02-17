@@ -10,26 +10,14 @@
 的函数 \(s : B \to E\), 而约束 \(p \circ s = \cons{id}\)
 保证了 \(s\) 将底空间的每个点射到这个点对应的纤维上.
 
-因此, 
+按照这个思路, 我们就能在范畴语言中表述依值类型. 如
+\(x{:}A \vdash B(x)\,\text{type}\) 就可以表达为
+一个态射 \(p : B \to A\). 对应的一族元素
+\(x{:}A \vdash f(x) : B(x)\) 则是满足 \(p \circ s = \cons{id}\)
+的态射 \(s\). 将这个想法完善化, 得到的就是依值类型的
+范畴语义.
 
-LCCC (1984 Seely, strictification problem)
-
-Contextual category (1986 Cartmell)
-
-Display map cat ((Hyland and Pitts,
-1989)??)
-
-CwA (1978 Cartmell?? 1990 Moggi)
-
-Comprehension cat (1990 Jacobs)
-
-CwF (1995 Dybjer)
-
-Natural model (2016 Awodey)
-
-General framework (2019 Uemura)
-
-\subsection{局部积闭范畴}\berry{3}
+\subsection{局部积闭范畴}\berry{3} %TODO easier?
 TODO rewrite this subsection
 \begin{comment}
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
@@ -132,8 +120,26 @@ Seely 在 \cite{seely:1984:lccc} 中的重要观察是,
 
 \end{comment}
 
-\subsection{概括范畴}\berry{3}
-(...)
+LCCC (1984 Seely, strictification problem)
+
+Contextual category (1986 Cartmell) (?)
+
+\subsection{概括范畴}
+
+Display map cat ((Hyland and Pitts,
+1989)??)
+
+CwA (1978 Cartmell?? 1990 Moggi)
+
+Comprehension cat (1990 Jacobs)
+
+CwF (1995 Dybjer)
+
+\subsection{融贯问题}
+
+Natural model (2016 Awodey)
+
+General framework (2019 Uemura)
 
 \section{意象}
 意象有几何学与逻辑学两方面的起源~\cite{mclarty:1990:toposhistory}.

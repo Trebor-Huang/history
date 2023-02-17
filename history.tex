@@ -86,6 +86,18 @@
     \useasboundingbox (-0.5cm, -0.5cm) rectangle (0.5cm, 0.5cm);
     \draw[inner color=berry#1, draw opacity=0] (-0.6,-0.6) rectangle (0.6,0.6);
     \node at (0,0) {\includegraphics[width=1cm]{images/difficulty#1.png}};
+    % Pixel size 16x16, 1000% enlarged
+  \end{tikzpicture}
+}
+\newcommand{\berryglowinf}{
+  % Secret infinity category berry
+  \begin{tikzpicture}
+    \useasboundingbox (-0.5cm, -0.5cm) rectangle (0.5cm, 0.5cm);
+    \draw[inner color=berry3, draw opacity=0] (-0.7,-0.7) rectangle (0.7,0.7);
+    \node at (0,0) {\includegraphics[width=2.5cm]{images/infinity.png}};
+    \node[font=\normalsize] at (0,0.7) {\(\infty\)};
+    % This one has a text so we need to ensure size
+    % Pixel size 40x24, 1000% enlarged
   \end{tikzpicture}
 }
 \newcommand{\berry}[1]{\marginnote[%
@@ -93,6 +105,13 @@
   \berryglow{#1}%
 ]{%
   \berryglow{#1}%
+  \hfill%
+}}
+\newcommand{\berryinf}{\marginnote[%
+  \hfill%
+  \berryglowinf%
+]{%
+  \berryglowinf%
   \hfill%
 }}
 
