@@ -109,12 +109,12 @@ Descartes 乘积 \(\alpha \times \beta\). 这个类型的
 那么 \(F(N)\) 的类型就是 \(B[x/N]\), 其中 \([x/N]\)
 表示把变量 \(x\) 代入为 \(N\).
 用 \(\Gamma \vdash A \,\text{type}\)
-表示“在上下文 \(\Gamma\) 中, 表达式\(A\)是合法的类型”, 那么
+表示“在语境 \(\Gamma\) 中, 表达式\(A\)是合法的类型”, 那么
 可以将规则写出来：
 \[\frac{\Gamma \vdash A\,\text{type}
 \quad\Gamma, x{:}A \vdash B\,\text{type}}
 {\Gamma \vdash \prod_{x : A} B\,\text{type}}\]
-注意 \(B\) 在上下文 \(\Gamma, x{:}A\) 中, 因此可以
+注意 \(B\) 在语境 \(\Gamma, x{:}A\) 中, 因此可以
 包含变量 \(x\), 以及一切在 \(\Gamma\) 中的变量.
 \[\frac{\Gamma, x{:}A \vdash M : B}{\Gamma \vdash \lambda x. M : \prod_{x:A}B}
 \quad\frac{\Gamma \vdash F : \prod_{x:A}B
