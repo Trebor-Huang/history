@@ -18,18 +18,18 @@
 的态射 \(s\). 将这个想法完善化, 得到的就是依值类型的
 范畴语义.
 
-\subsection{局部积闭范畴}\berry{3}
+\subsection{局部积闭范畴}\berry{2}
 
 为了简化问题, 我们先只考虑一个变量的情况.
 如果我们有态射 \(p : B \to A\) 表示类型
-\(x{:}A \vdash B(x)\,\text{type}\), 那么
+\(x{:}A \vdash B\,\text{type}\), 那么
 它的\(\Sigma\)-类型很好表达, 就是 \(B \to 1\),
 其中 \(1\) 是终对象 (回忆终对象在类型论中对应空语境).
 如果我有一个 \(A\) 类型的元素 \(a : 1 \to A\),
-那么我希望表达将 \(B(x)\) 的变量 \(x\) 代换掉, 得到的
-\(B(a)\) 类型. 这正是一个拉回
+那么我希望表达将 \(B\) 的变量 \(x\) 代换掉, 得到的
+\(B[x/a]\) 类型. 这正是一个拉回
 \[\begin{tikzcd}
-  B(a) & B \\
+  B[x/a] & B \\
   1 & A
   \arrow["a", from=2-1, to=2-2]
   \arrow["p", from=1-2, to=2-2]
@@ -60,8 +60,105 @@
 
 以上解决了在没有其他变量时, \(\Sigma\)-类型、代换、\(\Pi\)-类型
 如何表述的问题. 那么在有其他变量时怎么办呢? 由于我们使用
-\(1\) 表示空语境
+\(1\) 表示空语境, 自然的推广就是把 \(1\) 改成一般的对象.
+下面把它展开, 看看这个推广正不正确.
 
+考虑依值类型 \(\Gamma, x{:}A \vdash B\,\text{type}\),
+其中 \(B\) 包含变量 \(x\), 以及所有 \(\Gamma\) 中的变量.
+由于此时必须有 \(\Gamma \vdash A\,\text{type}\), 我们
+首先有一个态射 \(p_A : A \to \Gamma\). 在前面简单情况中,
+\(\Gamma\) 是空语境, 因此 \(p_A : A \to 1\) 是指向终对象
+的唯一态射. 接下来, 依值类型 \(B\) 就被解释为态射
+\(p_B : B \to A\). 这么看, 一串语境
+\(x_1{:}A_1, \dots, x_n{:}A_n\) 就被解释为一串
+态射 \(A_n \to A_{n-1} \to \dots \to A_1 \to 1\).
+如图, \(A_1 \to 1\) 是平凡的, 而 \(A_2 \to A_1\)
+在 \(A_1\) 的九个元素上各有一条纤维, 其中画出了最后一条纤维中的元素.
+而 \(A_3\) 则是纤维化的纤维化, 四个颜色的区域分别是 \(A_2\) 四个点上的纤维.
+\begin{center}
+\begin{tikzpicture}
+\def\curcircle{ plot[smooth cycle, tension=1.5] coordinates
+  {(-4,0) (-3,1.1) (-2,0) (-3.1,-1.1)}}
+\begin{scope}\clip\curcircle;
+  \begin{scope}
+    \clip (-2.2,-1.5) .. controls
+      (-2.28, -0.5) and (-2.2,0.5)
+      .. (-2.1, 1.5) -- (0,2) -- (0,-2) -- cycle;
+    \foreach \yL/\yR/\yLl/\yRl/\color in
+      { 2/0.4/4/4/cyan,
+        1/0/2/0.4/green,
+        0/-0.3/1/0/yellow,
+        -4/-4/0/-0.3/pink} {
+      \fill[color={\color}] (-4, \yL) to[bend right] (-2, \yR)
+        -- (-2, \yRl) to[bend left] (-4, \yLl) -- (-4, \yL);
+    }
+  \end{scope}
+  \foreach \offset in {0.2,0.4,...,1.8} {
+    \draw ({-4+\offset},-1.5) .. controls
+      ({-3.9+\offset*0.9},-0.5) and ({-4+\offset},0.5)
+      .. ({-3.9+\offset}, 1.5);
+  }
+  \draw (-4, 2) edge[bend right] (-2, 0.4);
+  \draw (-4, 1) edge[bend right] (-2, 0);
+  \draw (-4, 0) edge[bend right] (-2, -0.3);
+\end{scope} \draw\curcircle;
+
+\node at (-3,-1.5) {\(A_3\)};
+
+\node at (-1,0) {\(\xrightarrow{p_{A_3}}\)};
+\def\curcircle{ plot[smooth cycle, tension=1.5] coordinates
+  {(0,0) (1,1) (2,0) (1.3,-0.9)}}
+\begin{scope}\clip\curcircle;
+  \foreach \offset in {0.2,0.4,...,1.8} {
+    \draw ({-0.1+\offset*1.05},-1.5) .. controls
+      ({0.1+\offset},-0.5) and ({\offset*1.1},0.5)
+      .. ({\offset}, 1.5);
+  }
+  \fill[blue] (1.96, -0.25) circle (0.04);
+  \fill[teal] (1.97, -0.4) circle (0.04);
+  \fill[brown] (1.965, -0.55) circle (0.04);
+  \fill[purple] (1.95, -0.7) circle (0.04);
+\end{scope} \draw\curcircle;
+\node at (1,-1.5) {\(A_2\)};
+
+\node at (3,0) {\(\xrightarrow{p_{A_2}}\)};
+\def\curcircle{ plot[smooth cycle, tension=1.5] coordinates
+  {(4,0) (5.3,0.4) (6,0) (5,-0.3)}}
+\draw\curcircle;
+\foreach \offset in {0.2,0.4,...,1.8} {
+  \fill ({4+\offset}, {-\offset*0.1+\offset*\offset*0.1}) circle (0.04);
+}
+\node at (5,-1.5) {\(A_1\)};
+
+\node at (7.3,0) {\(\xrightarrow{p_{A_1}}\)};
+\filldraw (9,0) circle (0.14);
+\node at (9,-1.5) {\(1\)};
+\end{tikzpicture}
+\end{center}
+
+\(\Sigma\)-类型 \(\Gamma \vdash \sum_{x:A}B\)
+就对应复合 \(p_A \circ p_B : B \to \Gamma\).
+注意这里这个类型仍然保留了 \(\Gamma\) 中的变量. 请读者验证
+在集合范畴中这给出的态射确实正确. 给定一个 \(A\) 的元素
+\(\Gamma \vdash a : A\), 在范畴论中也即 \(p_A\) 的截面
+\(a : \Gamma \to A\). 如果希望代换得到 \(B[x/a]\),
+那么也是取拉回：
+\[\begin{tikzcd}
+  {B[x/a]} & B \\
+  \Gamma & A
+  \arrow["a", shift left=1, from=2-1, to=2-2]
+  \arrow["{p_A}", shift left=1, color={rgb,255:red,128;green,128;blue,128}, from=2-2, to=2-1]
+  \arrow["{p_B}", from=1-2, to=2-2]
+  \arrow[shift right=1, from=1-1, to=2-1]
+  \arrow[shift left=1, from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+最后 \(\Pi\)-类型则较为复杂了, 我们希望可以在 \(\Gamma\)
+的每个纤维上做类似上文的函数对象拉回的构造.
+
+(...) motivate slice
+
+\berry{3}
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
 指出, 局部积闭范畴可以和依值类型论中的许多
 东西找到对应. \ref{beginning:ccc}~节中已经
