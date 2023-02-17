@@ -19,7 +19,6 @@
 范畴语义.
 
 \subsection{局部积闭范畴}\berry{2}
-
 为了简化问题, 我们先只考虑一个变量的情况.
 如果我们有态射 \(p : B \to A\) 表示类型
 \(x{:}A \vdash B\,\text{type}\), 那么
@@ -56,7 +55,15 @@
   \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
 为了强调这是依值函数的范畴写法, 我们将其写成 \(\Pi p\).
-类似地, 我们记 \(p : B \to A\) 的定义域为 \(\Sigma p\).
+回忆在集合范畴中, 两个函数 \(f,g\) 的拉回就是集合
+\(\{(x,y) \mid f(x) = g(y)\}\). 代入\(\Pi p\), 
+由于 \(1\) 只有一个元素, 定义可以简化为
+\[\Pi p = \{ s \in B^A \mid p^A(s) = \cons{id}\}.\]
+而回忆 \(p^A : B^A \to A^A\) 在集合范畴的定义就是
+\(p^A(s) = p \circ s\). 因此 \(\Pi p\) 在集合范畴
+中确实对应截面的集合.
+
+类似 \(\Pi p\), 我们记 \(p : B \to A\) 的定义域为 \(\Sigma p = B\).
 
 以上解决了在没有其他变量时, \(\Sigma\)-类型、代换、\(\Pi\)-类型
 如何表述的问题. 那么在有其他变量时怎么办呢? 由于我们使用
@@ -66,14 +73,15 @@
 考虑依值类型 \(\Gamma, x{:}A \vdash B\,\text{type}\),
 其中 \(B\) 包含变量 \(x\), 以及所有 \(\Gamma\) 中的变量.
 由于此时必须有 \(\Gamma \vdash A\,\text{type}\), 我们
-首先有一个态射 \(p_A : A \to \Gamma\). 在前面简单情况中,
+首先有一个态射 \(p_A : A \to \Gamma\). (在前面简单情况中,
 \(\Gamma\) 是空语境, 因此 \(p_A : A \to 1\) 是指向终对象
-的唯一态射. 接下来, 依值类型 \(B\) 就被解释为态射
+的唯一态射.) 接下来, 依值类型 \(B\) 就被解释为态射
 \(p_B : B \to A\). 这么看, 一串语境
 \(x_1{:}A_1, \dots, x_n{:}A_n\) 就被解释为一串
 态射 \(A_n \to A_{n-1} \to \dots \to A_1 \to 1\).
 如图, \(A_1 \to 1\) 是平凡的, 而 \(A_2 \to A_1\)
-在 \(A_1\) 的九个元素上各有一条纤维, 其中画出了最后一条纤维中的元素.
+在 \(A_1\) 的十个元素上各有一条纤维 (也就是图中的九块
+竖着的长条形区域), 其中画出了最后一条纤维中的元素.
 而 \(A_3\) 则是纤维化的纤维化, 四个颜色的区域分别是 \(A_2\) 四个点上的纤维.
 \begin{center}
 \begin{tikzpicture}
@@ -93,14 +101,14 @@
         -- (-2, \yRl) to[bend left] (-4, \yLl) -- (-4, \yL);
     }
   \end{scope}
+  \draw[gray, thin] (-4, 2) edge[bend right] (-2, 0.4);
+  \draw[gray, thin] (-4, 1) edge[bend right] (-2, 0);
+  \draw[gray, thin] (-4, 0) edge[bend right] (-2, -0.3);
   \foreach \offset in {0.2,0.4,...,1.8} {
-    \draw ({-4+\offset},-1.5) .. controls
+    \draw[thin] ({-4+\offset},-1.5) .. controls
       ({-3.9+\offset*0.9},-0.5) and ({-4+\offset},0.5)
       .. ({-3.9+\offset}, 1.5);
   }
-  \draw (-4, 2) edge[bend right] (-2, 0.4);
-  \draw (-4, 1) edge[bend right] (-2, 0);
-  \draw (-4, 0) edge[bend right] (-2, -0.3);
 \end{scope} \draw\curcircle;
 
 \node at (-3,-1.5) {\(A_3\)};
@@ -110,7 +118,7 @@
   {(0,0) (1,1) (2,0) (1.3,-0.9)}}
 \begin{scope}\clip\curcircle;
   \foreach \offset in {0.2,0.4,...,1.8} {
-    \draw ({-0.1+\offset*1.05},-1.5) .. controls
+    \draw[gray, thin] ({-0.1+\offset*1.05},-1.5) .. controls
       ({0.1+\offset},-0.5) and ({\offset*1.1},0.5)
       .. ({\offset}, 1.5);
   }
@@ -125,8 +133,8 @@
 \def\curcircle{ plot[smooth cycle, tension=1.5] coordinates
   {(4,0) (5.3,0.4) (6,0) (5,-0.3)}}
 \draw\curcircle;
-\foreach \offset in {0.2,0.4,...,1.8} {
-  \fill ({4+\offset}, {-\offset*0.1+\offset*\offset*0.1}) circle (0.04);
+\foreach \offset in {0.2,0.4,...,2} {
+  \fill ({4+\offset*0.9}, {-\offset*0.1+\offset*\offset*0.1}) circle (0.04);
 }
 \node at (5,-1.5) {\(A_1\)};
 
@@ -135,11 +143,14 @@
 \node at (9,-1.5) {\(1\)};
 \end{tikzpicture}
 \end{center}
-
 \(\Sigma\)-类型 \(\Gamma \vdash \sum_{x:A}B\)
 就对应复合 \(p_A \circ p_B : B \to \Gamma\).
 注意这里这个类型仍然保留了 \(\Gamma\) 中的变量. 请读者验证
-在集合范畴中这给出的态射确实正确. 给定一个 \(A\) 的元素
+在集合范畴中这给出的态射确实正确. 从图中看, 从 \(p_{A_3}\)
+到 \(p_{A_2} \circ p_{A_3}\), 相当于纵向合并了
+\(A_3\) 中的纤维.
+
+给定一个 \(A\) 的元素
 \(\Gamma \vdash a : A\), 在范畴论中也即 \(p_A\) 的截面
 \(a : \Gamma \to A\). 如果希望代换得到 \(B[x/a]\),
 那么也是取拉回：
@@ -154,16 +165,10 @@
   \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
 最后 \(\Pi\)-类型则较为复杂了, 我们希望可以在 \(\Gamma\)
-的每个纤维上做类似上文的函数对象拉回的构造.
+的每个纤维上做类似上文的函数对象拉回的构造. 可以直接试图
+从集合范畴中的直觉出发推广, 但是得到的定义会极度繁琐. 我们
+已经有了足够的例子, 可以先介绍一个范畴工具.
 
-(...) motivate slice
-
-\berry{3}
-1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
-指出, 局部积闭范畴可以和依值类型论中的许多
-东西找到对应. \ref{beginning:ccc}~节中已经
-介绍了积闭范畴的概念, 而\emph{局部积闭范畴}
-只需要进一步的定义.
 \begin{definition}
 给定范畴 \(\mathcal C\) 中的对象 \(A\),
 定义\textbf{俯范畴}(overcategory或slice category)
@@ -183,6 +188,64 @@
 的原像 (即 \(x\) 上的\emph{纤维}) 乘起来. 在原范畴
 中, 这就是拉回. 在拓扑空间的范畴中这也是类似的, 只不过
 纤维之间还自动带有了拓扑信息.
+
+利用俯范畴可以更方便地组织已有的表述. 给定态射
+\(f : A \to B\), \(\Sigma\) 类型对应着与其直接复合,
+这导出了函子 \(\Sigma_f : \mathcal C/A \to \mathcal C/B\).
+代换操作对应拉回, 这给出函子
+\(f^* : \mathcal C/B \to \mathcal C/A\).
+范畴论中, 一旦出现方向相反的函子, 它们就极有可能成伴随关系.
+不妨来探究一下.
+
+对于 \(\Sigma_f\) 与 \(f^*\) 而言, 考虑任何一个
+态射 \(p : C \to B\), 我们都有
+\[\begin{aligned}
+&\phantom{\cong{}}
+\hom_{/A}(X\xrightarrow{q} A, A\times_B C\xrightarrow{f^* p} A)\\
+&= \{ u \in \hom(X, A\times_B C) \mid f^*p\circ u = q\}\\
+&\cong \{ (s,t) \in \hom(X, A) \times_{\hom(X, B)} \hom(X, C) \mid s = q\}\\
+&\cong \{t \in \hom(X, C) \mid p\circ t = f \circ q\}\\
+&= \{t \in \hom(X, C) \mid p\circ t = \Sigma_f q\}\\
+&= \hom_{/B}(X \xrightarrow{\Sigma_f q} B, C \xrightarrow{p} B).
+\end{aligned}\]
+这正是伴随的定义, 从而
+\[\Sigma_f \dashv f^*.\]
+
+我们还需要一个函子 \(\Pi_f : \mathcal C/A \to \mathcal C/B\).
+不过我们已经知道在 \(f : A\to 1\) 的情形下这应该如何构造了.
+此时这个函子 \(\Pi : \mathcal C/A \to 
+\mathcal C\) 将 \(p : C \to A\) 射到拉回 \(\Pi p\)
+(注意有\(\mathcal C \cong \mathcal C/1\), 我们
+可以把俯范畴 \(\mathcal C/1\) 中的对象 \(X \to 1\) 与
+原范畴 \(\mathcal C\) 中的对象 \(X\) 看作等同).
+\[\begin{tikzcd}
+  {\Pi p} & {C^A} \\
+  1 & {A^A}
+  \arrow["{p^A}", from=1-2, to=2-2]
+  \arrow[from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+计算
+\[\begin{aligned}
+\hom(X, \Pi p)
+&= \hom(X, 1 \times_{A^A} C^A)\\
+&\cong \hom(X, 1) \times_{\hom(X, A^A)} \hom(X, C^A)\\
+&\cong 1 \times_{\hom(A \times X, A)} \hom(A\times X, C)\\
+&\cong \{u \in \hom(A \times X, C)
+  \mid p \circ u = \pi_1\}\\
+&= \hom_{/A}(A \times X \xrightarrow{\pi_1} A, C \xrightarrow p A).
+\end{aligned}\]
+由此可见确实有 \(f^* \dashv \Pi_f\). (TODO 提前构造好fiberwise section?)
+
+\berry{3}
+1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
+指出, 局部积闭范畴可以和依值类型论中的许多
+东西找到对应. \ref{beginning:ccc}~节中已经
+介绍了积闭范畴的概念, 而\emph{局部积闭范畴}
+只需要进一步的定义.
+
 \begin{definition}
 如果某个范畴的所有俯范畴都积闭, 则称这个
 范畴\textbf{局部积闭}.
@@ -191,21 +254,6 @@
 \(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
 从而其本身是积闭的.
 
-\begin{comment}
-如果 \(f\) 是局部积闭范畴 \(\mathcal C\)
-中的对象, 那么我们立即有一个函子
-\[f_! : \mathcal C_{/B} \to \mathcal C_{/A}\]
-描述了箭头的复合. 而由于存在所有的拉回, 有另外一个函子
-\[f^* : \mathcal C_{/A} \to \mathcal C_{/B}\]
-把每个箭头 (即 \(\mathcal C_{/A}\) 中的对象) 与
-\(f\) 取拉回. 进一步由于存在局部的函数对象, 可以构造
-第三个函子
-\[f_* : \mathcal C_{/B} \to \mathcal C_{/A}.\]
-事实上, 这三个函子构成伴随链\(f_!\dashv f^*\dashv f_*\).
-读者可以阅读本人的一篇文章~\cite{me:2022:lccc}, 是对局部
-积闭范畴, 以及其对应的伴随函子 \(f_!\dashv
-f^*\dashv f_*\) 的一份比较友好的介绍. 事实上, 这三个
-函子可以给出局部积闭范畴的等价定义.
 \begin{theorem}
 任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
 \(f_!\) 函子. 这个范畴是积闭的, 等价于
@@ -217,49 +265,6 @@ Seely 在 \cite{seely:1984:lccc} 中的重要观察是,
 这三个函子对应了依值类型论中重要的三个操作：
 \(\Sigma\)-类型, 代入, \(\Pi\)-类型.
 
-我们将每个箭头 \(p : E \to B\) 看作是一族依值类型：
-\[x:B \vdash E(x)\,\mathrm{type}\]
-这里, 每个 \(E(x)\) 的大致含义就是
-原像 \(p^{-1}\{x\}\). 当然, 这只是集合范畴给出的直觉,
-一般范畴里不一定有“原像”的概念. 此时如果有一个元素
-\(e : 1 \to B\), 那么我们构造拉回
-\[\begin{tikzcd}
-  {E'} & 1 \\
-  E & B
-  \arrow[dashed, from=1-1, to=1-2]
-  \arrow[from=1-1, to=2-1]
-  \arrow["p", from=2-1, to=2-2]
-  \arrow["e", from=1-2, to=2-2]
-  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-\end{tikzcd}\]
-则此时 \(E'\) 如果在集合的范畴中考虑, 就是
-\(p^{-1}\{e\}\). 换句话说, \(e^{*}\) 函子把
-\(p : E \to B\) 射到 \(E' \to 1\), 对应类型论中的
-\[\vdash E(e) \, \text{type}\]
-而对于一般的情况, \(e\) 本身也可能有变量, 即
-\(e : A \to B\). 那么这时候得到的就是
-\[a : A \vdash E(e(a)) \, \text{type}\]
-由此可以看出, 拉回 \(e^*\) 对应的类型论操作
-是\emph{代入}. 进一步, 如果有这个箭头 \(p : E \to B\)
-表示一族类型 \(x:B \vdash E(x)\),
-那么它与 \(\iota : B \to 1\) 进行复合, 得到的
-就是全空间 \(E\), 换句话说就是 \(\Sigma\)-类型：
-\[\vdash \sum_{x:B}E(x) \, \text{type}\]
-因此可见 \(\iota_!\) 函子对应的是取 \(\Sigma\)-类型
-的操作. 同样, 如果将 \(1\) 改成一般的对象\(A\), 即有
-\(a : A \vdash B(a)\) 类型, 此时有
-\[a : A \vdash \sum_{x : B(a)} E(x)\, \text{type}\]
-最后, \(\iota_*\) 对应 \(\Pi\)-类型, 与 \(\Sigma\)-类型
-是对偶的, 留给读者作为练习.
-
-当然, 这只覆盖了三个构造. 细心的读者可能也有其他的疑惑：
-为什么一些箭头被看成依值类型, 而另一些箭头 (比如 \(e\))
-被看成元素? 类型论里其他的构造, 比如自然数类型, 宇宙类型
-等, 需要如何翻译? 这些问题促使数学家发展了更加细化的
-理论. 如今我们有一系列的定义, 各自有细微的差别, 并且
-各有优劣. 它们就是依值类型论的\textbf{范畴语义}.
-
-\end{comment}
 
 LCCC (1984 Seely, strictification problem)
 
