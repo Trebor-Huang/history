@@ -26,7 +26,11 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 - Category theory
   - [X] Rewrite LCCC part
   - [ ] Write about comprehension categories
-  - [ ] Higher category theory
+  - [ ] Higher models
+    - [ ] Groupoid model (elaborate)
+    - [ ] Groupoid model as model category
+    - [ ] Model category as type theoretic models (Types as fibrations!!)
+    - [ ] Infinity category
 - Misc
   - Typesetting, clean up bibliography
   - ~~Use separate font for metavariables?~~
