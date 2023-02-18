@@ -15,6 +15,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 ## Recent updates
 
 - (Ongoing) Models for dependent types
+- Rewritten introduction for locally cartesian closed categories
 - Canonicity for STLC
 
 ## TODO
@@ -23,8 +24,9 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
   - [ ] Rewrite combinator canonicity
   - [ ] Normalization for STLC
 - Category theory
-  - [ ] Rewrite LCCC part
+  - [X] Rewrite LCCC part
   - [ ] Write about comprehension categories
+  - [ ] Higher category theory
 - Misc
   - Typesetting, clean up bibliography
   - ~~Use separate font for metavariables?~~
