@@ -197,6 +197,7 @@
 范畴论中, 一旦出现方向相反的函子, 它们就极有可能成伴随关系.
 不妨来探究一下.
 
+\berry{3}
 对于 \(\Sigma_f\) 与 \(f^*\) 而言, 考虑任何一个
 态射 \(p : C \to B\), 我们都有
 \[\begin{aligned}
@@ -212,7 +213,12 @@
 \[\Sigma_f \dashv f^*.\]
 
 我们还需要一个函子 \(\Pi_f : \mathcal C/A \to \mathcal C/B\).
-不过我们已经知道在 \(f : A\to 1\) 的情形下这应该如何构造了.
+实际上我们可以直接在 \(\mathcal C/B\) 中重复上面的构造,
+\(\mathcal C/B\) 中的终对象就是 \(B\xrightarrow{\cons{id}}B\),
+函数对象、拉回等等构造也自动是逐纤维进行的. 因此上面的构造
+原封不动地在 \(\mathcal C/B\) 中进行就得到 \(\Pi_f\).
+
+不过这个具体的构造略微繁琐, 我们先再看 \(f : A\to 1\) 的情形.
 此时这个函子 \(\Pi : \mathcal C/A \to 
 \mathcal C\) 将 \(p : C \to A\) 射到拉回 \(\Pi p\)
 (注意有\(\mathcal C \cong \mathcal C/1\), 我们
@@ -237,36 +243,37 @@
   \mid p \circ u = \pi_1\}\\
 &= \hom_{/A}(A \times X \xrightarrow{\pi_1} A, C \xrightarrow p A).
 \end{aligned}\]
-由此可见确实有 \(f^* \dashv \Pi_f\). (TODO 提前构造好fiberwise section?)
+由此可见确实有 \(f^* \dashv \Pi_f\). 有兴趣的读者,
+可以对 \(f\) 一般的情况下验证, 使用函数对象和拉回构造的
+\(\Pi_f\) 确实都与 \(f^*\) 伴随. 我们知道伴随具有唯一性,
+因此可以反过来直接将 \(f^* \dashv \Pi_f\) 作为
+\(\Pi_f\)的定义.
 
-\berry{3}
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
 指出, 局部积闭范畴可以和依值类型论中的许多
 东西找到对应. \ref{beginning:ccc}~节中已经
-介绍了积闭范畴的概念, 而\emph{局部积闭范畴}
-只需要进一步的定义.
-
+介绍了积闭范畴的概念, 而\emph{局部}积闭范畴只需要
+进一步的定义.
 \begin{definition}
-如果某个范畴的所有俯范畴都积闭, 则称这个
-范畴\textbf{局部积闭}.
+如果某个范畴的所有俯范畴都积闭, 则称这个范畴\textbf{局部积闭}.
 \end{definition}
 特别地, 这个范畴需要有所有的拉回. 如果这个范畴含有终对象
 \(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
-从而其本身是积闭的.
-
+从而其本身是积闭的. 局部积闭范畴与前文所探究的函子关系如下.
 \begin{theorem}
 任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
-\(f_!\) 函子. 这个范畴是积闭的, 等价于
-每个 \(f_!\) 函子都存在连续的两个伴随函子
-\[f_!\dashv f^*\dashv f_*.\]
+\(\Sigma f\) 函子. 这个范畴是局部积闭的, 等价于
+每个 \(\Sigma f\) 函子都存在连续的两个伴随函子
+\[\Sigma_f\dashv f^*\dashv \Pi_f.\]
 \end{theorem}
-
-Seely 在 \cite{seely:1984:lccc} 中的重要观察是,
+\begin{proof}
+利用米田引理与泛性质验证立得.
+\end{proof}
+Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 这三个函子对应了依值类型论中重要的三个操作：
 \(\Sigma\)-类型, 代入, \(\Pi\)-类型.
 
-
-LCCC (1984 Seely, strictification problem)
+(strictification problem)
 
 Contextual category (1986 Cartmell) (?)
 
