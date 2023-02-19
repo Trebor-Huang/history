@@ -80,7 +80,7 @@
 \(x_1{:}A_1, \dots, x_n{:}A_n\) 就被解释为一串
 态射 \(A_n \to A_{n-1} \to \dots \to A_1 \to 1\).
 如图, \(A_1 \to 1\) 是平凡的, 而 \(A_2 \to A_1\)
-在 \(A_1\) 的十个元素上各有一条纤维 (也就是图中的九块
+在 \(A_1\) 的十个元素上各有一条纤维 (也就是图中的十块
 竖着的长条形区域), 其中画出了最后一条纤维中的元素.
 而 \(A_3\) 则是纤维化的纤维化, 四个颜色的区域分别是 \(A_2\) 四个点上的纤维.
 \begin{center}
@@ -262,16 +262,70 @@
 从而其本身是积闭的. 局部积闭范畴与前文所探究的函子关系如下.
 \begin{theorem}
 任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
-\(\Sigma f\) 函子. 这个范畴是局部积闭的, 等价于
-每个 \(\Sigma f\) 函子都存在连续的两个伴随函子
+\(\Sigma_f\) 函子. 这个范畴是局部积闭的, 等价于
+每个 \(\Sigma_f\) 函子都存在连续的两个伴随函子
 \[\Sigma_f\dashv f^*\dashv \Pi_f.\]
 \end{theorem}
 \begin{proof}
 利用米田引理与泛性质验证立得.
 \end{proof}
 Seely 在 \cite{seely:1984:lccc}~中的重要观察是
-这三个函子对应了依值类型论中重要的三个操作：
-\(\Sigma\)-类型, 代入, \(\Pi\)-类型.
+这三个函子对应了依值类型论中的三个操作：
+\(\Sigma\)-类型, 代换, \(\Pi\)-类型.
+我们系统梳理一下局部积闭范畴如何作为语义.
+
+我们希望将语境解释为范畴的对象, 语境之间的代换解释为态射.
+特别地, 有态射 \(p_A : (\Gamma, x{:}A) \to \Gamma\),
+代换方式就是抛弃最后一个变量.\footnote{这里变量名不是很重要,
+我们以后就省略了.} \(\Gamma\) 中的每个类型
+\(\Gamma \vdash A\,\text{type}\) 都可以给出这样一个
+代换, 因此我们直接将 \(\Gamma \vdash A\,\text{type}\)
+这个判断解读为 \(p_A\) 这个代换. 我们之前不严谨地将这个代换
+写作了 \(A \to \Gamma\).
+
+\(p_A\) 的截面就是代换 \(a : \Gamma \to (\Gamma, A)\),
+而截面的要求是\(\Gamma\) 中的变量必须原封不动地保留.
+因此 \(a\) 唯一能做的就是给出 \(A\) 在语境 \(\Gamma\)
+中的元素, \(\Gamma \vdash a : A\). 因此我们将
+\(\Gamma \vdash a : A\) 解读为 \(\Gamma \vdash A\,\text{type}\)
+对应的态射的截面.
+
+对任何代换 \(\sigma : \Delta \to \Gamma\) 与类型
+\(p_A : (\Gamma, A) \to \Gamma\), 我们取拉回, 就得到类型
+的代换 \(\Delta, A[\sigma]\). 如果原先的类型有元素, 即
+截面 \(a : \Gamma \to (\Gamma, A)\), 那么如何得到代换后的
+元素 \(a[\sigma] : \Delta \to (\Delta, A[\sigma])\) 呢?
+事实上这是拉回的性质, \(\cons{id} : \Delta \to \Delta\)
+与 \(a \circ \sigma : \Delta \to (\Gamma, A)\)
+由拉回的性质确定了唯一的态射 \(\Delta \to (\Delta, A[\sigma])\),
+使得合适的态射交换. 这个交换条件中就包括了
+\(p_{A[\sigma]} \circ a[\sigma] = \cons{id}\).
+\[\begin{tikzcd}[row sep=large]
+  {\Delta, A[\sigma]} & {\Gamma,A} \\
+  \Delta & \Gamma
+  \arrow["{p_A}"', shift right=1, from=1-2, to=2-2]
+  \arrow["a"', shift right=1, from=2-2, to=1-2]
+  \arrow["\sigma", from=2-1, to=2-2]
+  \arrow[from=1-1, to=1-2]
+  \arrow["{p_{A[\sigma]}}"', shift right=1, from=1-1, to=2-1]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+  \arrow["{a[\sigma]}"', shift right=1, from=2-1, to=1-1]
+\end{tikzcd}\]
+用另一种方式表述, 可以把 \(a\) 看作俯范畴 \(\mathcal C/\Gamma\)
+中从对象 \(\cons{id} : \Gamma \to \Gamma\) 到
+\(p_A : (\Gamma,A) \to \Gamma\) 的态射. 而
+\(a[\sigma]\) 就是拉回函子对态射的作用, 即 \(\sigma^* a\).
+
+如果有 \(\Gamma, A \vdash B\,\text{type}\), 这意味着
+两个态射
+\[(\Gamma, A, B) \xrightarrow{p_B} (\Gamma, A) \xrightarrow{p_A} \Gamma.\]
+由我们之前的讨论, 将其复合就得到
+\[\left(\Gamma, \sum_{x:A} B(x)\right) \xrightarrow{p_{\bullet}} \Gamma.\]
+换句话说是取函子 \(\Sigma_{p_A}(p_B)\). 伴随地, 函子
+\(\Pi_{p_A}(p_B)\) 给出的就是 \(\Pi\)-类型
+\((\Gamma, \Pi_{x:A} B(x)) \to \Gamma\).
+
+\subsection{融贯性}
 
 (strictification problem)
 
