@@ -9,6 +9,7 @@
 An overview of the history of type theory, mainly for mathematically oriented people. I seek to achive these goals:
 - Provide a coherent and up-to-date source of information in Chinese.
 - Link to important books and papers I recommend to read.
+- Clear up some important misunderstandings.
 
 This is my coursework. I have already finished the submitted version (`d0aaf51`), but this is still being actively expanded. Suggestions and PR's are welcome!
 
@@ -37,6 +38,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
   - Cite Tom de Jong's stuff?
   - Mention forcing & realizability?
   - Cite 1lab properly
+  - 上村太一
   - Use `fancyvrb` to improve code display?
 
 ## Conventions
