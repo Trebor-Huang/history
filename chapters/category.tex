@@ -18,7 +18,7 @@
 的态射 \(s\). 将这个想法完善化, 得到的就是依值类型的
 范畴语义.
 
-\subsection{局部积闭范畴}\berry{2}
+\subsection{伴随三函子}\berry{2}
 为了简化问题, 我们先只考虑一个变量的情况.
 如果我们有态射 \(p : B \to A\) 表示类型
 \(x{:}A \vdash B\,\text{type}\), 那么
@@ -172,7 +172,7 @@
 \begin{definition}
 给定范畴 \(\mathcal C\) 中的对象 \(A\),
 定义\textbf{俯范畴}(overcategory或slice category)
-\(\mathcal C_{/A}\) 的对象为所有形如
+\(\mathcal C/A\) 的对象为所有形如
 \(B \xrightarrow{f} A\) 的态射. 两个对象
 \(B \xrightarrow f A\) 与 \(C \xrightarrow g A\)
 之间的态射为使得 \(g \circ h = f\) 成立的 \(h\) 的集合.
@@ -180,7 +180,7 @@
 这里的 “局部” 指的就是在俯范畴中的构造. 可以在
 集合范畴的俯范畴中获取一些直觉： 每个箭头
 \(f : B \to A\) 实际上把 \(B\) 拆分成了许多子集
-\(B_x = f^{-1}\{x\}\). 而俯范畴 \(\textsf{Set}_{/A}\)
+\(B_x = f^{-1}\{x\}\). 而俯范畴 \(\textsf{Set}/A\)
 中的所有构造实际上都是这些子集上逐点的构造. 比如
 \(B \to A\) 与 \(C \to A\) 在俯范畴中的乘积
 \(D \to A\), 满足 \(D_x = B_x \times C_x\).
@@ -188,6 +188,13 @@
 的原像 (即 \(x\) 上的\emph{纤维}) 乘起来. 在原范畴
 中, 这就是拉回. 在拓扑空间的范畴中这也是类似的, 只不过
 纤维之间还自动带有了拓扑信息.
+
+俯范畴的定义中将原来的态射当作新范畴的对象, 容易混淆. 读者
+可以思考一道习题确保理解了这个定义.
+\begin{lemma}\label{category:sliceslice}
+给定态射 \(f : B \to A\), 俯范畴的俯范畴
+\(\mathcal C/A/f\) 同构于 \(\mathcal C/B\).
+\end{lemma}
 
 利用俯范畴可以更方便地组织已有的表述. 给定态射
 \(f : A \to B\), \(\Sigma\) 类型对应着与其直接复合,
@@ -249,6 +256,7 @@
 因此可以反过来直接将 \(f^* \dashv \Pi_f\) 作为
 \(\Pi_f\)的定义.
 
+\subsection{局部积闭范畴}
 1984年, Seely在一篇文章~\cite{seely:1984:lccc}中
 指出, 局部积闭范畴可以和依值类型论中的许多
 东西找到对应. \ref{beginning:ccc}~节中已经
@@ -288,7 +296,31 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 因此 \(a\) 唯一能做的就是给出 \(A\) 在语境 \(\Gamma\)
 中的元素, \(\Gamma \vdash a : A\). 因此我们将
 \(\Gamma \vdash a : A\) 解读为 \(\Gamma \vdash A\,\text{type}\)
-对应的态射的截面.
+对应的态射的截面. 将这些操作打包, 就得到取俯范畴这个操作
+在类型论中对应往语境中添加变量. 例如在俯范畴 \(\mathcal C/\Gamma\)中,
+一个类型在空语境中的元素 \(a : 1 \to A\) 就等价于在原范畴中
+的交换三角：
+\[\begin{tikzcd}
+  \Gamma && {(\Gamma, A)} \\
+  & \Gamma
+  \arrow["{\cons{id}}"', from=1-1, to=2-2]
+  \arrow["{p_A}", from=1-3, to=2-2]
+  \arrow["a", from=1-1, to=1-3]
+\end{tikzcd}\]
+(因为俯范畴中的终对象就是 \(\Gamma \xrightarrow{\cons{id}} \Gamma\).)
+这正好说的是 \(p_A : (\Gamma, A) \to \Gamma\) 的截面.
+尽管局部积闭范畴只要求俯范畴是积闭范畴, 但是我们有如下定理：
+\begin{theorem}
+  局部积闭范畴的俯范畴仍然局部积闭.
+\end{theorem}
+\begin{proof}
+按照定义, 要证明局部积闭
+范畴 \(\mathcal C\) 的俯范畴 \(\mathcal C/A\) 是
+局部积闭范畴, 只需要证明它的所有俯范畴 \(\mathcal C/A/f\)
+是积闭范畴. 考虑引理~\ref{category:sliceslice},
+这些范畴同构于原范畴的俯范畴, 而它们本身是积闭的.
+\end{proof}
+这意味着往语境中添加变量之后类型论的基本结构仍然保留.
 
 对任何代换 \(\sigma : \Delta \to \Gamma\) 与类型
 \(p_A : (\Gamma, A) \to \Gamma\), 我们取拉回, 就得到类型
@@ -325,7 +357,42 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 \(\Pi_{p_A}(p_B)\) 给出的就是 \(\Pi\)-类型
 \((\Gamma, \Pi_{x:A} B(x)) \to \Gamma\).
 
-\subsection{融贯性}
+细心的读者可能会注意到, 我们只需要给形如 \(p_A\) 的态射
+指定 \(\Sigma,\Pi\) 函子, 但是在局部积闭范畴中所有的态射
+都有这些函子. 一方面这个要求使得理论处理能简洁统一一些, 另一方面
+这使得一些本来可以作为语义的范畴被排除在外. 之后我们会看到
+一些降低了要求的语义.
+
+\subsection{其他类型的语义}
+
+解决了 \(\Pi,\Sigma\)-类型, 我们再来看看其他类型如何加入
+这个框架中. 事实上对一般的类型这都是显然的. 每一个类型
+的引入和消去规则决定了它在范畴语言中对应的泛性质.
+
+函数类型/乘积类型对应函数/乘积
+
+(Boolean type?)
+
+% 例如考虑
+% Boole类型, 它恰好有两个元素 \(\cons{t},\cons{f}\),
+% 有一个操作 \(\cons{if}(b, x, y)\), 满足
+% \(\cons{if}(\cons{t}, x, y) = x\), 与
+% \(\cons{if}(\cons{f}, x, y) = y\).
+
+% 我们有空语境下 \(\vdash \mathbf{2}\), 因此对应一个对象
+% \(2\) 与平凡态射 \(p_2 : 2 \to 1\). 它有两个元素,
+% 即 \(t, f : 1 \to 2\). 最后一条规则翻译为范畴语言, 就是
+% 说对于任何态射 \(p : X \to 2\), 以及两个元素
+% \(x,y : 1 \to X\) 使得 , 都存在一个态射 \(r : 2 \to X\),
+% 使得 \(r \circ t = x, r \circ f = y\).
+
+natural numbers
+
+相等类型较为特殊.
+
+
+
+\subsection{融贯问题}
 
 (strictification problem)
 
@@ -342,11 +409,9 @@ Comprehension cat (1990 Jacobs)
 
 CwF (1995 Dybjer)
 
-\subsection{融贯问题}
-
 Natural model (2016 Awodey)
 
-General framework (2019 Uemura)
+General framework (2019 上村太一)
 
 \section{意象}
 意象有几何学与逻辑学两方面的起源~\cite{mclarty:1990:toposhistory}.
