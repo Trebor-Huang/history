@@ -275,7 +275,7 @@
 \[\Sigma_f\dashv f^*\dashv \Pi_f.\]
 \end{theorem}
 \begin{proof}
-利用米田引理与泛性质验证立得.
+利用米田引理与泛性质验证立得. (...) TODO 解释选择
 \end{proof}
 Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 这三个函子对应了依值类型论中的三个操作：
@@ -363,6 +363,68 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 这使得一些本来可以作为语义的范畴被排除在外. 之后我们会看到
 一些降低了要求的语义.
 
+我们最后给读者一个练习, 熟悉伴随三函子 \(\Sigma_f \vdash f^* \vdash \Pi_f\)
+的操作. 在研究一些较弱的类型论, 或者一阶逻辑等的范畴语义时,
+需要额外引入条件确保代换操作与 \(\Pi, \Sigma\) (或者
+\(\forall, \exists\)) 交换. 这个条件称为
+\textbf{Beck--Chevalley 条件}. 具体来说比如
+有类型族 \(F(x,y)\) 时, 首先取 \(\Pi\)-类型, 而后将
+\(y\) 代换得到 \(\left(\prod_{x:A} F(x, y)\right)[y/b]\);
+另一方面可以先代换, 而后取 \(\Pi\)-类型得到
+\(\prod_{x:A} F(x, b)\). Beck--Chevalley 条件说的就是
+这两者应该相同. 对 \(\Sigma\)-类型同理. 在局部积闭范畴中,
+这个条件是直接成立的, 无需额外引入. 我们将其写成范畴语言：
+\begin{theorem}[Beck--Chevalley]
+对于拉回方
+\[\begin{tikzcd}
+  \Theta & \Xi \\
+  \Gamma & \Delta
+  \arrow["{\tilde\rho}"', from=1-1, to=2-1]
+  \arrow["\sigma"', from=2-1, to=2-2]
+  \arrow["\rho", from=1-2, to=2-2]
+  \arrow["{\tilde\sigma}", from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+必然有 \(\Sigma_{\tilde\rho} \circ \tilde\sigma^*\) 自然同构于
+\(\sigma^* \circ \Sigma_{\rho}\). 对 \(\Pi\) 也有类似同构.
+\end{theorem}
+\begin{proof}
+\(\Pi\) 的情况由于同构的两函子, 对应的伴随也同构, 即可化为 \(\Sigma\) 的情况.
+对此使用米田引理计算即可. 此图作为提示.
+  \[\begin{tikzcd}
+    {\mathcal C/\Theta} &&&&& {\mathcal C/\Xi} \\
+    & \bullet &&& \textcolor{rgb,255:red,214;green,92;blue,92}{A} \\
+    && \Theta & \textcolor{rgb,255:red,214;green,92;blue,92}{\Xi} \\
+    && \textcolor{rgb,255:red,214;green,92;blue,92}{\Gamma} & \textcolor{rgb,255:red,214;green,92;blue,92}{\Delta} \\
+    & \textcolor{rgb,255:red,214;green,92;blue,92}{X} &&& \bullet \\
+    {\mathcal C/\Gamma} &&&&& {\mathcal C/\Delta}
+    \arrow["\sigma", color={rgb,255:red,214;green,92;blue,92}, from=4-3, to=4-4]
+    \arrow[from=3-3, to=4-3]
+    \arrow["\rho"', color={rgb,255:red,214;green,92;blue,92}, from=3-4, to=4-4]
+    \arrow[from=3-3, to=3-4]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-3, to=4-4]
+    \arrow["{\Sigma_\rho}"', from=1-6, to=6-6]
+    \arrow["{\sigma^*}"', from=6-6, to=6-1]
+    \arrow[from=1-6, to=1-1]
+    \arrow[from=1-1, to=6-1]
+    \arrow["p"{description}, color={rgb,255:red,214;green,92;blue,92}, from=2-5, to=3-4]
+    \arrow[from=5-5, to=2-5]
+    \arrow[from=5-5, to=4-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=5-5, to=4-4]
+    \arrow[from=2-2, to=2-5]
+    \arrow[from=2-2, to=3-3]
+    \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-4]
+    \arrow[dashed, from=5-2, to=2-2]
+    \arrow[dashed, from=5-2, to=5-5]
+    \arrow["u"{description}, color={rgb,255:red,214;green,92;blue,92}, from=5-2, to=4-3]
+    \arrow[""{name=0, anchor=center, inner sep=0}, from=2-5, to=4-4]
+    \arrow[""{name=1, anchor=center, inner sep=0}, from=2-2, to=4-3]
+    \arrow[shorten >=2pt, Rightarrow, no head, from=3-4, to=0]
+    \arrow[shorten <=2pt, Rightarrow, no head, from=1, to=3-3]
+  \end{tikzcd}\]
+  其中外侧一圈是相关的范畴与函子.
+\end{proof}
+
 \subsection{其他类型的语义}
 
 解决了 \(\Pi,\Sigma\)-类型, 我们再来看看其他类型如何加入
@@ -390,15 +452,97 @@ natural numbers
 
 相等类型较为特殊.
 
+\subsection{语法与语义}
 
+我们在依值类型的话题下再看第\ref{intro}章对语法与语义的关系的论述.
+
+使用类型规则定义的语法, 可以按照以上的论述组织成一个局部积闭范畴,
+具体来说就是将上下文商去 \(\beta\eta\)-等价后作为对象,
+代换商去 \(\beta\eta\)-等价后作为态射.
+这样一个范畴称作\textbf{语法范畴} \(\mathcal T\).
+除了语法范畴, 还有各种各样的局部积闭范畴. 这些范畴之间通过
+保持恰当结构的函子, 组成一个2-范畴 \(\cons{LCCC}\).
+
+要使得语义能够称为语义, 最重要的是语法可以解释到任何一个语义中去.
+在这里, 自然就是说对于任何一个局部积闭范畴 \(\mathcal C\),
+都存在唯一一个 (保持恰当结构的) 函子 \(\mathcal T \to \mathcal C\).
+(举例子?)
+换句话说, 语法范畴需要是 \(\cons{LCCC}\) 的\textbf{始对象}.
+这一点, 在传统的语义研究中就称为可靠性与完备性.
+证明了这一点之后, 我们就可以通过构造一份语义, 上述性质就
+保证存在唯一的解释函子, 进而可以探究语法范畴的对象.
 
 \subsection{融贯问题}
 
-(strictification problem)
+上面的讨论中实际上隐藏了很重要的一个细节.
+考虑一个 \(\Sigma\)-类型
+\[\frac{\Gamma \vdash A\,\text{type}
+\quad \Gamma, x{:}A \vdash B\,\text{type} }
+{\Gamma \vdash \sum_{x:A} B \,\text{type}},\]
+它对应范畴语言中的一串态射
+\[B \xrightarrow{p_B}
+A \xrightarrow{p_A} \Gamma.\]
+它的元素是有序对
+\[\frac{\Gamma \vdash a : A
+\quad \Gamma \vdash b : B[x/a]}
+{\Gamma \vdash (a, b) : \sum_{x:A}B}.\]
+\(a\) 很好翻译为范畴语言, 就是 \(p_A\) 的截面, 即 \(p_A\circ a = \cons{id}\).
+而我们希望得到一个 \(\Sigma\)-类型的元素, 即一个截面
+\(p_{\sum_{x:A}B} \circ {?} = \cons{id}\), 展开
+定义得到是 \(p_A \circ p_B \circ {?} = \cons{id}\).
+这里所求的问号是一个态射 \(s \in \hom(\Gamma, B)\).
+
+由于我们认为代换应当解释为拉回, 因此上面的 \(B[x/a]\)
+就应当表示为
+\[\begin{tikzcd}
+  {B[x/a]} & B \\
+  \Gamma & A
+  \arrow["{p_B}", from=1-2, to=2-2]
+  \arrow["{p_A}", shift left=1, from=2-2, to=2-1]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["a", shift left=1, from=2-1, to=2-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+然后我们有一个截面 \(b : \Gamma \to B[x/a]\),
+而 \(s\) 此时就可以定义为复合态射
+\(\Gamma \xrightarrow{b} B[x/a] \to B\).
+然而这里的问题是, 在类型论的语法中 \(B[x/a]\)
+这样的代换本身是由其他事物构成的. 如 \(B\) 为
+\(1 + x = 2\) 这个命题, \(A\) 是自然数类型,
+那么 \(B[x/a]\) 就应该是 \(1 + a = 2\). 因此
+这个代换后的结果已经由这些事物 ------ 在这里就是
+\(1\), \(=\), \(+\) 这些东西 ------ 对应的规则完全确定了.
+我们不能再选择将这个代换解释为额外选择的拉回.
+
+当然, 我们知道 \(B[x/a]\) 仍然与我们选择的拉回
+有唯一的同构. 但是, 完全有可能有两种方式将某个类型
+\(C\) 表达为代换, 如 \(C = D[x/a] = E[y/b]\).
+这样就会得到许多的同构. 我们现在有三种选择：
+\begin{enumerate}
+\item 试图证明\textbf{融贯性}, 即上面产生的所有同构,
+无论怎么组合得到的交换图都是交换的. 这样我们就能放心地将它们视作相同,
+因为总是可以无歧义地使用同构将一者转换为另一者.
+如果某两个对象之间有两个不相等的同构, 那么就会产生歧义.
+\item 修改语义范畴的定义, 要求这些同构的事物严格相等, 换句话说
+就是要求这些同构实际上都是 \(\cons{id}\). 这样这个问题
+显然就自动消失了. 但是很多原有的语义范畴也会被排除在外, 我们
+需要保证仍然能够留下足够多有趣的语义范畴.
+\item 修改类型论的定义, 使得代入操作不再得到完全相等的语法结构.
+当然, 我们还得证明新的类型论在某种意义下等价于原有的类型论.
+\end{enumerate}
+事实上, 1 -> 2 (...)
+
+Revisiting the categorical interpretation of dependent
+type theory
+
+\subsection{更精细的范畴语义}
+
+\subsubsection{语境范畴}
 
 Contextual category (1986 Cartmell) (?)
 
-\subsection{概括范畴}
+\subsubsection{概括范畴}
 
 Display map cat ((Hyland and Pitts,
 1989)??)
@@ -408,6 +552,8 @@ CwA (1978 Cartmell?? 1990 Moggi)
 Comprehension cat (1990 Jacobs)
 
 CwF (1995 Dybjer)
+
+\subsubsection{自然模型}
 
 Natural model (2016 Awodey)
 
