@@ -275,7 +275,13 @@
 \[\Sigma_f\dashv f^*\dashv \Pi_f.\]
 \end{theorem}
 \begin{proof}
-利用米田引理与泛性质验证立得. (...) TODO 解释选择
+利用米田引理与泛性质验证立得. 在这里, 其实已经隐式地将
+“存在所有拉回”改成了“选定一族拉回”. 由于所有的拉回都是
+唯一同构的, 因此这两者等价. 这尽管看起来应当不需要选择
+公理 (如果每个选择都是唯一的, 那么这实际上就已经选好了,
+无需使用选择公理即可直接构造出对应关系),
+但是由于同构的对象在集合论中仍然是不同的集合, 因此技术上
+还是需要选择公理. 这初步体现了集合论处理范畴论的缺陷.
 \end{proof}
 Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 这三个函子对应了依值类型论中的三个操作：
@@ -465,7 +471,7 @@ natural numbers
 
 要使得语义能够称为语义, 最重要的是语法可以解释到任何一个语义中去.
 在这里, 自然就是说对于任何一个局部积闭范畴 \(\mathcal C\),
-都存在唯一一个 (保持恰当结构的) 函子 \(\mathcal T \to \mathcal C\).
+都存在唯一一个 (保持恰当结构的) 函子 \([\![-]\!] : \mathcal T \to \mathcal C\).
 (举例子?)
 换句话说, 语法范畴需要是 \(\cons{LCCC}\) 的\textbf{始对象}.
 这一点, 在传统的语义研究中就称为可靠性与完备性.
@@ -474,64 +480,77 @@ natural numbers
 
 \subsection{融贯问题}
 
-上面的讨论中实际上隐藏了很重要的一个细节.
-考虑一个 \(\Sigma\)-类型
+上面的讨论中实际上隐藏了很重要的一个细节.\footnote{此处
+参考了与 Daniel Gratzer 的私下通信, 以及提出这个问题
+的原始论文\cite{hofmann:1995:lccccoh}.}
+在构造解释函子时, 会对语法进行归纳.
+考虑 \(\Pi\)-类型
 \[\frac{\Gamma \vdash A\,\text{type}
 \quad \Gamma, x{:}A \vdash B\,\text{type} }
-{\Gamma \vdash \sum_{x:A} B \,\text{type}},\]
-它对应范畴语言中的一串态射
-\[B \xrightarrow{p_B}
-A \xrightarrow{p_A} \Gamma.\]
-它的元素是有序对
+{\Gamma \vdash \prod_{x:A} B \,\text{type}}.\]
+它在语法范畴中对应有一串态射
+\[B \xrightarrow{p_B} A \xrightarrow{p_A} \Gamma,\]
+并且有 \(\Pi_{p_A} p_B : \prod_{x:A}B \to \Gamma\).
+现在在归纳时遇到了规则
 \[\frac{\Gamma \vdash a : A
-\quad \Gamma \vdash b : B[x/a]}
-{\Gamma \vdash (a, b) : \sum_{x:A}B}.\]
-\(a\) 很好翻译为范畴语言, 就是 \(p_A\) 的截面, 即 \(p_A\circ a = \cons{id}\).
-而我们希望得到一个 \(\Sigma\)-类型的元素, 即一个截面
-\(p_{\sum_{x:A}B} \circ {?} = \cons{id}\), 展开
-定义得到是 \(p_A \circ p_B \circ {?} = \cons{id}\).
-这里所求的问号是一个态射 \(s \in \hom(\Gamma, B)\).
-
-由于我们认为代换应当解释为拉回, 因此上面的 \(B[x/a]\)
-就应当表示为
+\quad \Gamma \vdash f : \prod_{x:A}B}
+{\Gamma \vdash f(a) : B[x/a]},\]
+换句话说, 我们需要将语法范畴中的这个态射
+\(f(a) : \Gamma \to B[x/a]\)
+解释为某个语义范畴中的态射. 此时根据归纳假设, 我们
+应当已经有了 \(a : \Gamma \to A\) 的解释
+\([\![a]\!] : [\![\Gamma]\!] \to [\![A]\!]\)
+与 \(f\) 的解释
+\([\![f]\!] : [\![\Gamma]\!] \to [\![\prod_{x:A} B]\!]\).
+此时要如何构造 \(f(a)\) 的解释呢? 此时显然需要
+选一个拉回
 \[\begin{tikzcd}
-  {B[x/a]} & B \\
-  \Gamma & A
-  \arrow["{p_B}", from=1-2, to=2-2]
-  \arrow["{p_A}", shift left=1, from=2-2, to=2-1]
+  U & {[\![B]\!]} \\
+  {[\![\Gamma]\!]} & {[\![A]\!]}
+  \arrow["{[\![a]\!]}"', from=2-1, to=2-2]
+  \arrow["{[\![p_B]\!]}", from=1-2, to=2-2]
   \arrow[from=1-1, to=2-1]
   \arrow[from=1-1, to=1-2]
-  \arrow["a", shift left=1, from=2-1, to=2-2]
   \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
-然后我们有一个截面 \(b : \Gamma \to B[x/a]\),
-而 \(s\) 此时就可以定义为复合态射
-\(\Gamma \xrightarrow{b} B[x/a] \to B\).
+然后再利用各种泛性质进行构造.
+
 然而这里的问题是, 在类型论的语法中 \(B[x/a]\)
 这样的代换本身是由其他事物构成的. 如 \(B\) 为
 \(1 + x = 2\) 这个命题, \(A\) 是自然数类型,
 那么 \(B[x/a]\) 就应该是 \(1 + a = 2\). 因此
 这个代换后的结果已经由这些事物 ------ 在这里就是
 \(1\), \(=\), \(+\) 这些东西 ------ 对应的规则完全确定了.
-我们不能再选择将这个代换解释为额外选择的拉回.
+我们不能再将这个代换解释为额外选择的拉回 \(U\).
+那么能不能使用语法中的这个代换, 而不是用拉回得到的代换呢?
+不能, 这是因为此时归纳假设并不能给予这个 \(B[x/a]\)
+的表达式, 因为这个式子在归纳过程中往往要更晚才出现.
+如果提前使用了这个式子的解释, 那么就会
+构成循环论证, 就好像数学归纳法中归纳到 \(n\) 时却去
+使用 \((n+3)\) 满足归纳假设的条件一样.
 
 当然, 我们知道 \(B[x/a]\) 仍然与我们选择的拉回
-有唯一的同构. 但是, 完全有可能有两种方式将某个类型
-\(C\) 表达为代换, 如 \(C = D[x/a] = E[y/b]\).
-这样就会得到许多的同构. 我们现在有三种选择：
+有唯一的同构. 因此我们有三种选择：
 \begin{enumerate}
-\item 试图证明\textbf{融贯性}, 即上面产生的所有同构,
-无论怎么组合得到的交换图都是交换的. 这样我们就能放心地将它们视作相同,
+\item\label{category:coh:coherence} 试图证明\textbf{融贯性},
+即上面产生的所有同构, 无论怎么组合得到的交换图都是交换的.
+这样我们就能放心地将它们视作相同,
 因为总是可以无歧义地使用同构将一者转换为另一者.
 如果某两个对象之间有两个不相等的同构, 那么就会产生歧义.
-\item 修改语义范畴的定义, 要求这些同构的事物严格相等, 换句话说
+\item\label{category:coh:strict} 修改语义范畴的定义,
+要求这些同构的事物严格相等, 换句话说
 就是要求这些同构实际上都是 \(\cons{id}\). 这样这个问题
-显然就自动消失了. 但是很多原有的语义范畴也会被排除在外, 我们
-需要保证仍然能够留下足够多有趣的语义范畴.
-\item 修改类型论的定义, 使得代入操作不再得到完全相等的语法结构.
-当然, 我们还得证明新的类型论在某种意义下等价于原有的类型论.
+显然就自动消失了. 但是很多原有的语义范畴也会被排除在外,
+我们需要保证仍然能够留下足够多有趣的语义范畴.
+\item\label{category:coh:weak} 修改类型论的定义,
+使得代入操作不再得到完全相等的语法结构. 当然,
+我们还得证明新的类型论在某种意义下等价于原有的类型论.
 \end{enumerate}
-事实上, 1 -> 2 (...)
+
+事实上, 方案~\ref{category:coh:coherence} 就相当于证明
+任何语义范畴都等价于一个方案~\ref{category:coh:strict}
+中定义的严格语义范畴, 因为只需要将这些同构商去即可, 融贯性
+保证了商去得到的范畴与原范畴等价.
 
 Revisiting the categorical interpretation of dependent
 type theory
@@ -540,7 +559,8 @@ type theory
 
 \subsubsection{语境范畴}
 
-Contextual category (1986 Cartmell) (?)
+Contextual category (1986 Cartmell)
+\cite{cartmell:1986:contextualcat}
 
 \subsubsection{概括范畴}
 
