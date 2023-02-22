@@ -34,6 +34,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
     - [ ] Infinity category
 - Misc
   - Typesetting, clean up bibliography
+  - `[\![]\!]` is too annoying, maybe macro
   - ~~Use separate font for metavariables?~~
   - Cite Tom de Jong's stuff?
   - Mention forcing & realizability?
