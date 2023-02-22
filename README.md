@@ -1,4 +1,4 @@
-# History of type theory
+# History of type theory 类型论简史
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
@@ -16,6 +16,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 ## Recent updates
 
 - (Ongoing) Models for dependent types
+- Explanation of coherence problem
 - Rewritten introduction for locally cartesian closed categories
 - Canonicity for STLC
 
@@ -39,7 +40,6 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
   - Cite Tom de Jong's stuff?
   - Mention forcing & realizability?
   - Cite 1lab properly
-  - 上村太一
   - Use `fancyvrb` to improve code display?
 
 ## Conventions
