@@ -443,7 +443,8 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 
 natural numbers
 
-相等类型较为特殊.
+相等类型较为特殊. (extensionality) 例如在
+\ref{martinlof:identity}~节中我们提到
 
 \subsection{语法与语义}
 
@@ -541,25 +542,27 @@ Seely的原始论文中并没有得到解决.
 可以参考~\cite{curien:2014:revisit}. 在后面的类型论
 构造中, 也经常会遇到不同形式的融贯性问题, 解决思路也都类似.
 
-(TODO 是否要写一写这些解决方案)
-
 \subsection{更精细的范畴语义}
+我们已经看到, 尽管实际上 \(\Pi\)-类型等只对应
+形如 \(p_A : (\Gamma, A) \to \Gamma\) 的态射诱导的
+函子 \(\Pi_{p_A} : \mathcal C/(\Gamma, A) \to \mathcal C/\Gamma\),
+但是局部积闭范畴却要求所有的态射都诱导这样的函子.
+这自然就会排除一些我们想要的语义. 例如前面我们证明了
+在局部积闭范畴中的相等类型必然是外延的, 因此要研究内涵类型论
+的特性就必须选择更精细的范畴语义.
 
-\subsubsection{语境范畴}
+\subsubsection{概括范畴}
 
 Contextual category (1986 Cartmell)
 \cite{cartmell:1986:contextualcat}
 
-\subsubsection{概括范畴}
+Display map cat % (Hyland and Pitts, 1989)??
 
-Display map cat ((Hyland and Pitts,
-1989)??)
-
-CwA (1978 Cartmell?? 1990 Moggi)
+CwA (1978 Cartmell?? 1990 Moggi),
+CwF (1995 Dybjer), reference only
 
 Comprehension cat (1990 Jacobs)
 
-CwF (1995 Dybjer)
 
 \subsubsection{自然模型}
 
