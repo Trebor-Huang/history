@@ -316,7 +316,7 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 (因为俯范畴中的终对象就是 \(\Gamma \xrightarrow{\cons{id}} \Gamma\).)
 这正好说的是 \(p_A : (\Gamma, A) \to \Gamma\) 的截面.
 尽管局部积闭范畴只要求俯范畴是积闭范畴, 但是我们有如下定理：
-\begin{theorem}
+\begin{theorem}\label{category:lccc:slice}
   局部积闭范畴的俯范畴仍然局部积闭.
 \end{theorem}
 \begin{proof}
@@ -437,14 +437,65 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
 这个框架中. 事实上对一般的类型这都是显然的. 每一个类型
 的引入和消去规则决定了它在范畴语言中对应的泛性质.
 
+我们来看看非依值乘积与函数类型. 乘积类型的规则是
+\[\frac{\Gamma \vdash A\,\text{type}
+\quad\Gamma \vdash B\,\text{type}}
+{\Gamma \vdash A \times B\,\text{type}}.\]
+我们可以直接写出规则, 但是回忆取俯范畴就相当于引入变量.
+因此我们可以直接在 \(\mathcal C/\Gamma\) 中操作
+(根据定理~\ref{category:lccc:slice} 可知这仍然是
+局部积闭范畴), 这样就只需要处理空语境的规则
+\[\frac{\vdash A\,\text{type}
+\quad \vdash B\,\text{type}}
+{\vdash A \times B\,\text{type}}.\]
+在原范畴中是需要对任何
+\(p_A : A \to \Gamma, p_B : B \to \Gamma\)
+都赋予一个新的 \(p_{A \times B} : A\times B \to \Gamma\);
+在俯范畴中就是对任何两个对象 \(A,B\) 赋予新的对象 \(A\times B\),
+因为 \(p_{A\times B} : A\times B \to 1\) 在选定了
+对象之后就是唯一的.
+
+下面为了防止和范畴论本身的乘积混淆, 范畴论乘积记作
+\(A \mathop{\hat\times} B\). 我们接下来会证明
+\(A \times B \cong A \mathop{\hat\times} B\).
+
+首先是构造规则
+\[\frac{\Gamma \vdash a : A
+\quad \Gamma \vdash b : B}
+{\Gamma \vdash (a,b) : A \times B},\]
+在原范畴中说的是, 对于任何截面 \(a : \Gamma \to A,
+b : \Gamma \to B\), 满足 \(p_A \circ a =
+p_B \circ B = \cons{id}\), 都有一个截面
+\((a,b) : \Gamma \to A \times B\). 在俯范畴中说的
+就是对于任何态射 \(a : 1 \to A, b : 1 \to B\) 都有
+一个态射 \((a,b) : 1 \to A \times B\). 对于消去规则
+则是
+\[\frac{\Gamma \vdash p : A \times B}
+{\Gamma \vdash \pi_1(p) : A}
+\quad\frac{\Gamma \vdash p : A \times B}
+{\Gamma \vdash \pi_2(p) : B}.\]
+这在原范畴中说的是对于任何截面
+\(p : \Gamma \to A \times B\) 都有对应的两个
+截面 \(\pi_1(p) : \Gamma \to A, \pi_2(p) :
+\Gamma \to B\). 在俯范畴中就是对于任何态射
+\(p : 1 \to A \times B\) 都有对应的
+\(\pi_1(p) : 1 \to A, \pi_2(p) : 1 \to B\).
+
+最后, \(\beta\eta\)-等价说的就是上述两个对应关系
+是互逆的. 在俯范畴中这就是说有双射
+\[\hom(1,A\times B) \cong \hom(1,A) \times \hom(1,B)\]
+
+% \[\frac{}{\Gamma, p{:}A \times B\vdash \pi_1(p) : A}
+% \quad\frac{}{\Gamma, p{:}A \times B\vdash \pi_2(p) : B}.\]
+
 函数类型/乘积类型对应函数/乘积
+
+相等类型较为特殊. (extensionality) 例如在
+\ref{martinlof:identity}~节中我们提到
 
 (Boolean type?)
 
 natural numbers
-
-相等类型较为特殊. (extensionality) 例如在
-\ref{martinlof:identity}~节中我们提到
 
 \subsection{语法与语义}
 
@@ -1331,7 +1382,7 @@ Kripke--Joyal翻译仅仅为意象提供了内语言. 对于有其他结构
 分别表示零与后继. 对于任何其他对象 \(A\) 配备两个态射
 \(1 \xrightarrow z A \xrightarrow s A\), 都有
 唯一的态射 \(u : \mathbb N \to A\) 使得以下图表交换.
-\[\begin{tikzcd}
+\[\begin{tikzcd}[row sep=3]
 & {\mathbb N} && {\mathbb N} \\
 1 \\
 & A && A
