@@ -18,6 +18,11 @@
 的态射 \(s\). 将这个想法完善化, 得到的就是依值类型的
 范畴语义.
 
+注意以下我们会从语法出发, 试图考察语法中的结构应该对应
+范畴语言中的什么. 因此很多时候我们会直接拿语法用在范畴
+中, 但是注意这只是为了提供直观看法. 在成品的范畴语义
+定义中不会有这些用法.
+
 \subsection{伴随三函子}\berry{2}
 为了简化问题, 我们先只考虑一个变量的情况.
 如果我们有态射 \(p : B \to A\) 表示类型
@@ -480,15 +485,37 @@ p_B \circ B = \cons{id}\), 都有一个截面
 \Gamma \to B\). 在俯范畴中就是对于任何态射
 \(p : 1 \to A \times B\) 都有对应的
 \(\pi_1(p) : 1 \to A, \pi_2(p) : 1 \to B\).
+\(\beta\eta\)-等价说的就是上述两个对应关系是互逆的,
+即 \(\pi_1(a,b) = a, \pi_2(a,b) = b,
+(\pi_1(p), \pi_2(p)) = p\). 在俯范畴中这就是说
+\[\hom_{/\Gamma}(1, A\times B) \cong
+\hom_{/\Gamma}(1, A) \times \hom_{/\Gamma}(1, B).\]
 
-最后, \(\beta\eta\)-等价说的就是上述两个对应关系
-是互逆的. 在俯范畴中这就是说有双射
-\[\hom(1,A\times B) \cong \hom(1,A) \times \hom(1,B)\]
-
-% \[\frac{}{\Gamma, p{:}A \times B\vdash \pi_1(p) : A}
-% \quad\frac{}{\Gamma, p{:}A \times B\vdash \pi_2(p) : B}.\]
-
-函数类型/乘积类型对应函数/乘积
+读者在操弄一番上述定义之后可能会发现, 仅仅有这些条件还不足以
+使得 \(A \times B\) 与范畴论中的 \(A \mathop{\hat\times} B\)
+同构. 这是因为类型论中还有隐藏的重要条件, 即对于任何代换
+\(\sigma\), 都有 \((A \times B)[\sigma] = A[\sigma] \times B[\sigma]\).
+在范畴论中, 代换就是拉回函子. 因此设拉回 \(\sigma : \Delta \to \Gamma\),
+我们要求在 \(\mathcal C/\Delta\) 中有同构
+\[\sigma^*(A \times B)\cong \sigma^* A \times \sigma^* B.\]
+对应的 \(\pi_1\) 等也应当与拉回交换, 即对于任何
+\(p \in \hom_{/\Gamma}(1, A\times B)\), 都有
+\(\pi_1(\sigma^* p)\) 经过同构后得到 \(\sigma^* \pi_1(p)\).
+其余条件读者可据此类推. 由此可以计算
+\[\begin{aligned}
+  &\phantom{={}}
+    \hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma,
+    A \times B \to \Gamma)\\
+  &\cong\hom_{/\Delta}(\Delta \xrightarrow{\cons{id}}\Delta,
+    \sigma^* (A \times B \to \Gamma))\\
+  &\cong\hom_{/\Delta}(\underbrace{\Delta \xrightarrow{\cons{id}}\Delta}_{\text{终对象}},
+    \sigma^* A \times \sigma^* B \to \Delta) \\
+  &\cong\hom_{/\Delta}(1, \sigma^* A) \times \hom_{/\Delta}(1, \sigma^* B)\\
+  &\cong\hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma, A \to \Gamma)
+    \times \hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma, B \to \Gamma)
+\end{aligned}\]
+这里中间两步同构的自然性需要验证. (...)
+因此 \(A \times B\) 的确就是俯范畴中满足泛性质的乘积.
 
 相等类型较为特殊. (extensionality) 例如在
 \ref{martinlof:identity}~节中我们提到
@@ -568,6 +595,7 @@ Seely的原始论文中并没有得到解决.
 如果提前使用了这个式子的解释, 那么就会
 构成循环论证, 就好像数学归纳法中归纳到 \(n\) 时却去
 使用 \((n+3)\) 满足归纳假设的条件一样.
+对于其他的类型, 如乘积等, 都有类似的问题.
 
 当然, 我们知道 \(B[x/a]\) 仍然与我们选择的拉回
 有唯一的同构. 因此我们有三种选择：
