@@ -436,7 +436,7 @@ Seely 在 \cite{seely:1984:lccc}~中的重要观察是
   其中外侧一圈是相关的范畴与函子.
 \end{proof}
 
-\subsection{其他类型的语义}
+\subsection{其他类型的语义}\label{category:lccc:other}
 
 解决了 \(\Pi,\Sigma\)-类型, 我们再来看看其他类型如何加入
 这个框架中. 事实上对一般的类型这都是显然的. 每一个类型
@@ -496,11 +496,11 @@ p_B \circ B = \cons{id}\), 都有一个截面
 同构. 这是因为类型论中还有隐藏的重要条件, 即对于任何代换
 \(\sigma\), 都有 \((A \times B)[\sigma] = A[\sigma] \times B[\sigma]\).
 在范畴论中, 代换就是拉回函子. 因此设拉回 \(\sigma : \Delta \to \Gamma\),
-我们要求在 \(\mathcal C/\Delta\) 中有同构
-\[\sigma^*(A \times B)\cong \sigma^* A \times \sigma^* B.\]
+我们要求在 \(\mathcal C/\Delta\) 中有
+\[\sigma^*(A \times B) = \sigma^* A \times \sigma^* B.\]
 对应的 \(\pi_1\) 等也应当与拉回交换, 即对于任何
 \(p \in \hom_{/\Gamma}(1, A\times B)\), 都有
-\(\pi_1(\sigma^* p)\) 经过同构后得到 \(\sigma^* \pi_1(p)\).
+\(\pi_1(\sigma^* p) = \sigma^* \pi_1(p)\).
 其余条件读者可据此类推. 由此可以计算
 \[\begin{aligned}
   &\phantom{={}}
@@ -508,21 +508,101 @@ p_B \circ B = \cons{id}\), 都有一个截面
     A \times B \to \Gamma)\\
   &\cong\hom_{/\Delta}(\Delta \xrightarrow{\cons{id}}\Delta,
     \sigma^* (A \times B \to \Gamma))\\
-  &\cong\hom_{/\Delta}(\underbrace{\Delta \xrightarrow{\cons{id}}\Delta}_{\text{终对象}},
+  &=\hom_{/\Delta}(\underbrace{\Delta \xrightarrow{\cons{id}}\Delta}_{\text{终对象}},
     \sigma^* A \times \sigma^* B \to \Delta) \\
-  &\cong\hom_{/\Delta}(1, \sigma^* A) \times \hom_{/\Delta}(1, \sigma^* B)\\
+  &=\hom_{/\Delta}(1, \sigma^* A) \times \hom_{/\Delta}(1, \sigma^* B)\\
   &\cong\hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma, A \to \Gamma)
     \times \hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma, B \to \Gamma)
 \end{aligned}\]
-这里中间两步同构的自然性需要验证. (...)
 因此 \(A \times B\) 的确就是俯范畴中满足泛性质的乘积.
 
-相等类型较为特殊. (extensionality) 例如在
-\ref{martinlof:identity}~节中我们提到
+相等类型较为特殊. 在 \ref{martinlof:identity}~节中我们提到
+内涵类型论与外延类型论的区分. 但是在局部积闭范畴的语义框架中,
+无法体现这个区分. 一旦某个范畴对象满足内涵类型论的相等类型
+的相关性质, 它就也满足外延类型论里的相等类型性质.
 
-(Boolean type?)
+具体来说, 我们需要一个类型
+\[\frac{\Gamma \vdash A\,\text{type}}
+{\Gamma, p {:} A \times A \vdash \cons{Id}(p)\,\text{type}}.\]
+这里用 \(A \times A\) 比较方便, 与
+\(\Gamma, x{:}A, y{:}A\) 是等价的. 因此在范畴论中就是
+\[\begin{tikzcd}
+  {\cons{Id}} \\
+  {A\times A}
+  \arrow[from=1-1, to=2-1]
+\end{tikzcd}\]
+这里我们同样在俯范畴中, 即可省略 \(\Gamma\). 它需要有
+一个元素 \(\cons{refl}(a) : \cons{Id}(a,a)\).
+那么我们首先需要得到 \(\cons{Id}(a,a)\) 这个类型,
+也就是将 \(p : A \times A\) 的两个分量代换成相同的.
+这就是对角线态射 \(\Delta : A \to A \times A\).
+代换也就是取拉回. 然后我们要求有一个截面 \(\cons{refl}\)：
+\[\begin{tikzcd}
+  {\Delta^*\cons{Id}} & {\cons{Id}} \\
+  A & {A\times A}
+  \arrow[from=1-2, to=2-2]
+  \arrow["\Delta"', from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+  \arrow["{\cons{refl}}", curve={height=-6pt}, from=2-1, to=1-1]
+\end{tikzcd}\]
+而 J 原理说的就是对于任何 \(p {:}A \times A,
+r{:}\cons{Id}(p) \vdash X\,\text{type}\), 只要我
+取定了在 \(\cons{refl}\) 处的一个元素, 那么就决定了
+对任何 \(r\) 的一族元素. 写成范畴语言就是
+\[\begin{tikzcd}
+  {X(\cons{refl})} && X \\
+  A & {\Delta^*\cons{Id}} & {\cons{Id}} \\
+  & A & {A\times A}
+  \arrow[from=2-3, to=3-3]
+  \arrow["\Delta"', from=3-2, to=3-3]
+  \arrow[from=2-2, to=3-2]
+  \arrow[from=2-2, to=2-3]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+  \arrow["{\cons{refl}}", from=2-1, to=2-2]
+  \arrow[curve={height=6pt}, Rightarrow, no head, from=2-1, to=3-2]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-3]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+  \arrow["x", curve={height=-6pt}, from=2-1, to=1-1]
+  \arrow["{\cons{J}(x)}"', curve={height=6pt}, from=2-3, to=1-3]
+\end{tikzcd}\]
+对于任何 \(x\) 都要求有唯一对应的 \(\cons{J}(x)\),
+而每个截面 \(j : \cons{Id} \to X\) 在拉回函子作用下
+也能得到唯一对应的 \(j(\cons{refl})\), 这两个对应关系
+是互逆的.
 
-natural numbers
+注意到如果取 \(\cons{Id} = A\), 那么上面的条件的确都满足：
+\[\begin{tikzcd}
+  X && X \\
+  A & A & A \\
+  & A & {A\times A}
+  \arrow["\Delta", from=2-3, to=3-3]
+  \arrow["\Delta"', from=3-2, to=3-3]
+  \arrow[from=2-2, to=3-2]
+  \arrow["{\cons{id}}", from=2-2, to=2-3]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+  \arrow["{\cons{id}}", from=2-1, to=2-2]
+  \arrow[curve={height=6pt}, Rightarrow, no head, from=2-1, to=3-2]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-3]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+  \arrow["x", curve={height=-6pt}, from=2-1, to=1-1]
+  \arrow["x"', curve={height=6pt}, from=2-3, to=1-3]
+\end{tikzcd}\]
+如果我们再类似乘积类型要求相等类型与代换交换, 那么用
+米田引理做计算就可以得到 \(\cons{Id} \to A\times A\) 只能同构于
+对角线 \(\Delta : A \to A \times A\).
+如果考虑集合的话, 确实满足这个直观： \(\cons{Id}\)
+应当取出 \(A \times A\) 的子集, 满足两个分量相等.
+这个子集正好就是对角线 \(\Delta : A \hookrightarrow A \times A\).
+
+这样的相等类型, 必然满足函数外延性等性质. 如果我们仅仅关心
+外延 Martin-L\"of 类型论, 那么这很合适. 但是需要研究
+内涵类型论的特性时, 就需要新的模型.
 
 \subsection{语法与语义}
 
@@ -595,10 +675,14 @@ Seely的原始论文中并没有得到解决.
 如果提前使用了这个式子的解释, 那么就会
 构成循环论证, 就好像数学归纳法中归纳到 \(n\) 时却去
 使用 \((n+3)\) 满足归纳假设的条件一样.
-对于其他的类型, 如乘积等, 都有类似的问题.
-
 当然, 我们知道 \(B[x/a]\) 仍然与我们选择的拉回
-有唯一的同构. 因此我们有三种选择：
+有唯一的同构, 因此我们需要想办法抚平同构与严格相等之间的差距.
+对于其他的类型, 如乘积等, 都有类似的问题.
+例如在 \ref{category:lccc:other}~节中我们要求
+\(\sigma^*(A \times B) = \sigma^* A \times \sigma^* B\)
+这里是相等而不是同构.
+
+我们有三种选择：
 \begin{enumerate}
 \item\label{category:coh:coherence} 试图证明\textbf{融贯性},
 即上面产生的所有同构, 无论怎么组合得到的交换图都是交换的.
