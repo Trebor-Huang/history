@@ -2,9 +2,9 @@
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-**You can download the artifacts at [the actions tab](https://github.com/Trebor-Huang/history/actions)** (Login required).
+**You can download the artifacts at [the releases page](https://github.com/Trebor-Huang/history/releases)**.
 
-**你可以在[此](https://github.com/Trebor-Huang/history/actions)下载编译好的文件**（需要登录GitHub）.
+**你可以在[此](https://github.com/Trebor-Huang/history/releases)下载编译好的文件**.
 
 An overview of the history of type theory, mainly for mathematically oriented people. I seek to achive these goals:
 - Provide a coherent and up-to-date source of information in Chinese.
