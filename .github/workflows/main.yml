@@ -59,6 +59,7 @@ jobs:
           # glob_root_file: true
           root_file: "history.tex"
           latexmk_use_xelatex: true
+          latexmk_shell_escape: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:

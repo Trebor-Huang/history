@@ -12,4 +12,5 @@
 *.toc
 *.xdv
 .DS_Store
+/_minted-history
 title.tex
