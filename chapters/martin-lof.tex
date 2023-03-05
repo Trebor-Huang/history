@@ -287,13 +287,13 @@ Coq是一套交互式定理证明软件. 它基于构造归纳演算, 名字也�
 并且写完之后难以阅读. 读者可以尝试一下, 用于检测自己对类型论
 的知识是否熟悉. 在 Coq 中提供了\textbf{证明策略}(tactic)的语言,
 此时这个命题的证明可以写成
-\begin{verbatim}
+\begin{minted}{coq}
 Proof.
   intros m. induction m as [| m' H ].
   - apply add_zero.
   - rewrite add_succ. rewrite H. reflexivity.
 Qed.
-\end{verbatim}
+\end{minted}
 这与自然语言几乎完全一致. 第一句话用策略 \texttt{intros}
 引入了变量 \(m\), 第二句话对其进行归纳.
 这里 \(m'\) 就是在第二种情况下
@@ -357,28 +357,29 @@ Agda也是基于类似Martin-L\"of类型系统的交互式定理证明
 用户可以让Agda执行一些操作修改洞附近的代码, 在这个与
 软件合作的过程中逐步完成整个证明. 譬如证明定理
 \(\forall n. n + 0 = n\).
-\begin{verbatim}
+\begin{minted}{agda}
 theorem : (n : Nat) -> n + 0 == n
 theorem = ?
-\end{verbatim}
+\end{minted}
 这里的问号就是待填入的内容. 此时可以使用快捷键
 命令Agda引入变量, 它便会自动将代码修改为
-\begin{verbatim}
+\begin{minted}{agda}
 theorem : (n : Nat) -> n + 0 == n
 theorem n = ?
-\end{verbatim}
+\end{minted}
 接下来, 我们命令Agda对\(n\)归纳, 代码就会变为
-\begin{verbatim}
+\begin{minted}{agda}
 theorem : (n : Nat) -> n + 0 == n
 theorem zero = ?
 theorem (succ x) = ?
-\end{verbatim}
+\end{minted}
 以此类推. 由于这里类型系统强大的表达能力, 我们可以
 直接使用类型指导应该填入哪些东西.
 
 Agda实现了非常多前沿的类型论, 如可以开启立方类型论
-模式, 就能在立方类型论中进行定理证明. 因此, Agda 对类型论
-研究者非常友好, 便于进行实验.
+模式, 就能在立方类型论中进行定理证明. Agda 还支持
+自定义公理及其重写规则来模拟全新的类型论. 因此,
+Agda 对类型论研究者非常友好, 便于进行实验.
 
 \subsection{其他}
 
@@ -390,4 +391,5 @@ Agda实现了非常多前沿的类型论, 如可以开启立方类型论
 Nuprl 与 Andromeda 是基于外延类型论的计算机辅助证明软件.
 尽管上文中我们说过外延集合论中一个证明是否正确难以机械判定,
 但是这些软件中允许用户手动插入额外的说明, 用于帮助软件进行判断.
-
+Sterling、Favonia 等人在 Nuprl 的思想基础上开发了一种
+积立方类型论的原型实现 \textsf{{\color{red} Red}PRL}.
