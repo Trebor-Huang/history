@@ -13,4 +13,5 @@
 *.xdv
 .DS_Store
 /_minted-history
+/.vscode
 title.tex

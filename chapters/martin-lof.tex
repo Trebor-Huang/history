@@ -104,12 +104,15 @@ _{\text{利用 \(m\) 与 \(f(m)\) 表达 \(f(m+1)\)}}] \to
 就意味着无法判断某个证明是否真的证明了命题. 一个类型论
 不一定需要有命题相等, 但是一定有判值相等的概念. 当然这个概念
 可以是平凡的, 比如只有字面相等的表达式才判值相等; 这就
-产生了\textbf{弱类型论}(weak type theory).\footnote{Martin-L\"of
-类型论又称作\textbf{内涵类型论}(intensional
-type theory).} 在另一个极端, 我们也可以设定一条规则, 让命题相等
+产生了\textbf{弱类型论}(weak type theory).
+在另一个极端, 我们也可以设定一条规则, 让命题相等
 的概念和判值相等的概念重合:
 \[\frac{M =_A N}{M = N}.\]
-这就产生了\textbf{外延类型论}(extensional type theory).
+这就产生了\textbf{外延类型论}(extensional type theory).%
+\footnote{相对应的不含这条规则的 Martin-L\"of
+类型论又称作\textbf{内涵类型论}(intensional
+type theory). 以后谈到 Martin-L\"of 类型论, 若不
+特别说明, 均指内涵类型论.}
 这样的代价就是判值相等不再可以机械地判定, 因此在其中
 写下一个命题的证明, 也没有明确的办法判断这是否是正确的
 证明. 这三种类型论的联系可以参考~\cite{winterhalter:2018:ettwtt}.
@@ -391,5 +394,5 @@ Agda 对类型论研究者非常友好, 便于进行实验.
 Nuprl 与 Andromeda 是基于外延类型论的计算机辅助证明软件.
 尽管上文中我们说过外延集合论中一个证明是否正确难以机械判定,
 但是这些软件中允许用户手动插入额外的说明, 用于帮助软件进行判断.
-Sterling、Favonia 等人在 Nuprl 的思想基础上开发了一种
-积立方类型论的原型实现 \textsf{{\color{red} Red}PRL}.
+Sterling 与 Favonia 等人在 Nuprl 的思想基础上开发了一种
+积立方类型论的原型实现~{\color{red}Red}PRL.
