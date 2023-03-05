@@ -39,7 +39,6 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
   - Cite Tom de Jong's stuff?
   - Mention forcing & realizability?
   - Cite 1lab properly
-  - Use `fancyvrb` to improve code display?
 
 ## Conventions
 
