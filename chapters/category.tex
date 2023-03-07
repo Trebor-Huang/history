@@ -47,7 +47,7 @@
 我们先从函数对象 \(B^A\) 出发, 试图描述 “\(p\) 的右逆” 这个条件.
 
 首先我们可以描述复合, 即 \(p^A : B^A \to A^A\). 其次
-我们希望取出恒等态射, 即 \(\cons{id}:A \to A\) 对应的
+我们希望取出恒同态射, 即 \(\cons{id}:A \to A\) 对应的
 \(1 \to A^A\), 这是函数对象泛性质的直接应用. 接下来取
 拉回就得到所需的截面对象.
 \[\begin{tikzcd}
@@ -715,17 +715,48 @@ Seely的原始论文中并没有得到解决.
 的特性就必须选择更精细的范畴语义.
 
 \subsubsection{概括范畴}
+% Note: Conceptual clearness over historical order
+局部积闭范畴中将所有的态射都一视同仁.
+这意味着一切语境的代换 \(\sigma : \Delta \to \Gamma\)
+都 (至少同构于) 某个形如 \(p_A : (\Gamma, A) \to \Gamma\)
+的代换, 这个条件看起来太强了. 我们需要为不满足此条件的类型论
+提供模型, 最简单的想法就是, 在某个范畴中选定一族态射,
+令它们代表形如 \(p_A\) 的代换.
+我们称这些态射为\textbf{形式丛} (display map).
 
-Contextual category (1986 Cartmell)
-\cite{cartmell:1986:contextualcat}
+第一个自然的问题是, 形式丛的集合需要满足什么性质. 首先,
+如果有一个代换 \(\sigma : \Delta \to \Gamma\), 那么
+将其作用于形式丛 \(p_A : (\Gamma, A) \to \Gamma\) 上,
+就会得到拉回 \(\sigma^* p_A : (\Delta, A[\sigma]) \to \Delta\),
+这也应该是形式丛 \(p_{A[\sigma]}\). 因此我们要求形式丛
+的任何拉回都存在, 而且形式丛的拉回还是形式丛.
 
 Display map cat % (Hyland and Pitts, 1989)??
 
-CwA (1978 Cartmell?? 1990 Moggi),
-CwF (1995 Dybjer)
+(Motivate comprehension cat from display map cat)
+用范畴语言叙述, 我们考虑一个范畴 \(\mathcal C\), 那么
+可以以它的箭头为对象, 两个箭头 \(f, g\) 之间的交换方
+\[\begin{tikzcd}
+A \ar[r] \ar[d, "f"'] & C \ar[d, "g"] \\
+B \ar[r] & D
+\end{tikzcd}\]
+为态射, 组成一个范畴 \(\mathcal C^\to\).\footnote{这个范畴
+也可以看作从某个范畴 \(I\) 到 \(\mathcal C\) 的函子范畴,
+其中 \(I = \boxed{\bullet\to\bullet}\) 恰好
+有两个对象, 一个非恒同态射. 如果把它记作 \(\to\) 的话,
+那 \(\mathcal C^\to\) 这个记号就非常合理了.} 我们有显然
+的函子, 取箭头的陪域 \(\cons{cod} : \mathcal C^\to \to \mathcal C\).
+
 
 Comprehension cat (1990 Jacobs)
 
+CwA (1978 Cartmell?? 1990 Moggi), only mention.
+CwF (1995 Dybjer)
+
+\subsubsection{语境范畴} (更早)
+
+Contextual category (1986 Cartmell)
+\cite{cartmell:1986:contextualcat}
 
 \subsubsection{自然模型}
 
@@ -946,7 +977,7 @@ Grothendieck提出层的概念, 是为了更好地整理代数几何中
 \end{itemize}
 它们满足一些性质：
 \begin{itemize}
-\item \(\mathrm{res}_{U,U}\) 是恒等映射.
+\item \(\mathrm{res}_{U,U}\) 是恒同映射.
 \item \(\mathrm{res}_{V, W}\circ \mathrm{res}_{U,V} = \mathrm{res}_{U, W}\).
 \item 给定开覆盖 \(U = \bigcup_{i\in I} U_i\),
 对于任何一组 \(f_i \in \mathscr F(U_i)\), 满足
@@ -1120,7 +1151,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 成为了初等意象的定义. 满足ETCS的范畴可以视作特殊的初等意象.
 \begin{definition}
 一个范畴 \(\mathcal C\) 是\textbf{初等意象}, 当且仅当它
-有所有有限极限, 积闭, 并且有子对象分类器.
+有所有有限极限, 积闭, 并且有子对象分类子.
 \end{definition}
 我们来把这个定义解包, 看看背后蕴含的直觉.
 
@@ -1216,7 +1247,7 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 余极限的定义就是将极限定义中的所有箭头反向. 集合范畴中也有任何
 余极限.
 
-我们还需要定义子对象分类器的概念. 考虑一个子集
+我们还需要定义子对象分类子的概念. 考虑一个子集
 \(A \hookrightarrow B\).\footnote{\(A \subseteq B\) 自然
 会产生一个含入映射 \(A \to B\). 我们将这样的映射记作
 \(A \hookrightarrow B\). 在范畴论中, 我们不关心对象“内部”
@@ -1259,9 +1290,9 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 子图 \(H \hookrightarrow G\) 与映射 \(G \to \Omega\)
 是一一对应的.
 
-总结上面两个例子的共性, 我们可以定义\textbf{子对象分类器}的
+总结上面两个例子的共性, 我们可以定义\textbf{子对象分类子}的
 概念. 如果一个对象 \(\Omega\) 满足任何 \(G\) 的子对象都可以
-表示为 \(G \to \Omega\) 的态射, 就称这个对象为子对象分类器,
+表示为 \(G \to \Omega\) 的态射, 就称这个对象为子对象分类子,
 因为它分类了子对象中所有可能出现的情况.
 我们来把这个定义严谨化. 什么是子对象呢? 首先需要注意的是,
 \emph{子对象不是对象}. 子群不是群, 因为如果子群是群的话,
@@ -1278,8 +1309,8 @@ theory of the category of sets, 缩写为ETCS). 具体来说,
 \begin{definition}
 一个对象 \(\Omega\) 配备一个态射
 \(t : \star \to \Omega\)
-称为\textbf{子对象分类器}\footnote{我们不需要
-对这个态射做任何要求, 但是可以可以证明如果子对象分类器存在,
+称为\textbf{子对象分类子}\footnote{我们不需要
+对这个态射做任何要求, 但是可以可以证明如果子对象分类子存在,
 那么 \(t\) 必然是单射, 换句话说 \(\star\) 是 \(\Omega\)
 的子对象. 同时, \(\star\) 一定是终对象.}, 当且仅当对于任何单射
 \(i : A \rightarrowtail X\), 都有唯一的映射
@@ -1319,8 +1350,8 @@ X && \mathrm{B}G
 \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
 \end{tikzcd}\]
 \end{definition}
-分类空间是 \(G\)-主丛的分类器,
-而子对象分类器是子对象的分类器.
+分类空间是 \(G\)-主丛的分类子,
+而子对象分类子是子对象的分类子.
 这些定义的思想与模空间等也有联系.
 
 尽管定义看起来很简短, 初等意象实际上包含了非常丰富的结构.
@@ -1421,7 +1452,7 @@ X && \mathrm{B}G
 \(\tilde p : 1 \to \{x \mid \varphi(x)\}\)
 使得上图交换, 那么就称点\(p\) \textbf{满足} \(\varphi\).%
 \footnote{事实上, 这等价于说 \(\varphi \circ p = t\).
-其等价性是很好的范畴论习题, 但是在没有子对象分类器时就
+其等价性是很好的范畴论习题, 但是在没有子对象分类子时就
 只能依靠原本的定义. 在广义点的情况下也有类似的等价.}
 我们进一步考虑广义点集. 如果广义点 \(p : U \to X\) 存在
 \(\tilde p : U \to \{x \mid \varphi(x)\}\) 使得
@@ -1459,9 +1490,9 @@ Kripke--Joyal翻译仅仅为意象提供了内语言. 对于有其他结构
 
 \subsection{ETCS}
 排中律在内语言中的翻译为 \(\Omega = 1 + 1\), 即
-子对象分类器是两个终对象的不交并. 在集合范畴中这是成立的,
+子对象分类子是两个终对象的不交并. 在集合范畴中这是成立的,
 但是在之前举例的图范畴中, 终对象是一个点上有一个自环,
-但子对象分类器有两个点和五条边, 不是两个终对象的不交并.
+但子对象分类子有两个点和五条边, 不是两个终对象的不交并.
 许多意象的内语言中, 排中律是不成立的.\footnote{内语言中
 排中律是否成立与外部语言是不一样的. 集合范畴中排中律成立,
 等价于外部语言的排中律成立; 图范畴中无论如何排中律都
