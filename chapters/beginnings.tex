@@ -884,7 +884,7 @@ Scott-连续函数的集合 \([A \to B]\) 逐点使用 \(B\) 上的
 \begin{lemma}[{\cite[定理2.1.19]{abramsky:1995:domain}}]
 对于有最小元 \(\bot\) 的dcpo \(A\),
 存在Scott-连续函数
-\emph{\[\cons{fix} : [A \to A] \to A\]}
+\[\cons{fix} : [A \to A] \to A\]
 取出每个函数的最小不动点.
 \end{lemma}
 \begin{proof}
@@ -905,8 +905,8 @@ Scott-连续函数的集合 \([A \to B]\) 逐点使用 \(B\) 上的
 
 我们构造出满足 \([D \to D] \cong D\) 的对象后,
 可以证明\(\cons{Y}\)的语义就是 \(\cons{fix}\) 函数.
-回忆我们认为dcpo中元素越大表示信息越详细.
-换句话说, 尽管
+回忆我们认为dcpo中元素越大表示信息越详细,
+而 \(\cons{fix}\) 是\emph{最小}不动点. 换句话说, 尽管
 某个函数可能有很多不动点, 但是 \(\cons{Y}\)
 \emph{总是取出定义最“不明确”的那个}. 譬如 \(\lambda x.x\)
 的不动点为全体表达式. 而 \(\cons{Y}(\lambda x. x) = \Omega\),
