@@ -1,4 +1,4 @@
-# History of type theory 类型论简史
+# A Brief History of Type Theory 类型论简史
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
