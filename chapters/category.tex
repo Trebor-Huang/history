@@ -718,7 +718,6 @@ Seely的原始论文中并没有得到解决.
 在局部积闭范畴中的相等类型必然是外延的, 因此要研究内涵类型论
 的特性就必须选择更精细的范畴语义.
 
-\subsubsection{概括范畴}
 % Note: Conceptual clearness over historical order
 局部积闭范畴中将所有的态射都一视同仁.
 这意味着一切语境的代换 \(\sigma : \Delta \to \Gamma\)
@@ -766,13 +765,20 @@ B \ar[r] & D
 
 Comprehension cat (1990 Jacobs)
 
-CwA (1978 Cartmell?? 1990 Moggi), only mention.
-CwF (1995 Dybjer)
+CwA (具集范畴) (1978 Cartmell?? 1990 Moggi), only mention.
+CwF (具族范畴) (1995 Dybjer)
 
-\subsubsection{语境范畴} (更早)
+\subsubsection{语境范畴}
 
-Contextual category (1986 Cartmell)
-\cite{cartmell:1986:contextualcat}
+一个很自然的要求是, 范畴中的每一个对象都必须形如
+\((A_1,A_2,\dots, A_n)\). 换句话说就是必须选定有限个
+形式丛 \(\Gamma \xrightarrow{p_n} \Gamma' \to \cdots \xrightarrow{p_1} 1\)
+将 \(\Gamma\) 逐步缩小到单点. 这样的好处是, 我们只需要
+对形式丛定义某种操作, 就能利用归纳法将这个操作抬升到所有的对象.
+而坏处也很明显, 就是这排除了某些没有这个结构的范畴. 对以上
+讲述的每一种范畴语义都能做类似这样的要求, 称为\textbf{语境性} (contextuality).
+1986年, Cartmell 提出了语境范畴, 实则等价于满足语境性
+的具集范畴.
 
 \subsubsection{自然模型}
 
@@ -812,7 +818,7 @@ General framework (2019 上村太一)
 对于任何一个拓扑空间, “所有开集要么同时包含, 要么同时不包含两个点\(x,y\)”
 构成一个等价关系. 我们可以商去这个关系得到一个 T\(_0\) 拓扑空间.
 这说明拓扑空间的定义虽然简洁, 但是点和开集的关系并不是
-严丝合缝, 而是有一些松动; 我们使用这个定义仅仅是因为
+严丝合缝; 我们使用这个定义仅仅是因为
 这些瑕疵不影响大局. 或许我们可以先不考虑点集, 仅仅看开集
 上的关系. 这引出了\textbf{无点拓扑学}的研究.
 
