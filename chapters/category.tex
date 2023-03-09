@@ -516,6 +516,10 @@ p_B \circ B = \cons{id}\), 都有一个截面
 \end{aligned}\]
 因此 \(A \times B\) 的确就是俯范畴中满足泛性质的乘积.
 
+实际上 \(\Sigma,\Pi\)-类型也可以类似上面的做法, 将规则
+一一翻译为范畴语言. 读者可以验证这样翻译得到的语义与我们之前
+使用伴随函子定义的语义是等价的.
+
 相等类型较为特殊. 在 \ref{martinlof:identity}~节中我们提到
 内涵类型论与外延类型论的区分. 但是在局部积闭范畴的语义框架中,
 无法体现这个区分. 一旦某个范畴对象满足内涵类型论的相等类型
@@ -694,7 +698,7 @@ Seely的原始论文中并没有得到解决.
 就是要求这些同构实际上都是 \(\cons{id}\). 这样这个问题
 显然就自动消失了. 但是很多原有的语义范畴也会被排除在外,
 我们需要保证仍然能够留下足够多有趣的语义范畴.
-\item\label{category:coh:weak} 修改类型论的定义,
+\item\label{category:coh:weak} 修改类型论语法的规则,
 使得代入操作不再得到完全相等的语法结构. 当然,
 我们还得证明新的类型论在某种意义下等价于原有的类型论.
 \end{enumerate}
@@ -718,7 +722,7 @@ Seely的原始论文中并没有得到解决.
 % Note: Conceptual clearness over historical order
 局部积闭范畴中将所有的态射都一视同仁.
 这意味着一切语境的代换 \(\sigma : \Delta \to \Gamma\)
-都 (至少同构于) 某个形如 \(p_A : (\Gamma, A) \to \Gamma\)
+都是 (至少同构于) 形如 \(p_A : (\Gamma, A) \to \Gamma\)
 的代换, 这个条件看起来太强了. 我们需要为不满足此条件的类型论
 提供模型, 最简单的想法就是, 在某个范畴中选定一族态射,
 令它们代表形如 \(p_A\) 的代换.
@@ -729,9 +733,21 @@ Seely的原始论文中并没有得到解决.
 将其作用于形式丛 \(p_A : (\Gamma, A) \to \Gamma\) 上,
 就会得到拉回 \(\sigma^* p_A : (\Delta, A[\sigma]) \to \Delta\),
 这也应该是形式丛 \(p_{A[\sigma]}\). 因此我们要求形式丛
-的任何拉回都存在, 而且形式丛的拉回还是形式丛.
-
-Display map cat % (Hyland and Pitts, 1989)??
+的任何拉回都存在, 而且形式丛的拉回还是形式丛. 配备了一族
+形式丛的范畴称为\textbf{形式丛范畴}. 我们可以在这上面重新
+叙述各种类型的语义. 例如对于 \(p_B : (\Gamma,A,B) \to (\Gamma,A)\),
+\(p_A : (\Gamma,A) \to \Gamma\), 要求 \(\sum_A B\) 类型存在,
+就是要求复合 \(p_A \circ p_B\) 也是形式丛.\footnote{注意
+这里 \((\Gamma, A)\) 这个记号只是为了形式上展示与语法的关联,
+实际上它就是范畴中的某个随意的对象, 并不是\(\Gamma\)与
+\(A\)经过运算的结果.} 而 \(\prod_A B\)
+则与上述的伴随函子定义类似, 只不过这里只要求这一个 \(\Pi\)-类型
+存在, 而不是所有的 \(\Pi\)-类型存在. 具体来说, 这就是
+另一个形式丛 \(p_{\Pi_AB} : (\Gamma, \Pi_A B) \to \Gamma\),
+使得沿着 \(\sigma : \Delta \to \Sigma\) 拉回
+(回忆形式丛要求拉回都存在而且也是形式丛) 有自然同构
+\[\hom_{/\Gamma}(\sigma, p_{\Pi_AB})
+\cong \hom_{/(\Gamma,A)}((\Delta, \sigma^*A) \to (\Gamma, A), p_B).\]
 
 (Motivate comprehension cat from display map cat)
 用范畴语言叙述, 我们考虑一个范畴 \(\mathcal C\), 那么
