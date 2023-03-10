@@ -775,10 +775,12 @@ Seely的原始论文中并没有得到解决.
 作为资料的一部分. 由1978年 Cartmell 提出了具集范畴
 (category with attributes, CwA), 1995 年 Dybjer
 提出了具族范畴 (category with families, CwF),
-都是这个思想. 我们这里介绍具族范畴.
+都是这个思想. 这两者实际上等价, 我们这里介绍具族范畴.
 
 对于每个语境 \(\Gamma\), 都应该有类型的集合
-\(\cons{Ty}(\Gamma)\), 并且每个类型配备一些元素.
+\(\cons{Ty}(\Gamma)\), 并且每个类型
+\(A \in \cons{Ty}(\Gamma)\) 配备一些
+元素 \(\cons{Tm}(A)\).
 这个信息可以打包成一个范畴 \(\cons{Fam}\), 其中的对象
 是一个集合 \(T\) 上面配备一族集合 \(\{A_t\}_{t\in T}\).
 这称为\textbf{集族}. 两个集族 \(\{A_t\}_{t\in T},
@@ -824,8 +826,53 @@ Seely的原始论文中并没有得到解决.
 \end{tikzpicture}
 \end{center}
 
+我们也可以将 \(A_t\) 整体看作一个大集合 \(A\),
+附加一个函数 \(\pi_A : A \to S\) 表示每个元素应当归属
+\(S\) 中的哪个元素. 因此实际上有范畴等价
+\(\cons{Fam} \cong \cons{Set}^\to\), 其中
+\(\mathcal C^\to\) 是由范畴 \(\mathcal C\) 中的箭头
+与交换方构成的新范畴, 请读者验证.
 
-CwF \cite{castellan:2019:cwf}
+回到类型论上来, 我们对于每个语境 \(\Gamma\), 都赋予一个集合族,
+写作 \(\{\cons{Tm}(A)\}_{A \in \cons{Ty}(\Gamma)}\).
+对于语境的代换 \(\sigma : \Delta\to\Gamma\), 它应该对应集合族
+中\emph{反向}的态射. 因为如果 \(A\) 是 \(\Gamma\) 中的类型,
+那么 \(A[\sigma]\) 将 \(A\) 中的变量都代换之后就得到 \(\Delta\)
+中的类型. 因此我们要求一个函子
+\(F : \mathcal C^{\mathrm{op}} \to \cons{Fam}\).
+
+有了函子还不够, 因为如果有 \(\Gamma \vdash A\,\text{type}\),
+我们应该有办法构造语境 \((\Gamma, x{:}A)\), 并且它也应该
+带上投影 \(p_A : (\Gamma,x{:}A) \to \Gamma\). 因此
+我们需要想办法描述 \(\mathcal C/\Gamma\) 中的某个对象.
+我们希望
+\[\hom_{/\Gamma}(\Delta \xrightarrow\sigma \Gamma,
+(\Gamma,A) \to \Gamma)
+\cong \cons{Tm}(A[\sigma]).\]
+换句话说, 我们定义了函子
+\[\begin{matrix}
+h &:& (\mathcal C/\Gamma)^{\textrm{op}} &\to& \cons{Fam}\\
+& & (\Delta \xrightarrow\sigma \Gamma) &\mapsto& \cons{Tm}(A[\sigma])
+\end{matrix}\]
+其中回忆 \(A[\sigma]\) 是由函子 \(F\) 作用在态射 \(\sigma\)
+上得到的集合族之间的态射产生的. 我们希望能够构造 \(\Gamma' = (\Gamma,A)\),
+就是希望存在某个 \(p : \Gamma'\to \Gamma\) 使得有自然同构
+\(\hom_{/\Gamma}(\sigma, p) \cong h(\sigma)\).
+这种能够表示为形如 \(\hom(-, X)\) 的函子 \(h\) 被称为\textbf{可表函子}.
+由米田引理 (引理~\ref{category:yoneda}), 这样的对象
+一旦存在就必然(在唯一同构意义下)唯一.
+
+我们把上面描述的总结成定义.
+\begin{definition}
+考虑一个范畴 \(\mathcal C\), 配备了函子
+\(F : \mathcal C^{\textrm{op}} \to \cons{Fam}\).
+对于它的每个对象 \(\Gamma\), \(F(\Gamma)\) 是一个
+集合族 \(\{E_A\}_{A \in S}\). 对于每个 \(A \in S\),
+原范畴中的态射 \(\sigma : \Delta\to\Gamma\), 函子 \(F\)
+都给出一个对应的 \(A[\sigma]\), 这 (...) clean up notation
+\end{definition}
+
+读者可以参考 \cite{castellan:2019:cwf} 对含族范畴浅显易懂的介绍.
 
 \subsection{统一框架}
 
@@ -1209,8 +1256,8 @@ Joyal~\cite{joyal:2019：topologie}称它们为logos
 
 在范畴的定义中, 用到了集合的概念. 因此集合范畴在范畴论中
 起到了中心作用： 对于任何范畴都有一个函子 \(\hom :
-\mathcal C^{\cons{op}} \times \mathcal C \to \cons{Set}\),
-预层范畴的定义是 \(\mathcal C^{\cons{op}} \to \cons{Set}\)
+\mathcal C^{\mathrm{op}} \times \mathcal C \to \cons{Set}\),
+预层范畴的定义是 \(\mathcal C^{\mathrm{op}} \to \cons{Set}\)
 的函子, 等等. 在有了范畴论之后, 能不能反推我们使用了集合范畴
 的哪些性质呢? 换句话说, 我们需要集合范畴 \(\cons{Set}\) 满足
 哪些性质, 才能支持范畴论研究中的那些重要定理呢?
@@ -1470,7 +1517,7 @@ X && \mathrm{B}G
 那么这个办法能不能得到全部的信息呢? 令人惊讶的是,
 答案是肯定的.
 
-\begin{lemma}[米田]
+\begin{lemma}[米田]\label{category:yoneda}
 \(\hom(-,A)\) 与 \(\hom(-,B)\) 之间的自然变换
 与 \(A\) 到 \(B\) 的态射一一对应. 进一步说, 函子
 \(\yo(A) = \hom(-,A)\) 是满忠实函子.
