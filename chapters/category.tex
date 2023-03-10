@@ -782,38 +782,41 @@ Seely的原始论文中并没有得到解决.
 \(A \in \cons{Ty}(\Gamma)\) 配备一些
 元素 \(\cons{Tm}(A)\).
 这个信息可以打包成一个范畴 \(\cons{Fam}\), 其中的对象
-是一个集合 \(T\) 上面配备一族集合 \(\{A_t\}_{t\in T}\).
-这称为\textbf{集族}. 两个集族 \(\{A_t\}_{t\in T},
-\{B_s\}_{s\in S}\) 之间的态射, 就是指标集之间的态射
-\(f : T \to S\), 以及对于每个 \(t \mapsto f(t)\),
-其上的集合的态射 \(g_t : A_t \to B_{f(t)}\).
+是一个集合 \(T\) 上面配备一族集合 \(\{E_A\}_{A\in T}\).
+这称为\textbf{集族}. 两个集族 \(\{E_A\}_{A\in T},
+\{E'_B\}_{B\in T'}\) 之间的态射, 就是指标集之间的态射
+\(f : T \to T'\), 以及对于每个 \(A \mapsto f(A)\),
+其上的集合的态射 \(g_A : E_A \to E'_{f(A)}\). 对于
+一个集族 \(F = \{E_A\}_{A\in T}\), 我们记
+\(\cons{Ix}_F = T\) 为它的指标集,
+\(\cons{El}_F(A) = E_A\) 为它在指标 \(A\) 上的元素集.
 
 \begin{center}
 \begin{tikzpicture}
 \draw (-2,0) ellipse (1 and 0.5);
-\node at (-2,-0.9) {\(S\)};
+\node at (-2,-0.9) {\(T\)};
 \node (A) at (-2.4,0) {\(\bullet\)};
 \node (B) at (-1.6,0) {\(\bullet\)};
 \draw (2,0) ellipse (0.9 and 0.6);
-\node at (2,-1) {\(T\)};
+\node at (2,-1) {\(T'\)};
 \node (C) at (2.4,-0.1) {\(\bullet\)};
 \node (D) at (1.7,-0.3) {\(\bullet\)};
 \node (E) at (1.9,0.25) {\(\bullet\)};
 \node[blue, font=\large] at (0,-0.1) {\(f\)};
 
 \draw (-3,1) rectangle (-2,3);
-\node (Ao) at (-2.5, 2) {\(A_1\)};
+\node (Ao) at (-2.5, 2) {\(E_1\)};
 \draw (-2,1) rectangle (-1,3);
-\node (Bo) at (-1.5, 2) {\(A_2\)};
+\node (Bo) at (-1.5, 2) {\(E_2\)};
 \draw (-2.5,1) edge[->, out=-90, in=100] (A);
 \draw (-1.5,1) edge[->, out=-90, in=80] (B);
 
 \draw (0.9,1.1) rectangle (1.6,2.9);
-\node (Do) at (1.25, 2.3) {\(B_1\)};
+\node (Do) at (1.25, 2.3) {\(E'_1\)};
 \draw (1.6,1.1) rectangle (2.3,2.9);
-\node (Eo) at (1.95, 1.7) {\(B_2\)};
+\node (Eo) at (1.95, 1.7) {\(E'_2\)};
 \draw (2.3,1.1) rectangle (3,2.9);
-\node (Co) at (2.65, 2) {\(B_3\)};
+\node (Co) at (2.65, 2) {\(E'_3\)};
 \draw (1.25,1.1) edge[->, out=-90] (D);
 \draw (1.95,1.1) edge[->, out=-90, in=85] (E);
 \draw (2.65,1.1) edge[->, out=-90, in=70] (C);
@@ -826,15 +829,19 @@ Seely的原始论文中并没有得到解决.
 \end{tikzpicture}
 \end{center}
 
-我们也可以将 \(A_t\) 整体看作一个大集合 \(A\),
-附加一个函数 \(\pi_A : A \to S\) 表示每个元素应当归属
-\(S\) 中的哪个元素. 因此实际上有范畴等价
+我们也可以将 \(E_A\) 整体看作一个大集合 \(E\),
+附加一个函数 \(\pi : E \to T\) 表示每个元素应当归属
+\(T\) 中的哪个元素. 因此实际上有范畴等价
 \(\cons{Fam} \cong \cons{Set}^\to\), 其中
 \(\mathcal C^\to\) 是由范畴 \(\mathcal C\) 中的箭头
 与交换方构成的新范畴, 请读者验证.
 
-回到类型论上来, 我们对于每个语境 \(\Gamma\), 都赋予一个集合族,
-写作 \(\{\cons{Tm}(A)\}_{A \in \cons{Ty}(\Gamma)}\).
+回到类型论上来, 我们对于每个语境 \(\Gamma\),
+都赋予一个集合族 \(F(\Gamma)\).
+那么刚才的 \(\cons{Ty}(\Gamma)\) 就是
+\(\cons{Ix}_{F(\Gamma)}\). 而对于
+\(A \in \cons{Ty}(\Gamma)\), \(\cons{Tm}(A)\)
+就是 \(\cons{El}_{F(\Gamma)}(A)\).
 对于语境的代换 \(\sigma : \Delta\to\Gamma\), 它应该对应集合族
 中\emph{反向}的态射. 因为如果 \(A\) 是 \(\Gamma\) 中的类型,
 那么 \(A[\sigma]\) 将 \(A\) 中的变量都代换之后就得到 \(\Delta\)
@@ -866,13 +873,14 @@ h &:& (\mathcal C/\Gamma)^{\textrm{op}} &\to& \cons{Fam}\\
 \begin{definition}
 考虑一个范畴 \(\mathcal C\), 配备了函子
 \(F : \mathcal C^{\textrm{op}} \to \cons{Fam}\).
-对于它的每个对象 \(\Gamma\), \(F(\Gamma)\) 是一个
-集合族 \(\{E_A\}_{A \in S}\). 对于每个 \(A \in S\),
+对于每个 \(A \in \cons{Ix}_{F(\Gamma)}\) 与
 原范畴中的态射 \(\sigma : \Delta\to\Gamma\), 函子 \(F\)
-都给出一个对应的 \(A[\sigma]\), 这 (...) clean up notation
+都给出一个对应的 \(A[\sigma]\), 如果所有形如
+\[\sigma \mapsto \cons{El}_{F(\Delta)}(A[\sigma])\]
+的函子都可表, 则称其为\textbf{具族范畴}.
 \end{definition}
 
-读者可以参考 \cite{castellan:2019:cwf} 对含族范畴浅显易懂的介绍.
+读者可以参考 \cite{castellan:2019:cwf} 对具族范畴浅显易懂的介绍.
 
 \subsection{统一框架}
 
