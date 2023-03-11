@@ -292,6 +292,7 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \section{泛等公理的语义}
 \label{hott:semantics}
 
+\subsection{群胚语义}
 我们承接 \ref{hott:independent}~节, 详细
 描述 \cite{hofmann:1998:groupoid} 中的群胚语义. \berry{3}
 回忆 \ref{category:better}~节中对具族范畴的定义,
@@ -308,7 +309,7 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 配备一个群胚 \(G_x\), 并且对于 \(\Gamma\) 中两个对象
 \(x,y\) 之间的每条道路 \(p\) 配备一个同构 \(G_p : G_x \cong G_y\),
 保持道路的复合等. 用更紧凑的语言说, 这些数据就是一个函子
-\(G : \Gamma \to \cons{Grpd}\), 其中把 \(\Gamma\)
+\(G_\bullet : \Gamma \to \cons{Grpd}\), 其中把 \(\Gamma\)
 看作一个范畴.
 
 \begin{center}
@@ -335,7 +336,8 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \end{tikzpicture}
 \end{center}
 
-对于某个 \(G\), \(\cons{Tm}(G) = \cons{El}_{F(\Gamma)}(G)\)
+对于某个 \(G_\bullet\), \(\cons{Tm}(G)
+= \cons{El}_{F(\Gamma)}(G)\)
 则应该是这一族群胚中的“一族元素”. 换句话说, 对每个
 \(x \in \Gamma\), 给出群胚 \(G_x\) 中的某个对象
 \(g_x\). 对于任何道路 \(p \in \hom(x,y)\), 前面要求的
@@ -353,7 +355,7 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \filldraw[fill=yellow] (0,0.1) ellipse (0.9 and 1);
 \filldraw[fill=yellow] (2,0) ellipse (0.8 and 1);
 \node (Gx) at (-2,-1.4) {\(G_x\)};
-\node (Gy) at (0,-1.3) {\(G_y\)};
+\node (Gy) at (0,-1.4) {\(G_y\)};
 \node (Gz) at (2,-1.4) {\(G_z\)};
 \draw[->, gray] (Gx) edge node [above] {\(G_p\)} (Gy);
 \draw[->, gray] (Gy) edge node [above] {\(G_q\)} (Gz);
@@ -376,19 +378,24 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \end{center}
 
 以上就定义了群胚范畴上配备的函子 \(F : \cons{Grpd}\op \to \cons{Fam}\)
-在对象上的映射, 我们还需要给出它在态射上的作用.
+在对象上的映射, 我们还需要给出它在态射上的作用, (...).
 
-用CwF描述群胚
+
+对于 \(\Gamma\) 与 \(G \in \cons{Ty}(\Gamma)\),
+我们最后还需要找到一个对象 \((\Gamma, G)\) 与态射
+\(p_G : (\Gamma,G) \to G\) 使得
+\(\hom_{/\Gamma}(\sigma, p)\) 自然同构于
+\(\cons{Tm}(G[\sigma])\). 展开定义就得到 (...).
+
+\subsection{群胚族与群胚纤维化}
 
 turn family to fibrations
 
-(...)
+\subsection[模型范畴]{模型范畴\protect\berryinf}
 
-\berryinf
+\subsection{无穷范畴}
 
-model categories
-
-infinity categories
+coherence problem
 
 \section{立方类型论}
 
