@@ -15,7 +15,7 @@ This is my coursework. I have already finished the submitted version (`d0aaf51`)
 
 ## Recent updates
 
-- (Ongoing) Models for dependent types
+- Basics of category with families
 - Explanation of coherence problem
 - Rewritten introduction for locally cartesian closed categories
 
