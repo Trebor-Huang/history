@@ -708,7 +708,7 @@ Seely的原始论文中并没有得到解决.
 可以参考~\cite{curien:2014:revisit}. 在后面的类型论
 构造中, 也经常会遇到不同形式的融贯性问题, 解决思路也都类似.
 
-\subsection{更精细的范畴语义}
+\subsection{更精细的范畴语义}\label{category:more}
 我们已经看到, 尽管实际上 \(\Pi\)-类型等只对应
 形如 \(p_A : (\Gamma, A) \to \Gamma\) 的态射诱导的
 函子 \(\Pi_{p_A} : \mathcal C/(\Gamma, A) \to \mathcal C/\Gamma\),
@@ -846,7 +846,7 @@ Seely的原始论文中并没有得到解决.
 中\emph{反向}的态射. 因为如果 \(A\) 是 \(\Gamma\) 中的类型,
 那么 \(A[\sigma]\) 将 \(A\) 中的变量都代换之后就得到 \(\Delta\)
 中的类型. 因此我们要求一个函子
-\(F : \mathcal C^{\mathrm{op}} \to \cons{Fam}\).
+\(F : \mathcal C\op \to \cons{Fam}\).
 
 有了函子还不够, 因为如果有 \(\Gamma \vdash A\,\text{type}\),
 我们应该有办法构造语境 \((\Gamma, x{:}A)\), 并且它也应该
@@ -1018,7 +1018,7 @@ Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
 拓扑空间的连续映射对应位象之间的连续映射. 用范畴论的语言
 来说, 我们有一个函子
 \[\mathsf{Top} \xrightarrow{\Omega} \mathsf{Loc}
-= \mathsf{Frm}^{\mathrm{op}}.\]
+= \mathsf{Frm}\op.\]
 如果某个拓扑空间不满足 T\(_0\) 公理, 那么从拓扑的角度
 存在两个点是完全无法分辨的. 因此我们会损失关于这两个点
 的区别的信息, 换言之, \(\Omega\) 函子不是范畴等价.
@@ -1160,7 +1160,7 @@ Grothendieck 为此推广了层范畴的定义, 以便包含这些
 对于预层的定义, 我们只需要知道开集上的包含关系, 也就是
 任何一个偏序. Grothendieck 将这里的偏序推广成了
 范畴. 可以看出, 给定某个范畴 \(\mathcal C\), 一
-个\textbf{预层}就是函子 \(\mathcal C^{\mathrm{op}}
+个\textbf{预层}就是函子 \(\mathcal C\op
 \to \mathsf{Set}\). 而对于粘合公理, 我们只需要
 知道开集的交集与“开覆盖”的概念.\berry{2}
 
@@ -1265,16 +1265,16 @@ Joyal~\cite{joyal:2019：topologie}称它们为logos
 \arrow["{\mathrm{Pt}}", curve={height=-6pt}, from=2-3, to=2-1]
 \arrow["{\mathsf{Sh}}", hook', from=2-3, to=1-3]
 \arrow[hook', from=2-5, to=1-5]
-\arrow["{(\mathrm{op})}"{description}, Rightarrow, no head, from=2-3, to=2-5]
-\arrow["{(\mathrm{op})}"{description}, Rightarrow, no head, from=1-3, to=1-5]
+\arrow["{(\op)}"{description}, Rightarrow, no head, from=2-3, to=2-5]
+\arrow["{(\op)}"{description}, Rightarrow, no head, from=1-3, to=1-5]
 \end{tikzcd}\]
 
 \subsection{初等意象}\berry{1}
 
 在范畴的定义中, 用到了集合的概念. 因此集合范畴在范畴论中
 起到了中心作用： 对于任何范畴都有一个函子 \(\hom :
-\mathcal C^{\mathrm{op}} \times \mathcal C \to \cons{Set}\),
-预层范畴的定义是 \(\mathcal C^{\mathrm{op}} \to \cons{Set}\)
+\mathcal C\op \times \mathcal C \to \cons{Set}\),
+预层范畴的定义是 \(\mathcal C\op \to \cons{Set}\)
 的函子, 等等. 在有了范畴论之后, 能不能反推我们使用了集合范畴
 的哪些性质呢? 换句话说, 我们需要集合范畴 \(\cons{Set}\) 满足
 哪些性质, 才能支持范畴论研究中的那些重要定理呢?

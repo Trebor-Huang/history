@@ -1,5 +1,5 @@
 \chapter{同伦类型论}
-\section{K原理的独立性}
+\section{K原理的独立性}\label{hott:independent}
 我们刚才已经看到相等类型的归纳子, 也就是 J 原理. 它直觉上大致说的是
 “每个 \(a = b\) 类型都只有 \(\cons{refl}\) 一个
 构造器”. 但是想要表达这个直觉, 还有一个看起来很自然的写法：
@@ -47,10 +47,17 @@ K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
 乘法运算为道路拼接操作, 那么它构成一个群胚.
 \end{example}
 容易看出这是基本群的推广. 因此我们可以将群胚看成是“允许取
-多个基点的群”. 我们回过头来看类型论,
-用 J 原理可以很容易证明, 每个类型上都自带一个群胚结构.
-我们有 \(\cons{refl} : x = x\) 为单位元,
-对称性
+多个基点的群”. 另一个角度, 也可以把群胚看作是所有态射均可逆
+的范畴, 不过需要注意的是, 群胚中的乘法运算记号的左右顺序一般
+与范畴中相反, 因为范畴中常常把态射理解为类似函数的东西, 因此
+函数复合 \((f \circ g)(x) = f(g(x))\) 是先作用者在右侧.
+但是在群胚中往往将态射看作道路, 因此两条道路
+\(x \xrightarrow p y \xrightarrow q z\)
+拼接自然是从左到右写为 \(p * q\). 当然这仅仅是记号区别.
+
+我们回过头来看类型论, 用 J 原理可以很容易证明,
+每个类型上都自带一个群胚结构.
+我们有 \(\cons{refl} : x = x\) 为单位元, 对称性
 \[\prod_{x, y : A} x = y \to y = x\]
 与传递性
 \[\prod_{x,y,z : A} x = y \to y = z \to x = z\]
@@ -62,7 +69,7 @@ K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
 \(x = y\) 被解释为集合 \(\hom(x,y)\) 上的\emph{离散}群胚.
 因为当前的模型中 \(\hom(x,y)\) 只是一个集合, 没有
 其他结构. 最终可以验证, 这个模型满足J原理. 具体的理论
-在之后的 \ref{hott:semantics}~节会介绍.
+在 \ref{hott:semantics}~节会介绍.
 
 构造了这个模型之后, K 原理在这个模型中的解释是什么呢?
 我们可以发现它对应 “所有群胚都是离散群胚” 这个命题.
@@ -104,9 +111,9 @@ K\(_0\) 原理就是 K 原理, 而 K\(_1\) 原理就是上面说的
 也就是2-道路. 而进一步, 2-道路之间也有等式. 考虑五条道路
 之间的2-道路：
 \[\begin{tikzcd}
-& {(p\cdot q)\cdot (r\cdot s)} \\
-{((p\cdot q)\cdot r)\cdot s} && {p\cdot (q\cdot (r\cdot s))} \\
-{(p\cdot (q\cdot r))\cdot s} && {p\cdot ((q\cdot r)\cdot s)}
+& {(p * q) * (r * s)} \\
+{((p * q) * r) * s} && {p * (q * (r * s))} \\
+{(p * (q * r)) * s} && {p * ((q * r) * s)}
 \arrow[no head, from=2-1, to=1-2]
 \arrow[no head, from=2-1, to=3-1]
 \arrow[no head, from=3-1, to=3-3]
@@ -284,6 +291,92 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 
 \section{泛等公理的语义}
 \label{hott:semantics}
+
+我们承接 \ref{hott:independent}~节, 详细
+描述 \cite{hofmann:1998:groupoid} 中的群胚语义.
+回忆 \ref{category:better}~节中对具族范畴的定义,
+即一个范畴 \(\mathcal C\), 配备函子
+\(F : \mathcal C^{\textrm{op}}\to \cons{Fam}\),
+使得某些特定的函子可表. 对于群胚语义来说, 我们自然希望
+\(\mathcal C = \cons{Grpd}\) 是群胚与群胚同态构成的
+范畴.
+
+对于某个 \(\Gamma\), 集合族 \(F(\Gamma)\) 的含义是
+语境中所有的类型配上它们的元素. 因此在群胚语义中, 类型的集合
+\(\cons{Ty}(\Gamma) = \cons{Ix}_{F(\Gamma)}\) 的元素应该是 \(\Gamma\) 之上的
+群胚族. 换句话说, 对 \(\Gamma\) 的每个对象 \(x\) 都
+配备一个群胚 \(G_x\), 并且对于 \(\Gamma\) 中两个对象
+\(x,y\) 之间的每条道路 \(p\) 配备一个同构 \(G_p : G_x \cong G_y\),
+保持道路的复合等. 用更紧凑的语言说, 这些数据就是一个函子
+\(G : \Gamma \to \cons{Grpd}\), 其中把 \(\Gamma\)
+看作一个范畴.
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.2]
+\filldraw[thick, fill=blue, fill opacity=0.2] (0,0) ellipse (1.5 and 0.7);
+\node (x) at (-0.9, -0.1) {\(x\)};
+\node (y) at (0, 0.3) {\(y\)};
+\node (z) at (0.8, -0.2) {\(z\)};
+\node at (1.8, 0) {\(\Gamma\)};
+
+\draw (x) edge node[below, font=\scriptsize] {\(p\)} (y);
+\draw (y) edge node[below, font=\scriptsize] {\(q\)} (z);
+
+\node[circle, draw=black, fill=yellow] (X) at (-1.8,1.7) {\(G_x\)};
+\node[circle, draw=black, fill=yellow] (Y) at (0,2.2) {\(G_y\)};
+\node[circle, draw=black, fill=yellow] (Z) at (1.7,1.8) {\(G_z\)};
+
+\draw (X) edge node[sloped, above] {\(\cong\)} (Y);
+\draw (Y) edge node[sloped, above] {\(\cong\)} (Z);
+
+\draw[->, gray] (X) -- (x);
+\draw[->, gray] (Y) -- (y);
+\draw[->, gray] (Z) -- (z);
+\end{tikzpicture}
+\end{center}
+
+对于某个 \(G\), \(\cons{Tm}(G) = \cons{El}_{F(\Gamma)}(G)\)
+则应该是这一族群胚中的“一族元素”. 换句话说, 对每个
+\(x \in \Gamma\), 给出群胚 \(G_x\) 中的某个对象
+\(g_x\). 对于任何道路 \(p \in \hom(x,y)\), 前面要求的
+同构 \(G_p : G_x \to G_y\) 将 \(g_x\) 射到
+\(G_p(g_x)\), 我们不能直接要求 \(G_p(g_x) = g_y\),
+因为这样过于严格. 但是可以退而求其次, 选择一条道路
+\(g_p : G_p(g_x) \to g_y\), 使得
+\(g_{\cons{id}} = \cons{id}\), 并且对于连续的两条道路
+\(x \xrightarrow p y \xrightarrow q z\), 有
+\(g_{p * q} = G_q(g_p) * g_q\). 这实际上就是结合律的要求.
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.2, yscale=1.3]
+\filldraw[fill=yellow] (-2,0) ellipse (0.8 and 1);
+\filldraw[fill=yellow] (0,0.1) ellipse (0.9 and 1);
+\filldraw[fill=yellow] (2,0) ellipse (0.8 and 1);
+\node (Gx) at (-2,-1.4) {\(G_x\)};
+\node (Gy) at (0,-1.3) {\(G_y\)};
+\node (Gz) at (2,-1.4) {\(G_z\)};
+\draw[->, gray] (Gx) edge node [above] {\(G_p\)} (Gy);
+\draw[->, gray] (Gy) edge node [above] {\(G_q\)} (Gz);
+
+\node (x) at (-2, -0.3) {\(\bullet\)};
+\node (px) at (0, -0.3) {\(\bullet\)};
+\node (y) at (0.1, 0.5) {\(\bullet\)};
+\node (py) at (1.7, -0.1) {\(\bullet\)};
+\node (ppx) at (2.2, -0.6) {\(\bullet\)};
+\node (z) at (2.1, 0.6) {\(\bullet\)};
+
+\draw[gray, |->] (x) edge[bend left=10] (px);
+\draw[gray, |->] (y) edge[bend right=5] (py);
+\draw[gray, |->] (px) edge[bend right=5] (ppx);
+\draw[->] (px) edge node[left, font=\scriptsize] {\(g_p\)} (y);
+\draw[->] (py) edge node[left, font=\scriptsize] {\(g_q\)} (z);
+\draw[->] (ppx) -- (py);
+\draw[->] (ppx) edge node[right, font=\scriptsize] {\(g_{p*q}\)} (z);
+\end{tikzpicture}
+\end{center}
+
+以上就定义了群胚范畴上配备的函子 \(F : \cons{Grpd}\op \to \cons{Fam}\)
+在对象上的映射, 我们还需要给出它在态射上的作用.
 
 用CwF描述群胚
 
