@@ -861,21 +861,30 @@ Seely的原始论文中并没有得到解决.
 h &:& (\mathcal C/\Gamma)^{\textrm{op}} &\to& \cons{Fam}\\
 & & (\Delta \xrightarrow\sigma \Gamma) &\mapsto& \cons{Tm}(A[\sigma])
 \end{matrix}\]
-其中回忆 \(A[\sigma]\) 是由函子 \(F\) 作用在态射 \(\sigma\)
-上得到的集合族之间的态射产生的. 我们希望能够构造 \(\Gamma' = (\Gamma,A)\),
-就是希望存在某个 \(p : \Gamma'\to \Gamma\) 使得有自然同构
-\(\hom_{/\Gamma}(\sigma, p) \cong h(\sigma)\).
-这种能够表示为形如 \(\hom(-, X)\) 的函子 \(h\) 被称为\textbf{可表函子}.
-由米田引理 (引理~\ref{category:yoneda}), 这样的对象
-一旦存在就必然(在唯一同构意义下)唯一.
+% 其中回忆 \(A[\sigma]\) 是由函子 \(F\) 作用在态射 \(\sigma\)
+% 上得到的集合族之间的态射产生的.
+我们希望存在某个 \(p : \Gamma'\to \Gamma\) 使得有自然同构
+\(\hom_{/\Gamma}(\sigma, p) \cong h(\sigma)\),
+这样就能把语境的扩展 \((\Gamma, A)\) 直接定义为满足这个条件的
+\(\Gamma'\), 将代换 \(p_A\) 直接定义为 \(p\).
 
 我们把上面描述的总结成定义.
+\begin{definition}
+对于一个范畴 \(\mathcal C\) 与函子 \(h : \mathcal C^{\textrm{op}} \to \cons{Set}\),
+如果存在对象 \(X\) 使得 \(h \cong \hom(-,X)\) 是自然同构,
+那么称 \(h\) 为\textbf{可表函子}.
+\end{definition}
+由米田引理 (引理~\ref{category:yoneda}), 这样的对象 \(X\)
+一旦存在就必然(在唯一同构意义下)唯一.
 \begin{definition}
 考虑一个范畴 \(\mathcal C\), 配备了函子
 \(F : \mathcal C^{\textrm{op}} \to \cons{Fam}\).
 对于每个 \(A \in \cons{Ix}_{F(\Gamma)}\) 与
-原范畴中的态射 \(\sigma : \Delta\to\Gamma\), 函子 \(F\)
-都给出一个对应的 \(A[\sigma]\), 如果所有形如
+原范畴中的态射 \(\sigma : \Delta\to\Gamma\),
+函子 \(F\) 给出集合族之间的态射 \(F(\Gamma) \to F(\Delta)\),
+这包含一个指标集的映射 \(\cons{Ix}_{F(\Gamma)} \to \cons{Ix}_{F(\Delta)}\),
+它将 \(A\) 映射到元素 \(A[\sigma] \in \cons{Ix}_{F(\Delta)}\).
+如果所有形如
 \[\sigma \mapsto \cons{El}_{F(\Delta)}(A[\sigma])\]
 的函子都可表, 则称其为\textbf{具族范畴}.
 \end{definition}
