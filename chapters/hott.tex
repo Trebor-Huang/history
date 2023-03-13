@@ -292,9 +292,9 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \section{泛等公理的语义}
 \label{hott:semantics}
 
-\subsection{群胚语义}
+\subsection[群胚语义]{群胚语义\protect\berry{3}}
 我们承接 \ref{hott:independent}~节, 详细
-描述 \cite{hofmann:1998:groupoid} 中的群胚语义. \berry{3}
+描述 \cite{hofmann:1998:groupoid} 中的群胚语义.
 回忆 \ref{category:better}~节中对具族范畴的定义,
 即一个范畴 \(\mathcal C\), 配备函子
 \(F : \mathcal C^{\textrm{op}}\to \cons{Fam}\),
@@ -336,7 +336,18 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \end{tikzpicture}
 \end{center}
 
-对于某个 \(G_\bullet\), \(\cons{Tm}(G)
+我们可以把 \(\Gamma\) 上的群胚族 \(G_\bullet\) 融为一个
+大群胚, 这与 \(\Sigma\)-类型类似, 在范畴论中称为%
+\textbf{Grothendieck构造}, 记作 \({\int} G_\bullet\).
+具体来说, 它的对象是每个 \(G_x\) 的对象的不交并.
+而对于两个元素 \(u \in G_x, v \in G_y\), 它们之间的
+道路集合 \(\hom_{{\int} G_\bullet}(u,v)\) 是
+\[\{(p, \wp) \mid p \in \hom_G(x,y), \wp \in \hom_{G_y}(G_p(u), v)\}.\]
+请读者思考为什么这是唯一自然的选择, 可以参考下面的插图.
+\({\int}G_\bullet\) 到 \(\Gamma\) 有明显的群胚同态,
+抛弃 \(G\) 的信息.
+
+对于某个群胚族 \(G\), \(\cons{Tm}(G)
 = \cons{El}_{F(\Gamma)}(G)\)
 则应该是这一族群胚中的“一族元素”. 换句话说, 对每个
 \(x \in \Gamma\), 给出群胚 \(G_x\) 中的某个对象
@@ -378,20 +389,30 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \end{center}
 
 以上就定义了群胚范畴上配备的函子 \(F : \cons{Grpd}\op \to \cons{Fam}\)
-在对象上的映射, 我们还需要给出它在态射上的作用, (...).
-
+在对象上的映射, 我们还需要给出它在态射上的作用. 对于群胚的同态
+\(\sigma : \Delta \to \Gamma\), 需要找到集合族的态射
+\(\sigma^* : F(\Gamma) \to F(\Delta)\). 在指标集上,
+由于 \(\cons{Ix}_{F(\Gamma)}\) 就是 \(\Gamma\) 上的
+全体群胚族 \(\Gamma \to \cons{Grpd}\), 因此与 \(\sigma\)
+复合就得到
+\[(-\circ\sigma) : \cons{Ix}_{F(\Gamma)} \to \cons{Ix}_{F(\Delta)}.\]
+而 \(\cons{El}_{F(\Gamma)}(A) \to \cons{El}_{F(\Delta)}(A)\)
+的态射也由复合给出.
 
 对于 \(\Gamma\) 与 \(G \in \cons{Ty}(\Gamma)\),
-我们最后还需要找到一个对象 \((\Gamma, G)\) 与态射
-\(p_G : (\Gamma,G) \to G\) 使得
+我们最后还需要找到一个对象 \(\Gamma'\) 与态射
+\(p : \Gamma' \to G\) 使得
 \(\hom_{/\Gamma}(\sigma, p)\) 自然同构于
-\(\cons{Tm}(G[\sigma])\). 展开定义就得到 (...).
+\(\cons{Tm}(\sigma^*G)\). 只需要取 \(\Gamma'\)
+为 \({\int}G_\bullet\) 即可. 这是因为
+\((\Gamma, G)\) 在类型论中表现得类似 \(\Sigma\)-类型,
+需要将 \(G\) 的所有部分融合. 请读者验证满足条件.
 
 \subsection{群胚族与群胚纤维化}
 
 turn family to fibrations
 
-\subsection[模型范畴]{模型范畴\protect\berryinf}
+\subsection{模型范畴} \berryinf
 
 \subsection{无穷范畴}
 
