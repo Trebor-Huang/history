@@ -923,7 +923,7 @@ General framework (2019 上村太一)
 \begin{definition}
 一个集合 \(X\) 上的\textbf{拓扑}是一族子集 \(\Omega \subseteq \mathcal P(X)\),
 使得 \(\varnothing, X \in \Omega\), 并且
-\(\Omega\) 在有限交和无限并下封闭. 配备了拓扑的集合称为%
+\(\Omega\) 在有限交和任意并下封闭. 配备了拓扑的集合称为%
 \textbf{拓扑空间}. \(\Omega\) 中的集合称为\textbf{开集}.
 \end{definition}
 然而, 这个定义并非浑然天成： 我们极少会考虑不满足 T\(_0\)
@@ -933,8 +933,9 @@ General framework (2019 上村太一)
 包含其中恰好一个点, 则称这个拓扑空间为 T\(_0\) 的,
 或称之为 \textbf{Kolmogorov 空间}.
 \end{definition}
-对于任何一个拓扑空间, “所有开集要么同时包含, 要么同时不包含两个点\(x,y\)”
-构成一个等价关系. 我们可以商去这个关系得到一个 T\(_0\) 拓扑空间.
+对于任何一个拓扑空间, 如果两个点 \(x,y\) 满足每个开集要么
+两者都包含, 要么两者都不包含, 就称 \(x,y\) 等价.
+我们可以商去这个等价关系得到一个 T\(_0\) 拓扑空间.
 这说明拓扑空间的定义虽然简洁, 但是点和开集的关系并不是
 严丝合缝; 我们使用这个定义仅仅是因为
 这些瑕疵不影响大局. 或许我们可以先不考虑点集, 仅仅看开集
@@ -974,8 +975,8 @@ General framework (2019 上村太一)
 \end{definition}
 
 而给定了交半完备分配格, 同态则需要保持无限交. 因此这三个
-概念的同态定义不同. 正如Marx所说：“人是一切社会关系的总和.” 社
-会关系改变, 就会极大地改变人的属性. 在这里, 尽管这三种
+概念的同态定义不同. 正如Marx所说：“人是一切社会关系的总和.”
+社会关系改变, 就会极大地改变人的属性. 在这里, 尽管这三种
 数学对象孤立来看是完全相同的, 但是它们的同态定义不同却
 导致了完全不同的性质.
 
@@ -1033,7 +1034,7 @@ Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
 是 \(\Omega\) 的逆. 为此, 我们需要尽可能地还原出拓扑
 空间里的点 (这也是这个函子名字的来源).
 
-我们可以使用范畴论风格的语言来重新表述“点”的概念： 拓扑空间
+可以使用范畴论风格的语言来重新表述“点”的概念： 拓扑空间
 \(X\) 中的点无非就是单点拓扑空间 \(1 \to X\) 的连续
 映射组成的集合. 这里 \(1\) 在范畴论中扮演的角色就是
 终对象. 因此同样地, 我们在 \(\mathsf{Loc}\) 范畴中考虑
@@ -1051,8 +1052,7 @@ Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
 可以试图验证在 Hausdorff 拓扑空间上, 这的确恰好可以
 复原其点集. 这说明我们走在正确的方向上了.
 
-不过, Hausdorff 性仅仅是充分条件. 我们可以给出一个
-充分必要条件：
+不过, Hausdorff 性仅仅是充分条件. 可以给出一个充分必要条件：
 \begin{definition}
 一个拓扑空间是\textbf{朴实}(sober)的, 当且仅当对于
 任何无法被非平凡地表示为两个闭集的并的非空闭集 \(K\),
@@ -1064,7 +1064,7 @@ Boole代数的同态和Stone空间之间反向的连续映射有一一对应.}
 
 有了点集之后, 这个点集上的拓扑就可以继续如上文所说的方式
 恢复出来. 这样我们就得到了一个函子 \(\mathrm{Pt} :
-\mathsf{Loc} \to \mathsf{Top}\). 我们刚才看到了
+\mathsf{Loc} \to \mathsf{Top}\). 前面研究的是
 拓扑空间能被恢复的条件. 那么反过来, 给定一个位象生成的
 对应的拓扑空间, 是否还能恢复原来的位象呢? 这同样给出一个
 条件
@@ -1259,8 +1259,8 @@ Grothendieck 为此推广了层范畴的定义, 以便包含这些
 也应当有与位象类似的“反向”的态射关系. 如果它们作为代数结
 构, 态射是(满足某些条件的)函子时,
 Joyal~\cite{joyal:2019：topologie}称它们为logos
-(试译为\textbf{道理}); 而它们构成的范畴 \(\mathsf{Logos}\)
-将箭头反向就得到几何对象构成的范畴 \(\mathsf{Topos}\).
+(试译为\textbf{道理}), 此时它们构成范畴 \(\mathsf{Logos}\).
+将箭头反向就得到几何对象构成的范畴 \(\mathsf{Topos} = \mathsf{Logos}\op\).
 读者也可以参阅\cite{sterling:2021:thesis}的第二章.
 这样, 位象就可以整合到我们的定义中：
 \[\begin{tikzcd}
@@ -1270,8 +1270,8 @@ Joyal~\cite{joyal:2019：topologie}称它们为logos
 \arrow["{\mathrm{Pt}}", curve={height=-6pt}, from=2-3, to=2-1]
 \arrow["{\mathsf{Sh}}", hook', from=2-3, to=1-3]
 \arrow[hook', from=2-5, to=1-5]
-\arrow["{(\op)}"{description}, Rightarrow, no head, from=2-3, to=2-5]
-\arrow["{(\op)}"{description}, Rightarrow, no head, from=1-3, to=1-5]
+\arrow["{\op}"', Rightarrow, no head, from=2-3, to=2-5]
+\arrow["{\op}"', Rightarrow, no head, from=1-3, to=1-5]
 \end{tikzcd}\]
 
 \subsection{初等意象}\berry{1}
