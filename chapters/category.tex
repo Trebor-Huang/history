@@ -38,17 +38,7 @@
 
 (...) 关系
 
-\section{逻辑框架}
-
-\subsection{语义逻辑框架}
-
-(定义, 举个MLTT的小例子)
-
-语义定义，函子语义
-
-\subsection{语法逻辑框架}
-
-优点：接近语法
+(...) STLC 的高阶语义
 
 \section{依值类型的范畴语义}
 下面我们介绍一阶模型. (...)
@@ -678,7 +668,7 @@ r{:}\cons{Id}(p) \vdash X\,\text{type}\), 只要我
 换句话说, 语法范畴需要是 \(\cons{LCCC}\) 的\textbf{始对象}.
 这一点, 在传统的语义研究中就称为可靠性与完备性.
 证明了这一点之后, 我们就可以通过构造一份语义, 上述性质就
-保证存在唯一的解释函子, 进而可以探究语法范畴的对象.
+保证存在唯一的解释函子, 进而可以探究语法范畴的性质.
 
 \subsection{融贯问题}
 
@@ -771,7 +761,9 @@ Seely的原始论文中并没有得到解决.
 的特性就必须选择更精细的范畴语义. 接下来提到的许多范畴定义
 实际上都是等价的, 但是在不同的类型论中使用方便程度不一.
 
-% Note: Conceptual clearness over historical order
+(...) family/fibration
+
+\begin{comment}
 局部积闭范畴中将所有的态射都一视同仁.
 这意味着一切语境的代换 \(\sigma : \Delta \to \Gamma\)
 都是 (至少同构于) 形如 \(p_A : (\Gamma, A) \to \Gamma\)
@@ -824,6 +816,8 @@ Seely的原始论文中并没有得到解决.
 % 有两个对象, 一个非恒同态射. 如果把它记作 \(\to\) 的话,
 % 那 \(\mathcal C^\to\) 这个记号就非常合理了.} 我们有显然
 % 的函子, 取箭头的陪域 \(\cons{cod} : \mathcal C^\to \to \mathcal C\).
+
+\end{comment}
 
 我们也可以不用代换间接描述某个语境中的类型, 而是直接将它们
 作为资料的一部分. 由1978年 Cartmell 提出了具集范畴
@@ -915,8 +909,6 @@ Seely的原始论文中并没有得到解决.
 h &:& (\mathcal C/\Gamma)^{\textrm{op}} &\to& \cons{Fam}\\
 & & (\Delta \xrightarrow\sigma \Gamma) &\mapsto& \cons{Tm}(A[\sigma])
 \end{matrix}\]
-% 其中回忆 \(A[\sigma]\) 是由函子 \(F\) 作用在态射 \(\sigma\)
-% 上得到的集合族之间的态射产生的.
 我们希望存在某个 \(p : \Gamma'\to \Gamma\) 使得有自然同构
 \(\hom_{/\Gamma}(\sigma, p) \cong h(\sigma)\),
 这样就能把语境的扩展 \((\Gamma, A)\) 直接定义为满足这个条件的
@@ -944,20 +936,35 @@ h &:& (\mathcal C/\Gamma)^{\textrm{op}} &\to& \cons{Fam}\\
 \end{definition}
 
 读者可以参考 \cite{castellan:2019:cwf} 对具族范畴浅显易懂的介绍.
-作为最后一个例子, 我们证明集合范畴 \(\cons{Set}\) 有
-具族范畴的结构.
 
-(proof, also introduce pi, sigma, equality on the way)
+% 作为最后一个例子, 我们证明集合范畴 \(\cons{Set}\) 有
+% 具族范畴的结构.
 
-\subsection{统一框架}
+% (proof, also introduce pi, sigma, equality on the way)
 
-Comprehension cat (1990 Jacobs) \cite{jacobs:1993:comprehensioncat}.
+% Natural model (2016 Awodey)
+% \cite{awodey:2018:natural}
 
-Natural model (2016 Awodey)
-\cite{awodey:2018:natural}
+% \subsection{概括范畴}
+
+% Comprehension cat (1990 Jacobs) \cite{jacobs:1993:comprehensioncat}.
+
+\section{逻辑框架}
+
+\subsection{语义逻辑框架}
+
+(定义, 举个MLTT的小例子)
+
+语义定义，函子语义
 
 General framework (2019 上村太一)
 \cite{uemura:2019:general}
+
+\subsection{(topos)}
+
+\subsection{语法逻辑框架}
+
+优点：接近语法
 
 \section{意象}
 意象有几何学与逻辑学两方面的起源~\cite{mclarty:1990:toposhistory}.
@@ -1734,6 +1741,7 @@ Kripke--Joyal翻译仅仅为意象提供了内语言. 对于有其他结构
 要求集合范畴满足的所有性质. 因此ETCS可以作为类似ZFC的集合论
 使用.
 
-\section{内语言与类型论}
+\subsection{内语言与类型论}
 
 (...)
+
