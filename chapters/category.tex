@@ -283,7 +283,54 @@
 \end{definition}
 特别地, 这个范畴需要有所有的拉回. 如果这个范畴含有终对象
 \(1\), 那么 \(\mathcal C_{/1} \cong \mathcal C\),
-从而其本身是积闭的. 局部积闭范畴与前文所探究的函子关系如下.
+从而其本身是积闭的. 集合范畴 \(\mathsf{Set}\) 是积闭范畴,
+这里我们再举一个有趣的积闭范畴例子.
+\begin{definition}
+考虑一个集合 \(A\) 上配备\emph{部分}二元运算
+\(A \times A \rightharpoonup A\)
+(即定义域 \(U \subseteq A \times A\) 的映射),
+记号类似乘法写作 \(xy\) 或者 \(x \cdot y\), 并且左结合.
+如果存在元素 \(k, s \in A\) 使得
+\[k x y = x, \quad sxyz = (xz)(yz),\]
+那么就称 \((A, \cdot, k, s)\) 构成\textbf{部分组合子代数}.
+\end{definition}
+很明显这是仿照组合子演算定义的. 组合子演算、 \(\lambda\)-演算、
+一般递归函数等都构成部分组合子代数. 可以认为部分组合子代数
+中的元素都是某种程序. 我们可以在其中编程, 例如有程序
+\(\mathrm{pair}, \mathrm{left}, \mathrm{right}\),
+使得 \(\mathrm{pair} \cdot x \cdot y\) 存储了两个程序
+\(x,y\) 的信息, 并且可以靠 \(\mathrm{left}, \mathrm{right}\)
+取出： \[\mathrm{left}(\mathrm{pair} \cdot x \cdot y) = x,\]
+\[\mathrm{right}(\mathrm{pair} \cdot x \cdot y) = y.\]
+
+\begin{definition}
+集合 \(X\) 上的\textbf{部分等价关系}即满足传递性与对称性的二元关系 \(\sim\).
+这等同于考虑子集 \(\{x \mid x \sim x\}\) 上的等价关系.
+\(X/{\sim}\) 定义为子集的商集 \(\{x \mid x \sim x\}/{\sim}\).
+\end{definition}
+
+\begin{definition}
+固定部分组合子代数 \(A\), 考虑 \(A\) 上的所有部分等价关系. 对于两个
+部分等价关系 \(\sim, \approx\), 如果某个映射 \(f : (A/{\sim}) \to (A/{\approx})\)
+满足存在 \(u \in A\), 使得 \(a \sim b \implies ua \approx ub\),
+并且 \(f\) 将每个 \(a\) 的等价类映射到 \(ua\) 的等价类.
+这样定义了一个范畴, 记作 \(\mathsf{PER}(A)\).
+\end{definition}
+我们想要用 \(A\) 中的程序代表某个集合中的元素, 例如用
+有序对 \(\mathrm{pair} \cdot p \cdot q\) 表示有理数
+\(p/q\), 其中 \(p,q\) 各自已知代表一个整数. 有时候不同
+的程序可以代表同一个事物, 如 \(4/6 = 2/3\); 有时候某个
+程序不代表任何事物, 如 \(q = 0\) 时. 这样我们就得到了 \(A\)
+上的部分等价关系.
+
+\begin{theorem}
+范畴 \(\mathsf{PER}(A)\) 是局部积闭范畴.
+\end{theorem}
+证明省略. 如果某个类型论可以解释进任何局部积闭范畴,
+那么特别地它可以解释到 \(\mathsf{PER}(A)\), 从而给出了
+该类型论的一种具体的可计算解释.
+
+局部积闭范畴与前文所探究的函子关系如下.
 \begin{theorem}
 任给一个范畴, 则其中所有的态射 \(f\) 都一定有对应的
 \(\Sigma_f\) 函子. 这个范畴是局部积闭的, 等价于
@@ -1643,7 +1690,7 @@ Zariski意象\(\cons{Zar}\)中, 其对象包含了所有的环.
   \(\sum_i f_i = 1\), 使得对于每个 \(i\) 都有
   \(R[f_i^{-1}] \vDash \phi\) 或
   \(R[f_i^{-1}]\vDash \psi\).\\
-\(R \vDash \phi\Rightarrow\psi\) & 对于任何 \(R\)-代数
+\(R \vDash \phi\Rightarrow\psi\) & 对于任何 \(R\)–代数
   \(S\), 如果 \(S \vDash \phi\) 则 \(S \vDash \psi\).\\\hline
 \end{tabular}
 \end{center}

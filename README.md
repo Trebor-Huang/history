@@ -35,6 +35,8 @@ This is my coursework. I have already finished the submitted version `d0aaf51`, 
     - [ ] Infinity category
 - Misc
   - Typesetting, clean up bibliography
+  - Hyphen or en-dash between math and Chinese?
+    - $\lambda$-演算, $p$-进数, etc.
   - `[\![]\!]` is too annoying, maybe macro
   - ~~Use separate font for metavariables?~~
   - Cite Tom de Jong's stuff?
