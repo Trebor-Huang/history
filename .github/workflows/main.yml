@@ -74,4 +74,7 @@ jobs:
       - name: Release (${{ needs.dependencies.outputs.version }})
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: v${{ github.run_number }}-${{ needs.dependencies.outputs.version }}
+          name: Version ${{ github.run_number }} (${{ needs.dependencies.outputs.version }})
+          prerelease: true
           files: history.pdf
