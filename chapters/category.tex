@@ -1,28 +1,52 @@
 \chapter{范畴语义}
 
-(此章在重构中, 读起来逻辑会不连通, 甚至有错误, 可以暂时查看历史版本或者跳过.)
-
-(...) 注意我们研究类型论的
+本章介绍类型论的范畴语义. 注意我们研究类型论的
 语义时, 类型论是被研究的数学对象, 而不是正在使用的数学语言.
 此时使用的语言可以自由选择, 例如自然语言、集合论甚至类型论本身.
 这个外部的语言称作\textbf{元语言}, 而被研究的类型论语言就直接
-称作“语言”. 切忌混淆元语言中的概念与语言内的概念.
+称作“语言”. 切忌混淆元语言中的概念与语言内的概念. 另一个
+容易混淆的事情, 在于语义中的许多概念都是为了与语法中的事物
+相对应, 因此二者会起相近的名称与记号, 但是它们也不应当混同.
 
-(...)
+此章在重构中, 读起来逻辑会不连通, 甚至有错误, 可以暂时跳过.
+
+\section{类型论的代数性} (这要写吗? 还是就写一段)
 
 \section{族与丛, 分类空间}
 
+family vs. fibrations
+
+universes and classifying space
+
+weakly universal bundle
+
 \section{类型论的自然语义}
 
-(历史)
+历史上提出了很多描述类型论语义的方案. 为了使叙述更加清晰,
+我们先介绍 Awodey 提出的自然模型~\cite{awodey:2018:natural},
+再简单补充一些历史源流.
 
-Algebraic models of dependent type theory
 
-solution of coherence
+See \cite{newstead:2018:natmod-poly}
+
+历史:
+\begin{itemize}
+\item Seely realized and stated explicitly: bundle as dependent type, pullback as substitution (coherence problem) \cite{seely:1984:lccc}
+\item category with attributes (also contextual variant), (no coherence problem) \cite{cartmell:1986:contextualcat}
+\item comprehension categories (has coherence issues!) \cite{jacobs:1993:comprehensioncat}, unifies previous concepts
+\item coherence issue discussed in \cite{curien:1993:coherence} and \cite{hofmann:1995:lccccoh}
+\item category with families \cite{dybjer:1995:internal}
+\item solution to coherence in \cite{clairambault:2014:biequivalence} and summarized in \cite{curien:2014:revisit}
+\item 2015 Local universes model, new solution to coherence (on $\mathcal C_!$ instead of $\mathcal C_*$), inspired by Voevodsky's bunch of work on C systems
+\item reformulation as natural models \cite{awodey:2018:natural}
+\item 2019 General framework, wide range of type theories get initiality result \cite{uemura:2019:general}
+\end{itemize}
 
 \section{外延类型论与局部积闭范畴}
 
-\section{意象}
+use this to lead up to the next, also explain what Seely did
+
+\section{意象与内语言}
 
 (less material)
 
@@ -37,13 +61,11 @@ solution of coherence
 General framework (2019 上村太一)
 \cite{uemura:2019:general}
 
-\subsection{(topos)}
-
 \subsection{语法逻辑框架}
 
 优点：接近语法
 
-======
+\begin{comment}
 
 \section{依值类型的模型}
 
@@ -814,7 +836,6 @@ Seely的原始论文中并没有得到解决.
 
 (...) family/fibration
 
-\begin{comment}
 局部积闭范畴中将所有的态射都一视同仁.
 这意味着一切语境的代换 \(\sigma : \Delta \to \Gamma\)
 都是 (至少同构于) 形如 \(p_A : (\Gamma, A) \to \Gamma\)
@@ -868,7 +889,6 @@ Seely的原始论文中并没有得到解决.
 % 那 \(\mathcal C^\to\) 这个记号就非常合理了.} 我们有显然
 % 的函子, 取箭头的陪域 \(\cons{cod} : \mathcal C^\to \to \mathcal C\).
 
-\end{comment}
 
 我们也可以不用代换间接描述某个语境中的类型, 而是直接将它们
 作为资料的一部分. 由1978年 Cartmell 提出了具集范畴
@@ -1781,3 +1801,4 @@ Kripke--Joyal翻译仅仅为意象提供了内语言. 对于有其他结构
 
 \section{语法的几何学}
 
+\end{comment}
