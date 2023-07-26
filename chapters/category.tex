@@ -8,15 +8,89 @@
 容易混淆的事情, 在于语义中的许多概念都是为了与语法中的事物
 相对应, 因此二者会起相近的名称与记号, 但是它们也不应当混同.
 
-此章在重构中, 读起来逻辑会不连通, 甚至有错误, 可以暂时跳过.
-
-\section{类型论的代数性} (这要写吗? 还是就写一段)
+类型论模型的一个极重要的特征就是其(广义的)代数性. 何为代数性?
+最狭义来说, 一个代数结构就是某集合上配备一些运算, 并且满足
+形如 \(\forall x_1, x_2, \dots, M = N\) 的公理. 例如
+群、环、\(\Bbbk\)-向量空间等等. 代数结构通常满足一系列性质,
+例如同态定理, 三条同构定理等. 对代数结构可以推广
+得到\textbf{本质代数结构}或者\textbf{广义代数结构}. 而类型论
+的模型一般都可以写成这种形式, 进而可以运用代数结构的一般结论.
 
 \section{族与丛, 分类空间}
 
-family vs. fibrations
+我们先从集合出发, 描述一个一般的现象.
+假如我希望描述一族集合, 最直接的方法就是给定一个指标集 \(B\),
+然后对每个 \(b \in B\), 指定一个集合 \(E_b\).
+换句话说就是有 \(E_\bullet : B \to \mathsf{Set}\).
+但是另一方面, 我也可以将所有的 \(E_b\) 聚合起来
+成为一个大集合 \(E\), 再用一个函数 \(p : E \to B\) 指出
+每个元素所属的指标 \(b\) 是哪一个. 这两种描述方式是等价的.
 
-universes and classifying space
+\begin{center}
+\begin{tikzpicture}
+\draw (2,0) ellipse (0.9 and 0.6);
+\node at (3.3,0) {\(B\)};
+\node (C) at (2.4,-0.1) {\(\bullet\)};
+\node (D) at (1.7,-0.3) {\(\bullet\)};
+\node (E) at (1.9,0.25) {\(\bullet\)};
+
+\draw (0.9,1.1) rectangle (1.6,2.9);
+\node (Do) at (1.25, 2.3) {\(E_a\)};
+\draw (1.6,1.1) rectangle (2.3,2.9);
+\node (Eo) at (1.95, 1.7) {\(E_b\)};
+\draw (2.3,1.1) rectangle (3,2.9);
+\node (Co) at (2.65, 2) {\(E_c\)};
+\draw (1.25,1.1) edge[->, out=-90] (D);
+\draw (1.95,1.1) edge[->, out=-90, in=85] (E);
+\draw (2.65,1.1) edge[->, out=-90, in=70] (C);
+\end{tikzpicture}
+\end{center}
+
+事实上还有更加简单的例子. 考虑子集 \(E \subseteq B\).
+它可以等价的描述为 \(B \to \{\cons{yes}, \cons{no}\}\),
+因为只需要知道全集中的每个元素是否在这个子集里, 就完全确定了子集.
+这是一种一般的现象, 即同一个概念可以描述为某种族 \(B \to U\),
+也可以描述为某种丛 ------ 丛就是满足某条件的态射 \(p : E \to B\),
+在子集的情况下就是单射 \(E \rightarrowtail B\),
+而在集合族的情况下就是任何从集合到集合的映射.
+
+下面的表格描述了数学中出现的许多族与丛的等价.
+表格中画横线表示有这种构造, 但是没有通用的名字.
+读者不必明白每个例子, 如果想了解, 可以搜索相关的资料.
+
+\begin{center}
+\begin{tabular}{c c c c}\hline
+族 & 族至丛 & 丛至族 & 丛\\\hline
+\(\varphi : B \to \{\cons{yes}, \cons{no}\}\) &
+\(E = \{b \in B \mid \varphi(b)\}\) &
+\(\varphi(b) = (b \in E)\)&
+子集 \(E \subseteq B\) \\
+\(F : B \to \mathsf{Set}\) &
+\!\!不交并 \(E = \coprod_{b} F(b)\)\!\! &
+原象 \(F(b) = p^{-1}\{b\}\) &
+\(p : E \to B\)\\
+\(F : \mathcal C \to \mathsf{Set}\) &
+元素范畴 \(\int^{\mathcal C}F\) &
+原象 &
+离散纤维化 \(\mathcal E \to \mathcal C\)\\
+\!群同态 \(G \to \mathrm{Aut}(H)\)\!&
+半直积 \(H \rtimes G\) &
+------ &
+分裂扩张 \(\hat G \to G\)\\
+\(F : \mathcal C \to \mathsf{Cat}\) &
+\!Grothendieck 构造\! &
+原象 &
+Grothendieck 纤维化 \\
+连续映射 \(B \to \mathbf{B}G\) &
+------ &
+分类映射 &
+\(G\)-主丛 \(E \to B\)
+\\\hline
+\end{tabular}
+\end{center}
+
+
+universes and classifying space, pullback
 
 weakly universal bundle
 
