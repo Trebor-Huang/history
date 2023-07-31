@@ -94,16 +94,61 @@ universes and classifying space, pullback
 
 weakly universal bundle
 
-\section{类型论的自然语义}
+\section{类型论的自然模型}\label{category:naturalmodel}
 
 历史上提出了很多描述类型论语义的方案. 为了使叙述更加清晰,
 我们先介绍 Awodey 提出的自然模型~\cite{awodey:2018:natural},
 再简单补充一些历史源流.
+\cite{newstead:2018:natmod-poly} 也有较为详细的讲解.
+\berry{3}
 
+\begin{definition}\label{category:naturalmodeldef}
+一个\textbf{自然模型}是任意一个范畴 \(\mathcal C\),
+配备两个预层与其间的态射 \(\pi : \mathrm{Tm} \to \mathrm{Tp}\),
+使得对于任何 \(\Gamma \in \mathcal C\)
+与 \(A \in \mathrm{Tp}(\Gamma) \cong \hom(\yo(\Gamma), \mathrm{Tp})\),
+有对象表出以下拉回预层：
+\[\begin{tikzcd}
+\bullet & {\mathrm{Tm}} \\
+{\yo(\Gamma)} & {\mathrm{Tp}}
+\arrow["\pi", from=1-2, to=2-2]
+\arrow["A"', from=2-1, to=2-2]
+\arrow[from=1-1, to=2-1]
+\arrow[from=1-1, to=1-2]
+\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+此对象记作 \((\Gamma, A)\).
+\end{definition}
 
-See \cite{newstead:2018:natmod-poly}
+我们将语法构造成模型, 便可展示此定义的动机.
+考虑所有合法语境在判值相等关系下构成的集合 \(\mathcal C\),
+两个语境之间的态射 \(\sigma \in \hom(\Delta, \Gamma)\) 是代换,
+即一列类型与 \(\Gamma\) 相符的表达式, 其中包含 \(\Delta\) 的变量.
+判值相等的代换视为相同. 这样就构成一个范畴.
+对于每个语境 \(\Gamma\),
+考虑允许包含 \(\Gamma\) 中的变量的合法的类型构成的集合 \(\mathrm{Tp}(\Gamma)\),
+同样将判值相等的类型视为相同.
+这些类型的元素的不交并记作 \(\mathrm{Tm}(\Gamma)\).
+这样, 如果 \(\Gamma\) 下 \(A\) 是合法的类型,
+又有代换 \(\sigma \in \hom(\Delta, \Gamma)\),
+那么就可以将 \(A\) 中的变量代换得到 \(A[\sigma]\),
+是 \(\Delta\) 下合法的类型.
+这就证明了 \(\mathrm{Tp}\) 是预层. 同理 \(\mathrm{Tm}\) 也是预层.
+\(\pi\) 将每个 \(a \in \mathrm{Tm}(\Gamma)\) 映射到它所属的类型.
 
-历史:
+我们来计算定义中提到的拉回. 我们知道预层的拉回是逐点计算的,
+因此拉回 \(F\) 满足
+\begin{align*}
+F(\Delta)
+&\cong \hom(\Delta, \Gamma) \times_{\mathrm{Tp}(\Delta)} \mathrm{Tm}(\Delta)\\
+&= \{(\sigma, a) \mid \pi(a) = A[\sigma]\}\\
+&= \hom(\Delta, (\Gamma, A)).
+\end{align*}
+因此 \(F\) 的确可表, 并且其表出对象就对应语境的扩展操作 \((\Gamma, A)\).
+以上就证明了类型论的语法范畴构成自然模型.
+以此为模板, 就可以找到类型论中许多概念的语义对应.
+
+历史：
 \begin{itemize}
 \item 1984 年, Seely~\cite{seely:1984:lccc}
 首次具体写出了用丛表示依值类型, 拉回表示代换的思想.
@@ -119,7 +164,7 @@ See \cite{newstead:2018:natmod-poly}
 \item 2014 年, Clairambault~\cite{clairambault:2014:biequivalence}
 给出了融贯问题的完整答案, 这在 \cite{curien:2014:revisit} 中有总结.
 \item 2015 年, 由 Voevodsky 的相关工作启发了
-融贯问题的新解决方案~\cite{lumsdaine:2015:universes}, 这强调了宇宙的重要性
+融贯问题的新解决方案~\cite{lumsdaine:2015:universes}, 这强调了宇宙的重要性.
 \item 2018 年, 含族范畴被重新表述为自然模型~\cite{awodey:2018:natural}.
 \item 2019 年, 上村太一~\cite{uemura:2019:general}
 提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
@@ -128,6 +173,8 @@ See \cite{newstead:2018:natmod-poly}
 \section{外延类型论与局部积闭范畴}
 
 use this to lead up to the next, also explain what Seely did
+
+\subsection{融贯问题}
 
 \section{意象与内语言}
 
