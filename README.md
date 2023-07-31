@@ -15,19 +15,13 @@ This is my coursework. I have already finished the submitted version `d0aaf51`, 
 
 ## Recent updates
 
-- The groupoid model
-- Basics of category with families
-- Explanation of coherence problem
-- Rewritten introduction for locally cartesian closed categories
-
 ## TODO
 
 - STLC
   - [ ] Rewrite combinator canonicity
   - [ ] Normalization for STLC
 - Category theory
-  - [X] Rewrite LCCC part
-  - [ ] Write about comprehension categories
+  - [ ] Natural models
   - [ ] Higher models
     - [ ] Groupoid model (elaborate)
     - [ ] Groupoid model as model category
