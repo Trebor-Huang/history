@@ -224,16 +224,10 @@ Klein 群并不是四个矩阵, 四个对称变换或者其他什么东西组成
 并且由于我们已经加入了泛等公理, 因此将排中律再作为公理加入
 类型论也不会破坏更多性质. 同样的, 选择公理也与泛等公理相容,
 可以加入同伦类型论中.
-% 在集合论中对选择公理的经典叙述是
-% “任何一族有元素的集合的乘积也有元素”. 在
-% Martin-L\"of 类型论中这会翻译成恒成立的
-% \[\left[\prod_{a:A} B(a)\right] \to
-% \left[\prod_{a:A} B(a)\right],\]
-% 因为在 Martin-L\"of 类型论中, 命题就是类型. 这不太符合
-% 我们想要的公理, 因为它没有选择公理通常会有的那些推论,
-% 如 Zorn 引理等等. 下面会介绍同伦类型论中的一个操作
-% \(\| X \|\), 可以将
 不过需要承认, 当前的同伦类型论研究的绝大部分没有假设排中律, 这是应当改变的.
+
+泛等数学基础的出现, 为那些非泛等的类型论的发展也提供了重要的指导.
+(...举两个例子?)
 
 \subsection{高阶归纳类型}
 我们之前已经见过了许多归纳类型, 如自然数, 二叉树等等.
@@ -289,27 +283,28 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 阅读这本书不需要类型论基础, 并且内容是开源的. 读者可以自行
 下载阅读.
 
-\section{泛等公理的语义}
+\section{同伦类型论的语义}
 \label{hott:semantics}
 
 \subsection[群胚语义]{群胚语义\protect\berry{3}}
 我们承接 \ref{hott:independent}~节, 详细
 描述 \cite{hofmann:1998:groupoid} 中的群胚语义.
-回忆 \ref{category:better}~节中对具族范畴的定义,
-即一个范畴 \(\mathcal C\), 配备函子
-\(F : \mathcal C^{\textrm{op}}\to \cons{Fam}\),
-使得某些特定的函子可表. 对于群胚语义来说, 我们自然希望
-\(\mathcal C = \cons{Grpd}\) 是群胚与群胚同态构成的
-范畴.
+回忆 \ref{category:naturalmodel}~节中对自然模型的定义,
+即一个范畴 \(\mathcal C\) 与两个预层之间的可表态射
+\(\pi : \mathrm{Tm} \to \mathrm{Tp}\).
+对于群胚语义来说, 我们自然希望
+\(\mathcal C = \mathsf{Grpd}\) 是群胚与群胚同态构成的范畴.%
+\footnote{这里需要防止出现 Russell 悖论,
+因此我们取一个较大的基数 \(\kappa\),
+然后令 \(\mathsf{Grpd}\) 为大小不超过 \(\kappa\) 的群胚构成的范畴.}
 
-对于某个 \(\Gamma\), 集合族 \(F(\Gamma)\) 的含义是
-语境中所有的类型配上它们的元素. 因此在群胚语义中, 类型的集合
-\(\cons{Ty}(\Gamma) = \cons{Ix}_{F(\Gamma)}\) 的元素应该是 \(\Gamma\) 之上的
+在群胚语义中, 类型的集合
+\(\mathrm{Tp}(\Gamma)\) 的元素应该是 \(\Gamma\) 之上的
 群胚族. 换句话说, 对 \(\Gamma\) 的每个对象 \(x\) 都
 配备一个群胚 \(G_x\), 并且对于 \(\Gamma\) 中两个对象
 \(x,y\) 之间的每条道路 \(p\) 配备一个同构 \(G_p : G_x \cong G_y\),
 保持道路的复合等. 用更紧凑的语言说, 这些数据就是一个函子
-\(G_\bullet : \Gamma \to \cons{Grpd}\), 其中把 \(\Gamma\)
+\(G_\bullet : \Gamma \to \mathsf{Grpd}\), 其中把 \(\Gamma\)
 看作一个范畴.
 
 \begin{center}
@@ -347,9 +342,8 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \({\int}G_\bullet\) 到 \(\Gamma\) 有明显的群胚同态,
 抛弃 \(G\) 的信息.
 
-对于某个群胚族 \(G\), \(\cons{Tm}(G)
-= \cons{El}_{F(\Gamma)}(G)\)
-则应该是这一族群胚中的“一族元素”. 换句话说, 对每个
+对于某个群胚族 \(G_\bullet \in \mathrm{Ty}(\Gamma)\),
+我们希望这一族群胚中的“一族元素”. 换句话说, 对每个
 \(x \in \Gamma\), 给出群胚 \(G_x\) 中的某个对象
 \(g_x\). 对于任何道路 \(p \in \hom(x,y)\), 前面要求的
 同构 \(G_p : G_x \to G_y\) 将 \(g_x\) 射到
@@ -388,47 +382,38 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 \end{tikzpicture}
 \end{center}
 
-以上就定义了群胚范畴上配备的函子 \(F : \cons{Grpd}\op \to \cons{Fam}\)
-在对象上的映射, 我们还需要给出它在态射上的作用. 对于群胚的同态
-\(\sigma : \Delta \to \Gamma\), 需要找到集合族的态射
-\(\sigma^* : F(\Gamma) \to F(\Delta)\). 在指标集上,
-由于 \(\cons{Ix}_{F(\Gamma)}\) 就是 \(\Gamma\) 上的
-全体群胚族 \(\Gamma \to \cons{Grpd}\), 因此与 \(\sigma\)
+有了这样的构造, 就不难定义 \(\mathrm{Tm}(\Gamma)\).
+考虑所有形如 \((G_\bullet, g_\bullet)\) 的有序对构成的集合,
+其中 \(G_\bullet \in \mathrm{Ty}(\Gamma)\),
+\(g_\bullet\) 是 \(G_\bullet\) 中的一族元素.
+这样, 就自然带有投影映射 \(\pi : \mathrm{Tm}(\Gamma) \to \mathrm{Tp}(\Gamma)\).
+
+以上就定义了群胚范畴上配备的函子
+\(\mathrm{Tp}, \mathrm{Tm} : \mathsf{Grpd}\op \to \mathsf{Set}\)
+在对象上的映射, 我们还需要给出它们在态射上的作用.
+考虑群胚的同态 \(\sigma : \Delta \to \Gamma\),
+由于 \(\mathrm{Tp}(\Gamma)\) 就是 \(\Gamma\) 上的
+全体群胚族 \(\Gamma \to \mathsf{Grpd}\), 因此与 \(\sigma\)
 复合就得到
-\[(-\circ\sigma) : \cons{Ix}_{F(\Gamma)} \to \cons{Ix}_{F(\Delta)}.\]
-而 \(\cons{El}_{F(\Gamma)}(A) \to \cons{El}_{F(\Delta)}(A)\)
-的态射也由复合给出.
+\[(-\circ\sigma) : \mathrm{Tp}(\Gamma) \to \mathrm{Tp}(\Delta).\]
+而 \(\mathrm{Tm}(\Gamma) \to \mathrm{Tm}(\Delta)\)
+的态射也由复合给出. 不难验证这使得 \(\pi\) 构成预层之间的自然变换.
 
-对于 \(\Gamma\) 与 \(G \in \cons{Ty}(\Gamma)\),
+对于 \(\Gamma\) 与 \(G_\bullet \in \cons{Ty}(\Gamma)\),
 我们最后还需要找到一个对象 \(\Gamma'\) 与态射
-\(p : \Gamma' \to G\) 使得
-\(\hom_{/\Gamma}(\sigma, p)\) 自然同构于
-\(\cons{Tm}(\sigma^*G)\). 只需要取 \(\Gamma'\)
-为 \({\int}G_\bullet\) 即可. 这是因为
-\((\Gamma, G)\) 在类型论中表现得类似 \(\Sigma\)-类型,
-需要将 \(G\) 的所有部分融合. 请读者验证满足条件.
-
+\(p : \Gamma' \to \Gamma\) 使得
+\(\hom(-, \Gamma')\) 自然同构于
+\(\yo(\Gamma) \times_{\mathrm{Tp}} \mathrm{Tm}\).
+只需要取 \(\Gamma'\) 为 \({\int}G_\bullet\) 即可.
+请读者验证满足条件.
 证明群胚范畴上具备 \(\Pi,\Sigma\)-类型的结构与在
-集合范畴上的证明基本相同. 而对于相等类型, (...)
-(J rule, empty context only). 更详细的构造相信读者可以
+集合范畴上的证明基本相同. 更详细的构造相信读者可以
 自己写出, 也可以参阅~\cite{hofmann:1998:groupoid}.
 
-\subsection{群胚族与群胚纤维化}
+\subsection{相等类型}
 
-turn family to fibrations
+\subsection{无穷群胚} \berryinf
 
-\subsection{模型范畴} \berryinf
-模型范畴发源于同伦论的研究, 目的是将拓扑空间等具体的对象的
-同伦论中用到的性质总结出来, 得到可以抽象地描述各种同伦构造
-的场所. 这就是\textbf{抽象同伦论}.
-
-(无穷范畴)
-
-在现在的同伦论研究中, 我们已经逐步认识到模型范畴并不是最自然
-的概念. 最适合研究抽象同伦的场所是无穷范畴. 这是一个
-比较宽泛的概念.
-
-coherence problem
 
 \section[立方类型论]{立方类型论\protect\berry{1}}
 
