@@ -768,16 +768,30 @@ F(B)\] 这个复合态射由函数对象的性质
 \(\mathcal G\) 中的对象 \(\Sigma' \xrightarrow f \boldsymbol\Gamma(\Sigma)\)
 映射到 \(\Sigma\). 我们希望能够取 \(\mathcal G\)
 为一个模型. 回顾模型的定义, 我们的第一步当然是要证明：
-\begin{lemma}\label{beginning:glue}
+\begin{lemma}
 \(\mathcal G\) 是积闭范畴, 并且 \(\mathrm{gl}\)
 是保积闭函子.
 \end{lemma}
 这个证明实际上对应的就是通常的证明中在类型上递归定义谓词.
 但是注意这个命题本身已经完全限制了构造的可能性, 因此无需
-任何不自然的想法, 仅仅是展开定义即可. 留给读者作为练习.
+任何不自然的想法, 仅仅是展开定义即可.
 这其中用到的一个重要性质是
 \(\boldsymbol\Gamma(1) \cong 1\) 与
 \(\boldsymbol\Gamma(\Sigma \times \Delta) \cong \boldsymbol\Gamma(\Sigma) \times \boldsymbol\Gamma(\Delta)\).
+这可以抽出一条引理.
+\begin{lemma}\label{beginning:glue}
+如果 \(\mathcal C, \mathcal D\) 都有有限乘积,
+\(F : \mathcal C \to \mathcal D\) 保持有限乘积,
+那么 \(\mathcal G = \mathrm{Id}_{\mathcal{D}} \downarrow F\) 也有有限乘积,
+并且两个投影函子 \(\mathcal G \to \mathcal C\), \(\mathcal G \to \mathcal D\) 都保持有限乘积.
+如果 \(\mathcal C, \mathcal D\) 还有指数对象,
+那么 \(\mathcal G\) 也有指数对象, 并且 \(\mathcal G \to \mathcal C\) 保持指数对象.
+\end{lemma}
+注意这里不要求 \(F\) 保持指数对象, 并且 \(\mathcal G \to \mathcal D\) 一般不保持指数对象.
+\begin{proof}
+参考\cite[例子 A2.1.12]{johnstone:2008:elephant}.
+(...) 要写吗
+\end{proof}
 
 接下来, 我们只需要在 \(\mathcal G\) 中选择一个对象
 \(A\) 和两个态射 \(1 \rightrightarrows B\). 选择了
@@ -810,7 +824,7 @@ F(B)\] 这个复合态射由函数对象的性质
 \]
 其中左侧是 \(1 \to \boldsymbol\Gamma(1)\),
 因为 \(\mathrm{s}\) 是保积闭函子,
-因此在同构意义下保持始对象. 右侧则是因为 \(\mathrm{s}\)
+因此在同构意义下保持终对象. 右侧则是因为 \(\mathrm{s}\)
 按照定义需要保持范畴中选定的 \(B\) 对象. 那么虚线
 表示的映射就选出了 \(\cons{y}, \cons{n}\)
 的其中一个. 无论是哪种, \(\mathrm{gl}\) 必然保持这个映射.
@@ -818,7 +832,7 @@ F(B)\] 这个复合态射由函数对象的性质
 我们可以得出结论, \(M\) 必然是 \(\cons{y}, \cons{n}\)
 其中之一.
 
-\subsection{简单类型\texorpdfstring{\(\lambda\)}{Lambda}-演算的典范化}%\berry{4}
+\subsection{简单类型\texorpdfstring{\(\lambda\)}{Lambda}-演算的典范化}\berry{3}
 
 证明典范化显然要更加困难一些.
 因为我们需要处理一切语境中的表达式, 因此
@@ -864,23 +878,103 @@ F(B)\] 这个复合态射由函数对象的性质
 即 \(\mathbf N\) 保持终对象和二元乘积.
 最后, 我们需要选择 \(1 \rightrightarrows B\).
 依葫芦画瓢, 定义 \(B'(\Sigma)\)
-为 \(\Sigma\) 下类型 \(\mathbb B\) 的典范形式集合.
+为 \(\Sigma\) 下类型 \(\mathbb B\) 的典范形式集合
+\(\mathrm{nf}(\Sigma, \mathbb B)\).
 因为典范形式在更名代换下稳定, 不难证明 \(B'\) 构成函子
 \(\mathcal A\op \to \mathsf{Set}\).
 而典范形式 \(B'\) 到全体表达式的集合有显然的含入映射.
 这就构造了 \(B' \to \mathbf N(\mathbb B)\).
-因为 \(\cons{yes}, \cons{no}\) 是一切语境下的典范元素,
+因为 \(\cons{y}, \cons{n}\) 是一切语境下的典范元素,
 也不难给出两个箭头 \(1 \rightrightarrows B\).
-
 这样, 由 \(\mathcal T\) 的泛性质, 我们就得到了函子
 \(\mathrm{s} : \mathcal T \to \mathcal G\).
-与前面同理就能得到任何表达式 \(\Sigma \vdash M : \mathbb B\)
-都等价于某个典范表达式. 不过我们还要考虑其他类型的典范表达式,
-因此最后还需要多进行一些操作.
 
-reify
+同理, 对于任何表达式 \(M \in \hom(\Sigma, \alpha)\)
+都可以应用函子 \(\mathrm s\),
+就得到一个 \(\mathcal A\op \to \mathsf{Set}\) 中的交换图.
+\[\begin{tikzcd}
+  {\Sigma'} & {\alpha'} \\
+  {\mathbf N(\Sigma)} & {\mathbf N(\alpha)}
+  \arrow[from=1-1, to=2-1]
+  \arrow["{\mathbf N(M)}"', from=2-1, to=2-2]
+  \arrow[from=1-2, to=2-2]
+  \arrow["{M'}", from=1-1, to=1-2]
+\end{tikzcd}\]
+注意下方是由于 \(\mathrm{gl}\circ\mathrm{s} = \mathrm{Id}\) 锚定的.
+回忆 \(\mathbf N(\Sigma) = \hom(\rho(-), \Sigma)\),
+并且 \(\rho : \mathcal A \to \mathcal T\) 是含入函子.
+如果取它在 \(\Sigma\) 处的值 (因为括号太多, 写成下标), 就得到集合的映射
+\(\mathbf{N}_{\Sigma}(M) : \hom(\Sigma, \Sigma) \to \hom(\Sigma, \alpha)\),
+具体来说是 \(\sigma \mapsto M \circ \sigma\).
+再代入 \(\sigma = \cons{id}_{\Sigma}\) 就可以得到 \(M\).
+因此, 如果存在 \(r \in \Sigma'_{\Sigma}\) 使得它
+被向下的映射对应到 \(\cons{id}_{\Sigma} \in \mathbf N_{\Sigma}(\Sigma)\),
+就可以得到 \(M'(r) \in \alpha'_{\Sigma}\) 使得它对应到 \(M \in \mathbf N_{\Sigma}(\alpha)\).
+另一方面, 我们还需要利用归纳法确定上方的 \(\Sigma', \alpha'\) 是什么.
 
-normalize
+既然我们要证明典范性, 自然是希望能够归纳证明
+\(\alpha'\) 的元素对应 \(\alpha\) 类型中的典范元素.
+更精确的说, 我们希望给出一个映射
+\(\Reify_\Sigma^\alpha : \alpha'_{\Sigma} \to \mathrm{nf}(\Sigma, \alpha)\)
+使得纵向的映射 \(\operatorname{\downarrow}_\Sigma^\alpha : \alpha'_{\Sigma} \to \mathbf N_{\Sigma}(\alpha)\) 可以拆分成
+\[\alpha'_{\Sigma} \xrightarrow{\Reify_\Sigma^\alpha} \mathrm{nf}(\Sigma, \alpha) \hookrightarrow
+\hom(\Sigma, \alpha) = \mathbf N_{\Sigma}(\alpha).\]
+对于 \(\mathbb B\) 来说这已经成立了, 取恒同映射即可.
+而对于 \(\alpha \times \beta\) 来说,
+根据引理 \ref{beginning:glue} 中的构造,
+在上方的函子就是 \(\alpha' \times \beta'\).
+由归纳假设, \(\alpha',\beta'\) 各自已经有了这种映射.
+那么取
+\[\Reify_\Sigma^{\alpha \times \beta}(m, n)
+= (\Reify_\Sigma^\alpha(m), \Reify_\Sigma^\beta(n)).\]
+而对于函数类型则困难一些. 我们可以填入部分答案
+\[\Reify_\Sigma^{\alpha \to \beta}(m) =
+\lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(?)).\]
+其中输入 \(m \in (\alpha \to \beta)'_\Sigma\) 按照构造是
+\(\hom(\yo_{\mathcal A}(\Sigma) \times \alpha', \beta')\)
+的元素, 并且需要满足某个等式.
+% \[f(\operatorname{\downarrow}_\Delta^\alpha(a)) =
+% \operatorname{\downarrow}_\Delta^\beta(m(\sigma, a))\]
+因此我们需要想办法输入某个 \(\alpha'_{\Sigma, x{:}\alpha}\) 的元素.
+
+事实上在归纳定义 \(\Reify\) 的同时,
+我们需要同时归纳定义一个反向的映射
+\(\Reflect_{\Sigma}^\alpha : \mathrm{ne}(\Sigma, \alpha) \to \alpha'_{\Sigma}\),
+从中性表达式映射到 \(\alpha'_\Sigma\). 同样这需要满足
+复合 \(\mathrm{ne}(\Sigma, \alpha) \to \alpha'_\Sigma \to
+\mathbf N_\Sigma(\alpha) = \hom(\Sigma, \alpha)\)
+恰好是中性表达式到全体表达式的含入映射.
+对于 \(\alpha = \mathbb B\) 来说 \(\alpha'_\Sigma\)
+就是典范表达式的集合, 因此 \(\Reflect_\Sigma^{\mathbb B}\)
+应当取从中性表达式映射到典范表达式的显然的映射.
+对于乘积类型, 由归纳假设我们有 \(\Reflect_\Sigma^\alpha, \Reflect_\Sigma^\beta\).
+给定一个中性表达式 \(\Sigma \vdash M : \alpha \times \beta\),
+那么 \(\pi_1(M), \pi_2(M)\) 各自也是中性表达式.
+因此取
+\[\Reflect_\Sigma^{\alpha \times \beta}(M) =
+(\Reflect_\Sigma^\alpha(\pi_1(M)), \Reflect_\Sigma^\beta(\pi_2(M)))\]
+即可. 最后, 对于函数类型, 取
+\[\Reify_\Sigma^{\alpha \to \beta}(m) =
+\lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(\Reflect_{\Sigma, x{:}\alpha}^\alpha(x))),\]
+\[\Reflect_\Sigma^{\alpha \to \beta}(M) =
+x \mapsto \Reify_\Sigma^\beta(M(\Reflect_\Sigma^\alpha x)).\]
+或许记号上有些令人眼花缭乱, 但是不难看出是唯一符合条件的答案.
+注意上面用了 \(\lambda x\), 因为需要构造一个表达式.
+而下面用了 \(x \mapsto\), 因为需要构造的是集合之间的映射.
+
+有了这两种映射, 我们现在可以完成证明的最后一步.
+对于语境 \(\Sigma = (x_1{:}\alpha_1, \dots, x_n{:}\alpha_n)\),
+它同构于乘积 \(\alpha_1 \times \dots \times \alpha_n\).
+考虑 \[r_\Sigma = (\Reflect_\Sigma^{\alpha_1}(x_1), \dots, \Reflect_\Sigma^{\alpha_n}(x_n)) \in \Sigma'.\]
+由于构造中保证了 \(\Reflect_\Sigma^\alpha\) 复合上
+竖直方向的映射 \(\alpha'_\Sigma \to \mathbf N_\Sigma(\alpha)\)
+后等于含入映射, 我们得到 \(r_\Sigma\) 在竖直映射下
+恰好对应到 \((x_1, \dots, x_n) = \cons{id}_\Sigma\),
+是恒同态射. 因此按照前面给出的交换图, 就得到
+\(M'(r_\Sigma) \in \alpha'_\Sigma\) 在竖直映射下
+对应 \(M\). 而又因为这个竖直映射可以拆分成 \(\Reify_\Sigma^\alpha\)
+复合上含入映射 \(\mathrm{nf}(\Sigma, \alpha) \hookrightarrow \hom(\Sigma, \alpha)\),
+这就得到了与 \(M\) 等价的正规形式 \(\Reify_\Sigma^\alpha(M'(r_\Sigma))\).
 
 \section{论域论}\label{beginning:domain}\berry{1}
 
@@ -888,10 +982,9 @@ normalize
 尽管无类型的 \(\lambda\)-演算与组合子演算不能直接用于
 逻辑, 但是仍然可以用来表示计算. 因此寻找它的一套语义表示
 也是有意义的. 一个非常重要的观察是, 无类型的本质是\textbf{单类型}.
-换句话说, 实际上所有的表达式都有一个相同的类型. 这个
-观察在其他一些地方会非常有用. 在这里, 我们需要有一个函数
-类型 \(\alpha \to \beta\), 但是一切的类型都相同, 所以
-我们就顺理成章地得到了一个等式：
+换句话说, 实际上所有的表达式都有一个相同的类型.
+在这里, 我们需要有一个函数类型 \(\alpha \to \beta\),
+但是一切的类型都相同, 所以我们就顺理成章地得到了一个等式：
 \[(D \to D) \cong D.\]
 因此, 无类型 \(\lambda\)-演算的语义大致上是要找到一个数学
 对象 \(D\), 使得 \(D \to D\), 也就是某种函数或者映射

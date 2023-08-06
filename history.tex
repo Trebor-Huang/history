@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amssymb,amsmath,amsthm}
+\usepackage{stmaryrd}
 \usepackage{tcolorbox,fancyhdr,marginnote}
 \usepackage{mathrsfs,verbatim,quiver}
 \usepackage{biblatex}
@@ -20,6 +21,10 @@
   BoldItalicFont={cmunbi.otf},
   Ligatures=TeX
 ]{cmunrm.otf}
+
+% Lightning symbols
+\newcommand\Reflect{\rotatebox[origin=c]{180}{\(\lightning\)}}
+\newcommand\Reify{\reflectbox{\(\lightning\)}}
 
 % mathrsfs only supports a set of fixed sizes.
 % Fixed by declaring myself.

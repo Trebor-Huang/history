@@ -16,12 +16,13 @@ This is my coursework. I have already finished the submitted version `d0aaf51`, 
 ## Recent updates
 
 - Switched to natural models
+- Normalization fo STLC
 
 ## TODO
 
 - STLC
   - [ ] Rewrite combinator canonicity
-  - [ ] Normalization for STLC
+  - [X] Normalization for STLC
 - Category theory
   - [ ] Natural models
   - [ ] Higher models
