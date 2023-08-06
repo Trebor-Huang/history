@@ -717,13 +717,13 @@ F(B)\] 这个复合态射由函数对象的性质
 本身也是模型之一.
 
 我们现在就可以迅速证明 \(\cons{y}\ne\cons{n}\).
-考虑所有集合的范畴 \(\cons{Set}\), 它是积闭的.
+考虑所有集合的范畴 \(\mathsf{Set}\), 它是积闭的.
 我们再选择 \(1 \rightrightarrows B\) 为
 \(1=\{\varnothing\}\) 到
 \(2=\{\varnothing, \{\varnothing\}\}\) 的两个态射即可.
 如果 \(\cons{y}=\cons{n}\),
 那么说明引理~\ref{beginning:lambda:initial} 产生的函子
-\(\mathrm s:\mathcal T \to \cons{Set}\)
+\(\mathrm s:\mathcal T \to \mathsf{Set}\)
 满足 \(\mathrm{s}(\cons{y}) = \mathrm{s}(\cons{n})\),
 进一步得到集合 \(2\) 的两个元素相等, 矛盾. 注意这个模型
 仍然无法证明闭典范性, 因为 \(\mathrm{s}\) 仍然有可能
@@ -734,7 +734,7 @@ F(B)\] 这个复合态射由函数对象的性质
 为了研究闭典范性, 我们需要先找出类型论中的闭元素, 即不包含
 自由变量的表达式. 这很容易, 我们只需要要求语境为空即可.
 因此我们考虑 \(\boldsymbol\Gamma(X) = \hom_{\mathcal T}(1, X)\).
-这是一个 \(\mathcal T \to \cons{Set}\) 的函子.
+这是一个 \(\mathcal T \to \mathsf{Set}\) 的函子.
 
 如上文所述, 我们一般的思路是为每一个类型赋予一个谓词.
 在范畴论中, 我们可以使用一个 \(f : Y \to X\) 的态射作
@@ -757,12 +757,12 @@ F(B)\] 这个复合态射由函数对象的性质
 一个代换, \(\sigma'\) 是某个函数. 这样, \(\mathcal G\)
 就是每个类型的闭表达式集上所有可能的谓词的范畴.
 如果读者熟悉范畴论, 就应该知道这是逗号范畴的特例:
-\[\mathcal G = \mathrm{Id}_{\cons{Set}}\downarrow \boldsymbol\Gamma.\]
+\[\mathcal G = \mathrm{Id}_{\mathsf{Set}}\downarrow \boldsymbol\Gamma.\]
 它也可以看成是下面这个拉回：
 \[
 \begin{tikzcd}
-\mathcal G \ar[r, dashed] \ar[d, dashed, "\mathrm{gl}"'] \ar[dr, phantom, "\lrcorner", very near start] & \cons{Set}^{\to} \ar[d, "\mathrm{cod}"] \\
-\mathcal T \ar[r, "\boldsymbol\Gamma"'] & \cons{Set}
+\mathcal G \ar[r, dashed] \ar[d, dashed, "\mathrm{gl}"'] \ar[dr, phantom, "\lrcorner", very near start] & \mathsf{Set}^{\to} \ar[d, "\mathrm{cod}"] \\
+\mathcal T \ar[r, "\boldsymbol\Gamma"'] & \mathsf{Set}
 \end{tikzcd}
 \]
 注意这时候我们自动有了一个函子 \(\mathrm{gl}\), 它把
@@ -793,7 +793,7 @@ F(B)\] 这个复合态射由函数对象的性质
 \boldsymbol\Gamma(1) \ar[r, "\boldsymbol\Gamma(\cons{y})"'] & \boldsymbol\Gamma(\cons{Ans}) &\ar[l, "\boldsymbol\Gamma(\cons{n})"] \boldsymbol\Gamma(1)
 \end{tikzcd}
 \]
-注意整个交换图都在 \(\cons{Set}\) 中.
+注意整个交换图都在 \(\mathsf{Set}\) 中.
 
 我们需要证明的是任何一个表达式 \(M \in \boldsymbol\Gamma(\cons{Ans})
 = \hom_{\mathcal T}(1, \cons{Ans})\) 都一定恰好是
