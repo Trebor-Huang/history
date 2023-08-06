@@ -15,6 +15,8 @@ This is my coursework. I have already finished the submitted version `d0aaf51`, 
 
 ## Recent updates
 
+- Switched to natural models
+
 ## TODO
 
 - STLC
@@ -24,9 +26,7 @@ This is my coursework. I have already finished the submitted version `d0aaf51`, 
   - [ ] Natural models
   - [ ] Higher models
     - [ ] Groupoid model (elaborate)
-    - [ ] Groupoid model as model category
-    - [ ] Model category as type theoretic models (Types as fibrations!!)
-    - [ ] Infinity category
+    - [ ] Infinity categories and model categories
 - Misc
   - Typesetting, clean up bibliography
   - Hyphen or en-dash between math and Chinese?
