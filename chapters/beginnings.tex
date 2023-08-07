@@ -755,8 +755,8 @@ F(B)\] 这个复合态射由函数对象的性质
 其中 \(\sigma\) 是 \(\Sigma \vdash \Delta\) 的
 一个代换, \(\sigma'\) 是某个函数. 这样, \(\mathcal G\)
 就是每个类型的闭表达式集上所有可能的谓词的范畴.
-如果读者熟悉范畴论, 就应该知道这是逗号范畴的特例:
-\[\mathcal G = \mathrm{Id}_{\mathsf{Set}}\downarrow \boldsymbol\Gamma.\]
+如果读者熟悉范畴论, 就应该知道这是逗号范畴的特例
+\(\mathcal G = \mathrm{Id}_{\mathsf{Set}}\downarrow \boldsymbol\Gamma\).
 它也可以看成是下面这个拉回：
 \[
 \begin{tikzcd}
@@ -790,7 +790,60 @@ F(B)\] 这个复合态射由函数对象的性质
 注意这里不要求 \(F\) 保持指数对象, 并且 \(\mathcal G \to \mathcal D\) 一般不保持指数对象.
 \begin{proof}
 参考\cite[例子 A2.1.12]{johnstone:2008:elephant}.
-(...) 要写吗
+考虑对象 \((1 \to F(1)) \in \mathcal G\).
+因为 \(F(1) \cong 1\),
+显然任何对象 \(A' \to F(A)\) 到它都只有唯一的映射.
+因此 \(\mathcal G\) 有终对象, 并且两个投影函子保持终对象.
+
+对于二元乘积, 如果有 \(A' \to F(A), B' \to F(B)\),
+那么这自然诱导映射 \(A' \times B' \to F(A) \times F(B) \cong F(A \times B)\),
+并且有两个投影
+\[\begin{tikzcd}
+  {A'} & {A' \times B'} & {B'} \\
+  {F(A)} & {F(A\times B)} & {F(B)}
+  \arrow[from=1-2, to=1-1]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-2, to=1-3]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=2-2, to=2-1]
+  \arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+我们验证这就是 \(\mathcal G\) 中的二元乘积.
+考虑交换图表
+\[\begin{tikzcd}
+  {A'} & {C'} & {B'} \\
+  {F(A)} & {F(C)} & {F(B)}
+  \arrow[from=1-2, to=1-1]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-2, to=1-3]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=2-2, to=2-1]
+  \arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+则由上下两个乘积的泛性质分别得到唯一的映射 \(C' \to A'\times B'\),
+\(F(C) \to F(A \times B)\), 使得图表交换.
+因此 \(A' \times B' \to F(A \times B)\) 的确满足
+\(\mathcal G\) 中乘积的泛性质.
+并且由构造得到两个投影函子也保持乘积.
+
+对于函数对象来说, 考虑如图的拉回.
+\[\begin{tikzcd}
+  W && {{Y'}^{X'}} \\
+  {F(Y^X)} & {F(Y)^{F(X)}} & {F(Y)^{X'}}
+  \arrow[from=2-1, to=2-2]
+  \arrow[from=2-2, to=2-3]
+  \arrow[from=1-3, to=2-3]
+  \arrow["p", from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-3]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+其中左下的映射来自复合 \(F(X) \times F(Y^X) \xrightarrow\cong F(X \times Y^X) \to F(Y)\).
+不难验证 \(p\) 满足函数对象的泛性质.
+由于一般而言 \(W \ncong {Y'}^{X'}\), 因此投影映射
+\(\mathcal G \to \mathcal D\) 不保持指数对象;
+但是 \(\mathcal G \to \mathcal C\) 仍然是保持的.
 \end{proof}
 
 接下来, 我们只需要在 \(\mathcal G\) 中选择一个对象
@@ -932,7 +985,7 @@ F(B)\] 这个复合态射由函数对象的性质
 \lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(?)).\]
 其中输入 \(m \in (\alpha \to \beta)'_\Sigma\) 按照构造是
 \(\hom(\yo_{\mathcal A}(\Sigma) \times \alpha', \beta')\)
-的元素, 并且需要满足某个等式.
+的元素, 并且满足某个等式.
 % \[f(\operatorname{\downarrow}_\Delta^\alpha(a)) =
 % \operatorname{\downarrow}_\Delta^\beta(m(\sigma, a))\]
 因此我们需要想办法输入某个 \(\alpha'_{\Sigma, x{:}\alpha}\) 的元素.
@@ -957,10 +1010,10 @@ F(B)\] 这个复合态射由函数对象的性质
 \[\Reify_\Sigma^{\alpha \to \beta}(m) =
 \lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(\Reflect_{\Sigma, x{:}\alpha}^\alpha(x))),\]
 \[\Reflect_\Sigma^{\alpha \to \beta}(M) =
-x \mapsto \Reify_\Sigma^\beta(M(\Reflect_\Sigma^\alpha x)).\]
+N \mapsto \Reify_\Sigma^\beta(M(\Reflect_\Sigma^\alpha N)).\]
 或许记号上有些令人眼花缭乱, 但是不难看出是唯一符合条件的答案.
 注意上面用了 \(\lambda x\), 因为需要构造一个表达式.
-而下面用了 \(x \mapsto\), 因为需要构造的是集合之间的映射.
+而下面用了 \(N \mapsto\), 因为需要构造的是集合之间的映射.
 
 有了这两种映射, 我们现在可以完成证明的最后一步.
 对于语境 \(\Sigma = (x_1{:}\alpha_1, \dots, x_n{:}\alpha_n)\),
