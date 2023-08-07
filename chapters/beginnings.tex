@@ -875,15 +875,13 @@ F(B)\] 这个复合态射由函数对象的性质
 \boldsymbol\Gamma(1) \ar[r, "\boldsymbol\Gamma(M)"'] & \boldsymbol\Gamma(\mathbb B)
 \end{tikzcd}
 \]
-其中左侧是 \(1 \to \boldsymbol\Gamma(1)\),
-因为 \(\mathrm{s}\) 是保积闭函子,
-因此在同构意义下保持终对象. 右侧则是因为 \(\mathrm{s}\)
-按照定义需要保持范畴中选定的 \(B\) 对象. 那么虚线
-表示的映射就选出了 \(\cons{y}, \cons{n}\)
-的其中一个. 无论是哪种, \(\mathrm{gl}\) 必然保持这个映射.
-又因为 \(\mathrm{gl}(\mathrm{s}(M)) = M\),
-我们可以得出结论, \(M\) 必然是 \(\cons{y}, \cons{n}\)
-其中之一.
+由于 \(\mathrm{gl} \circ \mathrm{s} = \mathrm{Id}\),
+得到交换图的下沿必须是 \(\boldsymbol\Gamma(1) \to \boldsymbol\Gamma(\mathbb B)\).
+而由于 \(\mathrm{s}\) 保持终对象, 得到左上角是 \(1\).
+右侧则是因为 \(\mathrm{s}\) 按照定义需要保持范畴中选定的 \(B\) 对象.
+虚线表示的映射就选出了 \(\cons{y}, \cons{n}\) 的其中一个.
+而由于正方形交换, 我们可以得出结论：
+\(M\) 必然是 \(\cons{y}, \cons{n}\) 其中之一.
 
 \subsection{简单类型\texorpdfstring{\(\lambda\)}{Lambda}-演算的典范化}\berry{3}
 
@@ -892,7 +890,7 @@ F(B)\] 这个复合态射由函数对象的性质
 \(\boldsymbol\Gamma(\Sigma) = \hom(1, \Sigma)\)
 明显是不够的. 另一个自然的想法是改成使用
 \(\yo(\Sigma) = \hom(-, \Sigma)\)：
-既然 \(1\) 不够, 就让它取遍所有的对象吧.
+既然 \(1\) 不够, 就让它取遍所有的对象吧!
 这样构造的新范畴 \(\mathcal G = \mathrm{Id} \downarrow \yo\) 的对象
 是形如 \(\Sigma' \to \yo(\Sigma)\)
 的自然变换, 其中 \(\Sigma'\) 是某个函子
@@ -902,7 +900,7 @@ F(B)\] 这个复合态射由函数对象的性质
 我们需要一个函子 \(B' : \mathcal T\op \to \mathsf{Set}\)
 与自然变换 \(B' \to \yo(\mathbb B)\),
 我们仿照前面的做法希望 \(B'(\Sigma)\) 应当是
-\(\Sigma\) 下类型 \(\mathbb B\) 的典范形式.
+\(\Sigma\) 下类型 \(\mathbb B\) 中的典范表达式.
 但是这样一来它的函子性就难办了. 例如若
 \(\Sigma = (f : \mathbb B \to \mathbb B)\),
 那么 \(f(\cons{yes})\) 就属于典范形式.
@@ -983,11 +981,17 @@ F(B)\] 这个复合态射由函数对象的性质
 而对于函数类型则困难一些. 我们可以填入部分答案
 \[\Reify_\Sigma^{\alpha \to \beta}(m) =
 \lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(?)).\]
-其中输入 \(m \in (\alpha \to \beta)'_\Sigma\) 按照构造是
-\(\hom(\yo_{\mathcal A}(\Sigma) \times \alpha', \beta')\)
-的元素, 并且满足某个等式.
-% \[f(\operatorname{\downarrow}_\Delta^\alpha(a)) =
-% \operatorname{\downarrow}_\Delta^\beta(m(\sigma, a))\]
+其中输入 \(m \in (\alpha \to \beta)'_\Sigma\)
+按照引理 \ref{beginning:glue} 的构造是
+\(\hom(\yo_{\mathcal A}(\Sigma) \times \alpha', \beta')\) 的元素.%
+\footnote{实际上是一个二元组 \((m, M)\), 其中 \(M\) 是
+表达式 \(\Sigma \vdash M : \alpha \to \beta\), 并且满足
+对于任何更名代换 \(\sigma : \Delta \to \Sigma\) 与 \(a \in \alpha'_\Delta\),
+\(M(\operatorname{\downarrow}_\Delta^\alpha(a)) =
+\operatorname{\downarrow}_\Delta^\beta(m(\sigma, a))\).
+我们直接用 \(m\) 表达 \(\hom(\yo_{\mathcal A}(\Sigma) \times \alpha', \beta')\)
+的元素, 忽略 \(M\). 同时 \(m\) 的第一个参数 \(\sigma\) 明确时也省略不写.}
+我们需要依靠 \(m\) 得到某个 \(\beta'_{\Sigma, x{:}\alpha}\) 的元素,
 因此我们需要想办法输入某个 \(\alpha'_{\Sigma, x{:}\alpha}\) 的元素.
 
 事实上在归纳定义 \(\Reify\) 的同时,
@@ -1010,17 +1014,21 @@ F(B)\] 这个复合态射由函数对象的性质
 \[\Reify_\Sigma^{\alpha \to \beta}(m) =
 \lambda x. \Reify_{\Sigma, x{:}\alpha}^\beta(m(\Reflect_{\Sigma, x{:}\alpha}^\alpha(x))),\]
 \[\Reflect_\Sigma^{\alpha \to \beta}(M) =
-N \mapsto \Reify_\Sigma^\beta(M(\Reflect_\Sigma^\alpha N)).\]
+(\sigma, n) \mapsto \Reflect_\Sigma^\beta(M(\Reify_\Delta^\alpha(n)[\sigma])).\]
 或许记号上有些令人眼花缭乱, 但是不难看出是唯一符合条件的答案.
-注意上面用了 \(\lambda x\), 因为需要构造一个表达式.
-而下面用了 \(N \mapsto\), 因为需要构造的是集合之间的映射.
+注意上面用了 \(\lambda\), 因为需要构造一个表达式.
+而下面用了 \(\mapsto\), 因为需要构造的是集合之间的映射：
+输入任何 \(\sigma : \Delta \to \Sigma\) 与 \(n \in \alpha'_\Delta\),
+我们需要输出 \(\beta'_\Sigma\) 的元素.
+我们将 \(n\) 变为典范表达式后,
+使用了更名代换, 仍然得到一个典范表达式 \(\Reify_\Delta^\alpha(n)[\sigma]\).
 
 有了这两种映射, 我们现在可以完成证明的最后一步.
 对于语境 \(\Sigma = (x_1{:}\alpha_1, \dots, x_n{:}\alpha_n)\),
 它同构于乘积 \(\alpha_1 \times \dots \times \alpha_n\).
 考虑 \[r_\Sigma = (\Reflect_\Sigma^{\alpha_1}(x_1), \dots, \Reflect_\Sigma^{\alpha_n}(x_n)) \in \Sigma'.\]
 由于构造中保证了 \(\Reflect_\Sigma^\alpha\) 复合上
-竖直方向的映射 \(\alpha'_\Sigma \to \mathbf N_\Sigma(\alpha)\)
+\(\operatorname{\downarrow}_\Sigma^\alpha : \alpha'_\Sigma \to \mathbf N_\Sigma(\alpha)\)
 后等于含入映射, 我们得到 \(r_\Sigma\) 在竖直映射下
 恰好对应到 \((x_1, \dots, x_n) = \cons{id}_\Sigma\),
 是恒同态射. 因此按照前面给出的交换图, 就得到
