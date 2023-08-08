@@ -88,11 +88,58 @@
 \\\hline
 \end{tabular}
 \end{center}
+\berry{2}
 
+\(\{\cons{yes}\} \subseteq \{\cons{yes}, \cons{no}\}\)
+可以看作是\textbf{万有}的子集, 因为对任何子集 \(E \subseteq B\),
+以下交换方是拉回.
+\[\begin{tikzcd}
+  E & {\{\cons{yes}\}} \\
+  B & {\{\cons{yes}, \cons{no}\}}
+  \arrow[hook, from=1-1, to=2-1]
+  \arrow[hook, from=1-2, to=2-2]
+  \arrow[from=1-1, to=1-2]
+  \arrow[from=2-1, to=2-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+从这个角度看, 一切子集都源于
+\(\{\cons{yes}\} \subseteq \{\cons{yes}, \cons{no}\}\),
+或者说, 这个子集包含了一切其他子集可能出现的情况.
+更严格来说, 有如下性质.
+\begin{theorem}
+对于集合 \(B\), 它的子集与映射 \(B \to \{\cons{yes}, \cons{no}\}\)
+一一对应, 并且对应关系是上图的拉回关系.
+\end{theorem}
+因此, 我们说 \(\{\cons{yes}\} \subseteq \{\cons{yes}, \cons{no}\}\)
+\textbf{分类}了全体子集.
+这可以类推到集合族上.
+考虑 \(\tilde{\mathsf{Set}}\) 为全体形如
+\((A, a)\) 的有序对, 其中 \(a \in A\).%
+\footnote{这里为了避免处理真类的问题, 可以不考虑全体集合.
+例如可以固定一个较大的集合 \(U\), 只考虑这个集合的子集.}
+有显然的映射 \(\tilde{\mathsf{Set}} \to \mathsf{Set}\),
+将 \((A, a)\) 映射到 \(A\).
+这样, 如果有集合族 \(E_\bullet : B \to \mathsf{Set}\),
+那么也不难验证这是拉回.
+\[\begin{tikzcd}
+  E & {\tilde{\mathsf{Set}}} \\
+  B & {\mathsf{Set}}
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=1-1, to=1-2]
+  \arrow["{E_\bullet}"', from=2-1, to=2-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+类似地可以说 \(\tilde{\mathsf{Set}} \to \mathsf{Set}\) 分类了全体集合族.
 
-universes and classifying space, pullback
-
-weakly universal bundle
+当然, 上面的说法有一些不严谨, 因为两个不同的 \(E_\bullet\)
+可能给出同构的 \(E \to B\). 因为态射之间是直接比较相等,
+而对象之间比较的是同构的概念, 这种情况难免出现.
+子集能避免这个问题, 是因为两个子集之间至多有一种方法同构.
+如果有 \(\tilde X \to X\), 使得在 \(E \to B\) 与某个
+\(B \to X\) 之间有拉回的对应关系,
+不过多个 \(B \to X\) 可能对应同构的 \(E \to B\),
+就称 \(\tilde X \to X\) \textbf{弱分类}了 \(E \to B\) 的态射.
 
 \section{类型论的自然模型}\label{category:naturalmodel}
 
@@ -103,7 +150,7 @@ weakly universal bundle
 \berry{3}
 
 \begin{definition}\label{category:naturalmodeldef}
-一个\textbf{自然模型}是任意一个范畴 \(\mathcal C\),
+一个\textbf{自然模型}是任意一个有终对象的范畴 \(\mathcal C\),
 配备两个预层与其间的态射 \(\pi : \mathrm{Tm} \to \mathrm{Tp}\),
 使得对于任何 \(\Gamma \in \mathcal C\)
 与 \(A \in \mathrm{Tp}(\Gamma) \cong \hom(\yo(\Gamma), \mathrm{Tp})\),
@@ -118,13 +165,15 @@ weakly universal bundle
 \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
 此对象记作 \((\Gamma, A)\). 满足这种条件的态射也称作\textbf{可表态射}.
+另外, 将态射 \((\Gamma, A) \to \Gamma\) 记作 \(\cons{p}_A\),
+交换图上沿的态射记作 \(\cons{q}_A\).
 \end{definition}
 
 我们将语法构造成模型, 便可展示此定义的动机.
 考虑所有合法语境在判值相等关系下构成的集合 \(\mathcal C\),
 两个语境之间的态射 \(\sigma \in \hom(\Delta, \Gamma)\) 是代换,
 即一列类型与 \(\Gamma\) 相符的表达式, 其中包含 \(\Delta\) 的变量.
-判值相等的代换视为相同. 这样就构成一个范畴.
+判值相等的代换视为相同. 这样就构成一个范畴. 终对象是空语境.
 对于每个语境 \(\Gamma\),
 考虑允许包含 \(\Gamma\) 中的变量的合法的类型构成的集合 \(\mathrm{Tp}(\Gamma)\),
 同样将判值相等的类型视为相同.
@@ -145,8 +194,48 @@ F(\Delta)
 &= \hom(\Delta, (\Gamma, A)).
 \end{align*}
 因此 \(F\) 的确可表, 并且其表出对象就对应语境的扩展操作 \((\Gamma, A)\).
-以上就证明了类型论的语法范畴构成自然模型, 记作 \(\mathbf T\).
-以此为模板, 就可以找到类型论中许多概念的语义对应.
+这里, \(\mathrm{Tm} \to \mathrm{Tp}\) 就分类了
+形如 \((\Gamma,A) \to \Gamma\) 的态射.
+
+以上就证明了类型论的语法范畴构成自然模型, 记作 \(\mathbf T\).%
+\footnote{当然, 因为我们还没有引入任何类型, 语法范畴其实是平凡的.
+但是上面的证明可以随着加入新的类型而随时拓展.}
+以此为模板, 就可以找到类型论语法中许多概念的语义对应.
+例如, 类型论中的语境对应自然模型中 \(\mathcal C\) 的对象,
+语境之间的代换对应 \(\mathcal C\) 中的态射.
+语境中的类型对应 \(\mathrm{Tp}(\Gamma)\) 的元素.
+给定 \(A : \mathrm{Tp}(\Gamma)\),
+类型论中 \(A\) 的元素对应模型中的
+\[\{a \mid a \in \mathrm{Tm}(\Gamma), \pi(a) = A\}.\]
+由拉回的性质, 可以看出这等价于
+\[\{\alpha \mid \alpha \in \hom(\Gamma, (\Gamma, A)), \cons{p}_A \circ \alpha = \cons{id}_\Gamma\}.\]
+对于 \(A : \mathrm{Tp}(\Gamma), \sigma : \Delta \to \Gamma\),
+由于 \(\mathrm{Tp}\) 是预层, 我们可以得到 \(A[\sigma] : \mathrm{Tp}(\Delta)\).
+这是类型论中代换的对应. 而由于下图中右侧的正方形与外侧的正方形均是拉回,
+\[\begin{tikzcd}
+  {\yo(\Delta, A[\sigma])} & {\yo(\Gamma,A)} & {\mathrm{Tm}} \\
+  {\yo(\Delta)} & {\yo(\Gamma)} & {\mathrm{Tp}}
+  \arrow[from=2-2, to=2-3]
+  \arrow[from=1-3, to=2-3]
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=1-2, to=1-3]
+  \arrow[from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[curve={height=-9pt}, from=1-1, to=1-3]
+  \arrow[dashed, from=1-1, to=1-2]
+\end{tikzcd}\]
+我们得到虚线的箭头也存在, 使得整体构成交换图并且左侧的正方形是拉回.
+因此在 \(\mathcal C\) 中有这样一个拉回.
+\[\begin{tikzcd}
+  {(\Delta, A[\sigma])} & {(\Gamma,A)} \\
+  \Delta & \Gamma
+  \arrow[from=1-2, to=2-2]
+  \arrow[from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[dashed, from=1-1, to=1-2]
+\end{tikzcd}\]
+在一些其他的类型论的模型的定义中,
+不涉及预层范畴, 而是直接将这个拉回作为类型论中代换的定义.
 
 如何说明自然模型的确是合适的概念呢?
 模型最重要的作用, 是语法中的概念可以解释到所有模型中.
@@ -159,7 +248,7 @@ F(\Delta)
 它到任何带有 \(\Pi\)-类型的模型都有唯一的保持结构的态射,
 以此类推.
 
-当然, 上面还没有定义何为保持结构的态射.
+上面还没有定义何为保持结构的态射.
 以下为了方便, 对于模型 \(\mathbf M\),
 记它对应的范畴为 \(\mathcal C_{\mathbf M}\),
 配备的预层是 \(\mathrm{Tm}_{\mathbf M}, \mathrm{Tp}_{\mathbf M}\),
@@ -192,9 +281,111 @@ F(\Delta)
 其中, 最后这个条件是在要求自然模型之间的态射保持 \((-,-)\) 这个运算.
 如果这不仅是同构, 而是直接严格相等, 就说\(F\)是自然模型之间的\textbf{严格态射}.
 
-(Sigma, Pi 类型)
+\subsection{自然模型中的类型}
 
-历史：
+自然模型仅仅是搭建起了类型论模型的基本框架.
+接下来, 我们要为这个框架加入具体的类型.
+先从最简单的单元素类型开始.
+
+我们同样从语法范畴寻找启发. 对于有单元素类型的类型论,
+在任何语境 \(\Gamma\) 下都有 \(\Gamma \vdash \cons{Unit}\,\text{type}\).
+因此应当有预层的态射 \(1 \to \mathrm{Tp}\),
+在 \(\mathrm{Tp}\) 中指出单位类型.
+而单位类型在任何语境下都恰好有一个元素. 因此如果考虑拉回
+\[\begin{tikzcd}
+  \bullet & {\mathrm{Tm}} \\
+  1 & {\mathrm{Tp}}
+  \arrow[from=1-2, to=2-2]
+  \arrow["{\cons{Unit}}"', from=2-1, to=2-2]
+  \arrow[from=1-1, to=2-1]
+  \arrow[from=1-1, to=1-2]
+  \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+那么其左上角应当也是 \(1\).
+\begin{definition}
+给定自然模型,
+如果有一个映射 \(\cons{Unit} : 1 \to \mathrm{Tp}\),
+使得它与 \(\pi\) 拉回得到的也是终对象, 那么就称
+\(\cons{Unit}\) 是该自然模型的\textbf{单位类型结构}.
+\end{definition}
+注意单位类型是\emph{结构}而不是\emph{性质},
+也就是说同一个自然模型可能有两种不同的单位类型结构,
+这是因为两个不同的单位类型可以仅仅是同构而不严格相等.
+
+更复杂的类型也是相似的. 接下来考虑 \(\Pi\)-类型.
+它的规则是
+\[\frac{\Gamma \vdash A\,\text{type}
+\quad\Gamma, x{:}A \vdash B\,\text{type}}
+{\Gamma \vdash \prod_{x : A} B\,\text{type}}\]
+因此我们需要考虑一个预层
+\[F(\Gamma) = \{(A, B) \mid
+  A \in \mathrm{Tp}(\Gamma), B \in \mathrm{Tp}(\Gamma, A)\}.\]
+这个定义的自然性来自 \(\mathrm{Tp}\) 与 \((-,-)\) 的自然性.
+与单位类型类似, 我们需要寻找预层的态射 \(\cons{Pi} : F \to \mathrm{Tp}\),
+指出由 \(A, B\) 构成的 \(\Pi\)-类型.
+\(\Pi\)-类型的元素, 可以通过 \(\Gamma, x{:}A \vdash b : B\) 构造.
+因此考虑另一个预层
+\[G(\Gamma) = \{(A, B, b) \mid b \in \mathrm{Tm}(\Gamma, A), \pi(b) = B\},\]
+其中 \(A, B\) 取值范围与 \(F\) 中相同.
+有自然变换 \(G \to F\). 至此, 我们应当希望有一个交换方
+\[\begin{tikzcd}
+  G & {\mathrm{Tm}} \\
+  F & {\mathrm{Tp}}
+  \arrow[from=1-1, to=2-1]
+  \arrow["{\cons{Pi}}"', from=2-1, to=2-2]
+  \arrow["\pi", from=1-2, to=2-2]
+  \arrow[from=1-1, to=1-2]
+\end{tikzcd}\]
+这就编码了 \(\Pi\)-类型的引入规则, 即 \(\lambda\) 操作.
+% 接下来需要考虑消去规则, 即函数求值操作.
+% \[
+% \frac{\Gamma \vdash f : \prod_{x:A} B
+% \quad \Gamma \vdash a : A}{
+% \Gamma \vdash f(a) : B[x/a]}
+% \]
+% 在模型中, 这对应一个元素 \(f : \mathrm{Tm}(\Gamma)\),
+% 满足 \(\pi(f) = \cons{Pi}(A, B)\). 画成交换图是
+% \[\begin{tikzcd}
+%   {\yo(\Gamma)} \\
+%   & G & {\mathrm{Tm}} \\
+%   & F & {\mathrm{Tp}}
+%   \arrow["\pi", from=2-3, to=3-3]
+%   \arrow[from=2-2, to=3-2]
+%   \arrow["{\cons{Pi}}"{description}, from=3-2, to=3-3]
+%   \arrow[from=2-2, to=2-3]
+%   \arrow["f"{description}, curve={height=-6pt}, from=1-1, to=2-3]
+%   \arrow[curve={height=6pt}, from=1-1, to=3-2]
+% \end{tikzcd}\]
+% 这里左侧的映射指出了 \((A,B) \in F(\Gamma)\).
+接下来, 我们要求这个交换方是拉回.
+\begin{definition}
+给定自然模型, 如果有一个映射 \(\cons{Pi} : F \to \mathrm{Tp}\),
+使得它与 \(\pi\) 拉回得到的是 \(G \to F\), 那么就称
+\(\cons{Pi}\) 是该自然模型的 \textbf{\(\Pi\)-类型结构}.
+\end{definition}
+这就同时得到了 \(\Pi\)-类型的消去规则 (即函数求值),
+还有 \(\beta\) 与 \(\eta\) 等式.
+更加详细的解释与证明, 可以参考 \cite[定理 8]{awodey:2018:natural}.
+\(\Sigma\)-类型也可以类似操作.
+\(F\) 不变, 定义预层
+\[H(\Gamma) = \{(A, B, a, b) \mid
+  a,b \in \mathrm{Tm}(\Gamma),
+  \pi(a) = A,
+  \pi(b) = B[a]\}\]
+其中 \(B[a]\) 是将 \(a\) 看作对应的代换 \(\Gamma \to (\Gamma,A)\).
+\begin{definition}
+给定自然模型, 如果有一个映射 \(\cons{Sigma} : F \to \mathrm{Tp}\),
+使得它与 \(\pi\) 拉回得到的是 \(H \to F\), 那么就称
+\(\cons{Sigma}\) 是该自然模型的 \textbf{\(\Sigma\)-类型结构}.
+\end{definition}
+
+上村太一~\cite{uemura:2019:general} 提出了一种逻辑框架,
+可以方便地叙述范畴语义而不必如上操作繁杂的预层.
+
+(intensional identity type)
+
+\subsection{范畴语义的历史}
+
 \begin{itemize}
 \item 1984 年, Seely~\cite{seely:1984:lccc}
 首次具体写出了用丛表示依值类型, 拉回表示代换的思想.
@@ -211,7 +402,7 @@ F(\Delta)
 给出了融贯问题的完整答案, 这在 \cite{curien:2014:revisit} 中有总结.
 \item 2015 年, 由 Voevodsky 的相关工作启发了
 融贯问题的新解决方案~\cite{lumsdaine:2015:universes}, 这强调了宇宙的重要性.
-\item 2018 年, 含族范畴被重新表述为自然模型~\cite{awodey:2018:natural}.
+\item 2018 年, 含族范畴被 Awodey~\cite{awodey:2018:natural} 和 Fiore 各自独立重新表述为自然模型.
 \item 2019 年, 上村太一~\cite{uemura:2019:general}
 提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
 \end{itemize}
