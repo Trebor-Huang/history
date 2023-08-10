@@ -194,7 +194,7 @@ F(\Delta)
 &= \hom(\Delta, (\Gamma, A)).
 \end{align*}
 因此 \(F\) 的确可表, 并且其表出对象就对应语境的扩展操作 \((\Gamma, A)\).
-这里, \(\mathrm{Tm} \to \mathrm{Tp}\) 就分类了
+这里, \(\mathrm{Tm} \to \mathrm{Tp}\) 就(弱)分类了
 形如 \((\Gamma,A) \to \Gamma\) 的态射.
 
 以上就证明了类型论的语法范畴构成自然模型, 记作 \(\mathbf T\).%
@@ -379,10 +379,60 @@ F(\Delta)
 \(\cons{Sigma}\) 是该自然模型的 \textbf{\(\Sigma\)-类型结构}.
 \end{definition}
 
-上村太一~\cite{uemura:2019:general} 提出了一种逻辑框架,
-可以方便地叙述范畴语义而不必如上操作繁杂的预层.
+% 上村太一~\cite{uemura:2019:general} 提出了一种逻辑框架,
+% 可以方便地叙述范畴语义而不必如上操作繁杂的预层.
+% Gratzer~\cite{gratzer:2021:syntactic} 进一步发展了这种工具.
 
-(intensional identity type)
+我们证明集合范畴构成含有 \(\Sigma\)-类型与 \(\Pi\)-类型结构的自然模型.
+大致上说, \(\Sigma\)-类型结构就是集合族的不交并,
+而 \(\Pi\)-类型就是集合族的乘积.
+
+不过, 我们需要避免 Russell 悖论相关的问题, 不能直接取全体集合构成的范畴.
+考虑一个强不可达基数 \(\kappa\),
+也就是一个很大的基数, 像如来神掌, 使得用 \(\Sigma\) 和 \(\Pi\) 都逃不出这个基数.
+这样集合论宇宙 \(V_\kappa\) 中的集合构成一个范畴 \(\cons{Set}_{\kappa}\),
+从我们的目的来看, 就如全体集合的范畴一样的无垠,
+在 \(\Sigma, \Pi\) 操作下都封闭.
+但是从集合的视角来看, 它只是一个小范畴, 因此避免了处理真类的麻烦.
+如果读者暂时不关心真类的问题, 可以直接取 \(\cons{Set}\).
+
+对于任何 \(\Gamma \in \cons{Set}_\kappa\),
+取 \(\mathrm{Tp}(\Gamma)\) 为映射集 \(\Gamma \to \cons{Set}_\kappa\).
+换句话说, 一个包含 \(\Gamma\) 中变量的类型对应一个集合族.
+而一个类型 \(A\) 的元素就是这个集合族中的元素族. 换句话说是
+\(\prod_{x\in\Gamma}A(x)\).
+这样, \(\mathrm{Tm}(\Gamma)\) 为不交并
+\[\coprod_{A \in (\Gamma \to \cons{Set}_\kappa)} \prod_{x \in \Gamma} A(x).\]
+有显然的态射 \(\mathrm{Tm} \to \mathrm{Tp}\).
+我们还需要证明此态射可表.
+对于任何 \(\Gamma \in \cons{Set}_\kappa\)
+与 \(A : \Gamma \to \cons{Set}_\kappa\),
+计算可表态射定义中的拉回
+\[[\yo(\Gamma) \times_{\mathrm{Tp}} \mathrm{Tm}](\Delta)
+= \{(\sigma, B, f) \mid A \circ \sigma = B\}
+= \coprod_{\sigma \in (\Delta \to \Gamma)} \prod_{x \in \Delta} A(\sigma(x))
+\]
+其中 \(\sigma \in \hom(\Delta, \Gamma), B \in (\Delta \to \cons{Set}_\kappa), f \in \prod_{x \in \Delta} B(x)\).
+使用集合乘积的分配律就得到
+\[\coprod_{\sigma \in (\Delta \to \Gamma)} \prod_{x \in \Delta} A(\sigma(x))
+\cong \Delta \to \coprod_{x \in \Gamma} A(x).\]
+因此定义 \((\Gamma, A) = \coprod_{x \in \Gamma} A(x)\),
+则上面的拉回预层被 \((\Gamma, A)\) 表出, 故 \(\mathrm{Tm} \to \mathrm{Tp}\) 的确是可表态射.
+
+接下来, 我们证明这个模型上有 \(\Pi\)-类型结构.
+考虑上面的预层 \(F(\Gamma) = \{(A,B) \mid A \in \mathrm{Tp}(\Gamma), B \in \mathrm{Tp}(\Gamma, A)\}\).
+在集合中 \(A \in \Gamma \to \cons{Set}_\kappa\),
+\(B \in (\Gamma, A) \to \cons{Set}_\kappa\) 都是集合族.
+我们想要给 \((A, B)\) 赋予它们对应的 \(\Pi\)-类型,
+在集合中这就是集合乘积
+\[\cons{Pi}(A, B) = x \mapsto \prod_{a \in A(x)} B(x, a).\]
+注意 \(\cons{Pi}(A,B) \in \Gamma \to \cons{Set}_\kappa\)
+也是集合族. 由于 \(\kappa\) 是强不可达基数, 这个集合乘积仍然在 \(\cons{Set}_\kappa\) 中.
+验证这的确给出了 \(\Pi\)-类型结构, 就是简单的集合操作了.
+类似地, 我们可以给出 \(\Sigma\)-类型结构
+\[\cons{Sigma}(A, B) = x \mapsto \coprod_{a \in A(x)} B(x, a).\]
+
+\subsection{相等类型}
 
 \subsection{范畴语义的历史}
 
