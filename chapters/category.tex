@@ -113,16 +113,16 @@
 因此, 我们说 \(\{\cons{yes}\} \subseteq \{\cons{yes}, \cons{no}\}\)
 \textbf{分类}了全体子集.
 这可以类推到集合族上.
-考虑 \(\tilde{\mathsf{Set}}\) 为全体形如
+考虑 \(\mathsf{Set}_*\) 为全体形如
 \((A, a)\) 的有序对, 其中 \(a \in A\).%
 \footnote{这里为了避免处理真类的问题, 可以不考虑全体集合.
 例如可以固定一个较大的集合 \(U\), 只考虑这个集合的子集.}
-有显然的映射 \(\tilde{\mathsf{Set}} \to \mathsf{Set}\),
+有显然的映射 \(\mathsf{Set}_* \to \mathsf{Set}\),
 将 \((A, a)\) 映射到 \(A\).
 这样, 如果有集合族 \(E_\bullet : B \to \mathsf{Set}\),
 那么也不难验证这是拉回.
 \[\begin{tikzcd}
-  E & {\tilde{\mathsf{Set}}} \\
+  E & {\mathsf{Set}_*} \\
   B & {\mathsf{Set}}
   \arrow[from=1-1, to=2-1]
   \arrow[from=1-2, to=2-2]
@@ -130,16 +130,16 @@
   \arrow["{E_\bullet}"', from=2-1, to=2-2]
   \arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
 \end{tikzcd}\]
-类似地可以说 \(\tilde{\mathsf{Set}} \to \mathsf{Set}\) 分类了全体集合族.
+类似地可以说 \(\mathsf{Set}_* \to \mathsf{Set}\) 分类了全体集合族.
 
 当然, 上面的说法有一些不严谨, 因为两个不同的 \(E_\bullet\)
 可能给出同构的 \(E \to B\). 因为态射之间是直接比较相等,
 而对象之间比较的是同构的概念, 这种情况难免出现.
 子集能避免这个问题, 是因为两个子集之间至多有一种方法同构.
-如果有 \(\tilde X \to X\), 使得在 \(E \to B\) 与某个
+如果有 \(X_* \to X\), 使得在 \(E \to B\) 与某个
 \(B \to X\) 之间有拉回的对应关系,
 不过多个 \(B \to X\) 可能对应同构的 \(E \to B\),
-就称 \(\tilde X \to X\) \textbf{弱分类}了 \(E \to B\) 的态射.
+就称 \(X_* \to X\) \textbf{弱分类}了 \(E \to B\) 的态射.
 
 \section{类型论的自然模型}\label{category:naturalmodel}
 
@@ -432,9 +432,15 @@ F(\Delta)
 类似地, 我们可以给出 \(\Sigma\)-类型结构
 \[\cons{Sigma}(A, B) = x \mapsto \coprod_{a \in A(x)} B(x, a).\]
 
-\subsection{相等类型}
+\section{相等类型}
+
+\subsection{外延类型论与局部积闭范畴}
+
+\subsection{内涵相等类型}
 
 \subsection{范畴语义的历史}
+
+% 在 1984 年, Seely~\cite{seely:1984:lccc} 提出了依值类型与范畴论的一种对应关系.
 
 \begin{itemize}
 \item 1984 年, Seely~\cite{seely:1984:lccc}
@@ -456,10 +462,6 @@ F(\Delta)
 \item 2019 年, 上村太一~\cite{uemura:2019:general}
 提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
 \end{itemize}
-
-\section{外延类型论与局部积闭范畴}
-
-use this to lead up to the next, also explain what Seely did
 
 \subsection{融贯问题}
 
