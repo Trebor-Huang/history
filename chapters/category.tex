@@ -447,23 +447,43 @@ F(\Delta)
 首次具体写出了用丛表示依值类型, 拉回表示代换的思想.
 这隐含了融贯问题, 稍后会介绍.
 \item 1986 年, Cartmell~\cite{cartmell:1986:contextualcat}
-提出了含集范畴 (category with attributes) 及有语境性的变体.
+提出了具集范畴 (category with attributes) 及有语境性的变体.
 \item 1993 年, Bart Jacobs~\cite{jacobs:1993:comprehensioncat}
 提出了概括范畴, 这统一了之前的诸多概念.
 \item Curien~\cite{curien:1993:coherence} 与 Hofmann~\cite{hofmann:1995:lccccoh}
 讨论了融贯问题, 并给出了解决方案.
 \item 1995 年, Dybjer~\cite{dybjer:1995:internal}
-为了在类型论内研究类型论, 提出了含族范畴 (category with families) 的概念.
+为了在类型论内研究类型论, 提出了具族范畴 (category with families) 的概念.
 \item 2014 年, Clairambault~\cite{clairambault:2014:biequivalence}
 给出了融贯问题的完整答案, 这在 \cite{curien:2014:revisit} 中有总结.
 \item 2015 年, 由 Voevodsky 的相关工作启发了
 融贯问题的新解决方案~\cite{lumsdaine:2015:universes}, 这强调了宇宙的重要性.
-\item 2018 年, 含族范畴被 Awodey~\cite{awodey:2018:natural} 和 Fiore 各自独立重新表述为自然模型.
+\item 2018 年, 具族范畴被 Awodey~\cite{awodey:2018:natural} 和 Fiore 各自独立重新表述为自然模型.
 \item 2019 年, 上村太一~\cite{uemura:2019:general}
 提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
 \end{itemize}
 
 \subsection{融贯问题}
+
+从横线的上方到下方需要解决一个融贯问题：
+
+\begin{center}
+\begin{tikzpicture}
+  \node at (-3, 2) {LCCC};
+  \node at (-1.2, 2.6) {意象};
+  \node at (0.4, 0.8) {概括范畴};
+  \node at (3, 1.6) {形式丛范畴};
+  \draw (-5, 0) -- (5, 0);
+  \node at (-2.9, -1) {具族范畴};
+  \node at (-2.9, -1.5) {自然模型};
+  \node at (-0.3, -1.9) {具集范畴};
+  \node at (2.7, -0.7) {分裂概括范畴};
+\end{tikzpicture}
+\end{center}
+
+% LCCC/topos, compcat, display map cat
+
+% CwF (NatMod), CwA, split compcat
 
 \section{意象与内语言}\label{category:inner}
 
