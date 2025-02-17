@@ -214,6 +214,14 @@ Reynolds~\cite{reynolds:1984:polymorphism}在1984年证明了
 1988年, Coquand与Huet提出了构造演算 (Calculus of
 Constructions, 缩写为 CoC). 这与上面提到的一些类型系统
 很快被总结到同一个框架下, 统称为\textbf{纯类型系统}~\cite{barendregt:1992:lambda}.
+需要向初学者说明的是, 这一族类型论 (包括其特殊情况, 即 $\lambda$-立方)
+的定义非常整齐划一, 因此往往吸引人试图将别的类型论都改装到这个框架下.
+然而, 这么做往往是违背其数学本质的.
+同时, 这个框架也有不少问题, 见 \cite{jacobs:1996:cubism} 中的讨论.
+本文并不是类型论教程, 因此念其历史意义仍然加以介绍,
+但在当代的教科书中则应完全不提到纯类型系统与 $\lambda$-立方.
+
+
 正常的依值函数类型的规则是
 \[\frac{x{:}A \vdash B(x)\,\text{type}}{\prod_{x:A}B(x)\,\text{type}}\]
 换句话说, 假设含有
@@ -668,9 +676,9 @@ Bishop用行动展示了数学的许多重要的部分都能在构造主义中�
 有限生成模, 而代价是不能使用排中律. 在内语言中写下的证明,
 都可以翻译成外部语言中对复杂几何对象的操作. 有代数几何
 基础的读者可以参阅~\cite{blechschmidt:2021:internal}.
-插图取自\href{https://github.com/iblech/internal-methods}{此处},
+\footnote{插图取自\href{https://github.com/iblech/internal-methods}{此处},
 这里也含有\cite{blechschmidt:2021:internal}的一份
-副本, 以及许多相关的讲座幻灯片.
+副本, 以及许多相关的讲座幻灯片.}
 
 \subsection{经典逻辑的Curry--Howard对应}\label{ch:classical}
 
@@ -733,3 +741,8 @@ Curry--Howard 对应.
 我们还有一些其他的引入经典逻辑的方式, 如 \(\lambda\mu\)-演算,
 极化逻辑等等. 它们都是对好性质的权衡： 每一种都会保留
 一些类型论的好性质, 而破坏另一些性质.
+这显然是不可避免的. 停机问题无法判定, 因此无论如何修改类型论,
+都不可能得出一个能解决停机问题的程序.
+所以要么该类型论中无法证明一个程序要么停机要么不停机, 即
+限制排中律可使用的范围, 要么该类型论中对此命题的证明无法计算出结果,
+即弱化了构造主义数学的可计算性质.
