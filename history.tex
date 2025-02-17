@@ -12,6 +12,13 @@
 \usepackage{fontspec}
 \usepackage{minted}
 
+% Chinese font
+\setCJKmainfont{Songti SC}[
+  UprightFont = Songti SC Light,
+  ItalicFont = Kaiti SC,
+  BoldItalicFont = Kaiti SC Bold,
+]
+
 % Load computer modern font for e.g. cyrillic.
 % Referring by file name is needed
 % to get compatibility on my laptop and GitHub CI.
@@ -36,7 +43,7 @@
 }{}
 
 % Defining some colors for hyperref
-\newcommand\myshade{85}
+\newcommand\myshade{80}
 \colorlet{mylinkcolor}{violet}
 \colorlet{mycitecolor}{orange}
 \colorlet{myurlcolor}{Aquamarine}
