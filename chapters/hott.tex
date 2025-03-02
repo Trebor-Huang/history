@@ -24,7 +24,7 @@ K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
 而这一解决方案, 对认识类型论的内禀结构提供了重要的
 方向 ------ 类型可以是群胚!
 
-\begin{definition}
+\begin{definition}\label{hott:groupoid:definition}
 \textbf{群胚}包含以下结构：
 给定一些元素 \(C\), 对于每对元素 \(x,y\in C\)
 都取一个集合 \(\hom(x,y)\), 并且有乘法运算
@@ -48,7 +48,8 @@ K 原理显然是成立的, 因此加入 K 公理后类型论仍然无矛盾.
 \end{example}
 容易看出这是基本群的推广. 因此我们可以将群胚看成是“允许取
 多个基点的群”. 另一个角度, 也可以把群胚看作是所有态射均可逆
-的范畴, 不过需要注意的是, 群胚中的乘法运算记号的左右顺序一般
+的范畴, 不过需要注意的是, 许多书中
+群胚的乘法运算记号的左右顺序一般
 与范畴中相反, 因为范畴中常常把态射理解为类似函数的东西, 因此
 函数复合 \((f \circ g)(x) = f(g(x))\) 是先作用者在右侧.
 但是在群胚中往往将态射看作道路, 因此两条道路
@@ -283,13 +284,35 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 阅读这本书不需要类型论基础, 并且内容是开源的. 读者可以自行
 下载阅读.
 
-\begin{comment}
 \section{同伦类型论的语义}
 \label{hott:semantics}
 
-\subsection[群胚语义]{群胚语义\protect\berry{3}}
 我们承接 \ref{hott:independent}~节, 详细
 描述 \cite{hofmann:1998:groupoid} 中的群胚语义.
+我们要以群胚 (定义~\ref{hott:groupoid:definition})
+解释类型论中的语境,
+那么依照之前的讨论, 需要定义 “依值群胚” 的概念解释语境中的类型.
+这就是将集合族的定义推广到“群胚族”.
+\begin{definition}
+给定群胚 \(\Gamma\), \textbf{依值群胚} \(A\) 包含以下资料:
+\begin{itemize}
+\item 对于 \(\Gamma\) 中的每个元素 \(x\), 都有集合 \(A_x\).
+\item 对于 \(\Gamma\) 中的道路 \(p : \hom(x, y)\) 与
+\(\alpha \in A_x\), \(\beta \in A_y\), 都有集合
+\(\hom_p (\alpha, \beta)\), 表示 \(A\) 中的依值道路.
+\item 有单位元 \(\mathrm{id} \in \hom_{\mathrm{id}} (\alpha, \alpha)\)
+与道路拼接 \(\hom_p (\beta, \gamma) \times \hom_q (\alpha, \beta) \to \hom_{p * q} (\alpha, \gamma)\),
+满足单位律与结合律.
+\end{itemize}
+\end{definition}
+假如 \(\Gamma = 1\) 是平凡群胚, 则依值群胚的概念就退化为普通的群胚.
+如果有群胚的同态 \(\sigma : \Delta \to \Gamma\),
+那么给定 \(\Gamma\) 上的依值群胚 \(A\), 就能得到 \(\Delta\) 上的依值群胚 \(B\).
+对 \(\Delta\) 里的元素 \(x\), 定义 \(B_x = A_{\sigma(x)}\), 等等.
+这对应于类型论中的代换操作, 因此我们将它记作 \(A[\sigma]\)
+强调这一联系.
+
+\begin{comment}
 回忆 \ref{category:naturalmodel}~节中对自然模型的定义,
 即一个范畴 \(\mathcal C\) 与两个预层之间的可表态射
 \(\pi : \mathrm{Tm} \to \mathrm{Tp}\).
@@ -431,9 +454,9 @@ Guillaume Brunerie~\cite{brunerie:2016:number}在类型论
 有没有办法设计一个类型论, 使得泛等公理成为一个按照
 类型规则可以证明的\emph{定理}呢? 答案是肯定的.
 
-我们需要设计一套类型规则, 这是类型论的纯语法操作. 但是,
-语法与语义的研究是一体两面的. 此时对同伦类型论的语义研究
-推动了新类型规则的设计.
+这里, 我们需要设计一套类型规则, 这是类型论的纯语法操作. 但是,
+因为语法与语义的研究是一体两面的, 对同伦类型论的语义研究
+能启发新类型规则的设计. 这正是立方类型论的来源.
 
 在类型论开始使用\(\infty\)-群胚之前, 拓扑学家已经
 对此有了大量的研究. 拓扑学中已经有利用单形(simplex)\footnote{单形就是三角形、四面体等的\(n\)维推广.}
