@@ -523,7 +523,7 @@ F(\Delta)
 
 % \subsection{内涵相等类型}
 
-\section{融贯问题}
+\section[融贯问题]{融贯问题\protect\berry{1}}
 
 尽管从类型论的角度, 自然模型的定义的确很自然,
 但是我们寻找模型时, 往往找到的东西会相差一个细节.
@@ -640,30 +640,99 @@ F(\Delta)
 
 \section{范畴语义的历史} 
 
-% 在 1984 年, Seely~\cite{seely:1984:lccc} 提出了依值类型与范畴论的一种对应关系.
+在 1984 年, Seely~\cite{seely:1984:lccc} 提出了依值类型与范畴论的一种对应关系.
+之前我们提到在数学中往往借形如 \(p : E \to B\) 的态射的研究
+间接表达依值对象的概念.
+Seely 考虑的情况中所有态射都属于这样的态射.
+例如对于集合范畴, 所有函数 \(p : E \to B\) 有对应的
+集合族 \(E_b = p^{-1} \{b\}\).
+给定这样的 \(p : E \to B\) 表示依值于 \(B\) 的类型,
+若有另一个箭头 \(\sigma : A \to B\) 表达代换,
+那么代换结果就是拉回 \(A \times_B E \to A\).\berry{2}
 
-\begin{itemize}
-\item 1984 年, Seely~\cite{seely:1984:lccc}
-首次具体写出了用丛表示依值类型, 拉回表示代换的思想.
-这隐含了融贯问题, 稍后会介绍.
-\item 1986 年, Cartmell~\cite{cartmell:1986:contextualcat}
+Seely 发现, \(\Sigma\) 与 \(\Pi\)-类型在这个框架下
+可以简洁地表述为一对伴随.
+若我们将关于 \(\sigma\) 的拉回函子
+\(\mathcal{C}/B \to \mathcal{C}/A\)
+写作 \(\sigma^*\),
+那么它的左伴随 \(\sigma_!\) 就对应 \(\Sigma\)-类型,
+而右伴随 \(\sigma_*\) 对应 \(\Pi\)-类型.
+这一点可以类比一个更简单的例子.
+考虑集合 \(X\) 的所有子集构成的偏序 \(\mathcal{P}(X)\).
+给定函数 \(f : X \to Y\), 就有原像操作
+\(f^* = f^{-1} : \mathcal{P}(Y) \to \mathcal{P}(X)\).
+如果将这两个偏序看成范畴, 那么直接套用伴随的定义可以
+算出其左右伴随分别是
+\[\begin{aligned}
+f_! (U) &= \{y \in Y \mid \exists x \in f^{-1}(y).\,x \in U\} = f(U) \\
+f_* (U) &= \{y \in Y \mid \forall x \in f^{-1}(y).\,x \in U\}
+\end{aligned}\]
+可以看到二者分别用到了 \(\exists\) 和 \(\forall\).
+而子集 \(V \in \mathcal{P}(X)\) 可以看作
+依赖于 \(x \in X\) 的命题, 表达 \(x\) 是否在这个集合中.
+\(\Sigma\) 与 \(\Pi\) 类型的情况则是这个现象对类型的版本.
+
+如果一个范畴中任何态射都有这样三个伴随函子
+\(\sigma_! \vdash \sigma^* \vdash \sigma_*\),
+那么就称这个范畴是\textbf{局部积闭范畴}.
+这个名字来源于其等价定义, 即要求所有
+俯范畴 \(\mathcal{C}/A\) 构成积闭范畴.
+Seely 提出利用局部积闭范畴作为依值类型论的模型.
+正如我们之前所说, 这不完全是正确的, 因为有融贯问题.
+这一点稍后会再次提到.
+
+1986 年, Cartmell~\cite{cartmell:1986:contextualcat}
 提出了具集范畴 (category with attributes) 及有语境性的变体.
-\item 1993 年, Bart Jacobs~\cite{jacobs:1993:comprehensioncat}
-提出了概括范畴, 这统一了之前的诸多概念.
-\item Curien~\cite{curien:1993:coherence} 与 Hofmann~\cite{hofmann:1995:lccccoh}
-讨论了融贯问题, 并给出了解决方案.
-\item 1995 年, Dybjer~\cite{dybjer:1995:internal}
-为了在类型论内研究类型论, 提出了具族范畴 (category with families) 的概念.
-\item 2014 年, Clairambault~\cite{clairambault:2014:biequivalence}
-给出了融贯问题的完整答案, 这在 \cite{curien:2014:revisit} 中有总结.
-\item 2015 年, 由 Voevodsky 的相关工作启发了
-融贯问题的新解决方案~\cite{lumsdaine:2015:universes}, 这强调了宇宙的重要性.
-\item 2018 年, 具族范畴被 Awodey~\cite{awodey:2018:natural} 和 Fiore 各自独立重新表述为自然模型.
-\item 2019 年, 上村太一~\cite{uemura:2019:general}
-提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
-\end{itemize}
+随后在文献中陆续出现了许多稍有变化的定义.
+1993 年, Bart Jacobs~\cite{jacobs:1993:comprehensioncat}
+提出了概括范畴 (comprehension category), 这统一了之前的诸多概念.
+大体来说, 我们希望考虑范畴 \(\mathcal{C}\) 中的一些特殊的箭头,
+这就是在考虑一个满子范畴 \(\mathcal{E} \hookrightarrow \mathcal{C}^\to\).
+在概括范畴中这不限为满子范畴, 可以改用任意的函子.
+这些不同的变体定义就是对这个函子做各种要求.
+值得注意的是, 具集范畴中的限制足够强, 使得它与自然模型完全等价,
+从而出现在上面融贯问题的图表中的下侧, 而一般的概括范畴则在上侧.
+这是因为预层 \(\mathsf{Psh}(\mathcal{C})\) 与
+一种特殊的函子 \(\mathcal{E} \to \mathcal{C}\) 一一对应,
+这种特殊的函子称作\textbf{离散纤维化}.
+由于预层是到集合范畴的函子, 我们将这个概念翻译做具\emph{集}范畴.
 
-\section{意象与内语言}\label{category:inner}
+1995 年, Dybjer~\cite{dybjer:1995:internal}
+为了在类型论内研究类型论, 提出了具族范畴 (category with families) 的概念.
+这基本上与自然模型的定义相同, 但是没有用到预层等范畴语言表述,
+而是用集合的语言表达了所有需要的泛性质.
+
+Seely 论文中融贯问题的细节一直未受人注意.
+直到 1993 年 Curien~\cite{curien:1993:coherence} 与
+1995 年 Hofmann~\cite{hofmann:1995:lccccoh}
+首次讨论了融贯问题, 并给出了解决方案.
+对于每个概括范畴, 都可以修改得到另一个等价的范畴,
+但是其中可以巧妙地选择拉回, 使得其满足严格的等式 \((f \circ g)^* = f^* \circ g^*\).
+这可以扩展到别的等式, 例如类型论中代换满足
+\((\sum_{x : A} B(x))[\sigma] = \sum_{x : A[\sigma]} B(x)[\sigma]\),
+也可以在修改后的概括范畴中得到满足.
+
+2014 年, Clairambault~\cite{clairambault:2014:biequivalence}
+给出了 Hofmann 等人对融贯问题的处理的进一步分析,
+即将所有的概括范畴合为一个 2-范畴 \(\mathsf{CompCat}\),
+并将 Hofmann 的构造写成 2-函子.
+这在 \cite{curien:2014:revisit} 中有总结.
+读者可以阅读这些更晚的文献了解上面提到的内容.
+
+不过, 这还不是融贯问题的完整答案.
+这仅仅处理了 \(\Sigma, \Pi\) 等具体的类型,
+并没有统一的办法可以处理所有的类型构造.
+事实上, 对于内涵 Martin-Löf 类型论中的相等类型,
+没有很好的办法处理融贯问题.
+2015 年, 由 Voevodsky 的相关工作启发了
+融贯问题的新解决方案~\cite{lumsdaine:2015:universes},
+给出了对内涵相等类型, 与一大类类型构造的满意处理.
+
+2018 年, 具族范畴被 Awodey~\cite{awodey:2018:natural} 和 Fiore 各自独立重新表述为自然模型.
+2019 年, 上村太一~\cite{uemura:2019:general}
+提出了通用的框架, 给出了一大类类型论的语法与语义的关系.
+
+\section{范畴语义与内语言}\label{category:inner}
 
 (less material)
 
