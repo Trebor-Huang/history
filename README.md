@@ -13,31 +13,6 @@ An overview of the history of type theory, mainly for mathematically oriented pe
 
 This is my coursework. I have already finished the submitted version `d0aaf51`, but this is still being actively expanded (mostly during winter/summer holidays though). Suggestions and PR's are welcome!
 
-## Recent updates
-
-- Switched to natural models
-- Normalization fo STLC
-
-## TODO
-
-- STLC
-  - [ ] Rewrite combinator canonicity
-  - [X] Normalization for STLC
-- Category theory
-  - [ ] Natural models
-  - [ ] Higher models
-    - [ ] Groupoid model (elaborate)
-    - [ ] Infinity categories and model categories
-- Misc
-  - Typesetting, clean up bibliography
-  - Hyphen or en-dash between math and Chinese?
-    - $\lambda$-演算, $p$-进数, etc.
-  - `[\![]\!]` is too annoying, maybe macro
-  - ~~Use separate font for metavariables?~~
-  - Cite Tom de Jong's stuff?
-  - Mention forcing & realizability?
-  - Cite 1lab properly
-
 ## Conventions
 
 As a self-note here are some conventions:
